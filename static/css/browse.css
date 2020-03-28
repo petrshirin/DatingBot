@@ -1,0 +1,153 @@
+﻿div[class^="photo-card"], .person, .circles, .part-circle {
+    position: absolute;
+}
+
+.picture-man, .star {
+    position: relative;
+}
+
+.refuse, .pass {
+    height: 150px;
+    width: 150px;
+    border-radius: 100%;
+}
+.some-name, .its-data {
+    text-align: center;
+    font-weight: 300;
+}
+.picture-man {
+    height: 40%;
+}
+.photo-card1 {
+    z-index: 1;
+    transform: rotate(-5deg);
+    top: 18%;
+    left: 18%;
+}
+.photo-card2 {
+    z-index: 2;
+    top: 16%;
+    left: 21%;
+    transform: rotate(-2deg);
+}
+.photo-card3 {
+    z-index: 3;
+    top: 15%;
+    left: 20%;
+    transform: rotate(0deg);
+}
+
+div[class^="photo-card"] {
+    width: 60%;
+    height: 90%;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16);
+    background-color: #ffffff;
+}
+.person {
+    background: url("/img/some-other-guy.png") no-repeat center;
+    background-size: cover;
+    top: 24px;
+    bottom: 24px;
+    right: 21px;
+    left: 21px;
+}
+
+.circles {
+    margin-top: 6.5%;
+    height: 52.5%;
+    width: 100%;
+    overflow: hidden;
+}
+.star {
+    width: 120px;
+    height: 120px;
+    background: #02b4ff;
+    border-radius: 100%;
+    transform: translate(-50%);
+    left: 50%;
+    top: 13%;
+    z-index: 1;
+}
+.star > div {
+    background: url("../svg/Group_31.svg") no-repeat center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+.part-circle {
+    left: -15%;
+    bottom: -25%;
+    right: -15%;
+    height: 100%;
+    border-radius: 70%;
+    width: 130%;
+    border: solid 1px #e5e5e5;
+    background-color: #fff;
+    z-index:-1;
+}
+.some-name {
+    margin-top: 20%;
+    font-size: 50px;
+    line-height: 1.2;
+}
+
+.its-data {
+    font-size: 26px;
+    line-height: 1.23;
+    opacity: 0.8;
+    margin-top: 6%;
+}
+.action {
+    height: 100%;
+    z-index: 19;
+    display: flex;
+    justify-content: space-between;
+    margin: 5% 25%;
+}
+
+.refuse {
+    background: url("../svg/Group_26.svg") no-repeat center;
+    background-size: cover;
+}
+.pass {
+    background: url("../svg/Group_27.svg") no-repeat center;
+    background-size: cover;
+}
+
+@media (min-width: 650px) {
+    .star {
+        margin-top: 4%;
+    }
+}
+@media (orientation:landscape) {
+    .refuse, .pass {
+        height: 100px;
+        width: 100px;
+    }
+    .star {
+        margin-top: 1%;
+        width: 80px;
+        height: 80px;
+    }
+    .picture-man {
+        width: 20%;
+        height: 20%;
+        position: relative;
+        transform: translate(-50%);
+        left: 50%;
+    }
+    .circles {
+        margin-top: 1%;
+        height: 70%;
+    }
+    .some-name {
+        font-size: 25px;
+        margin-top: 10%;
+    }
+    .its-data {
+        margin-top: 0;
+    }
+    .action {
+        margin: 0 25%;
+    }
+}

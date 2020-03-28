@@ -1,0 +1,136 @@
+﻿.main-match {
+    margin-top: 15%;
+    text-align: center;
+    margin-left: 8%;
+    margin-right: 8%;
+}
+.main-match, .main-match .couple {
+    position: relative;
+}
+
+.main-match .talk, .main-match .miss, .couple .mutual {
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+}
+
+.main-match .couple {
+    margin-bottom: 15%;
+    height: 230px;
+    padding-left: 10%;
+    padding-right: 10%;
+    border-radius: 30px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16);
+    border: solid 0.5px rgba(214, 214, 214, 0.4);
+    background-color: #ffffff;
+}
+
+.couple .people {
+    display: flex;
+    justify-content: space-between;
+}
+.couple .heart, .couple .mutual {
+    position: absolute;
+    transform: translate(-50%);
+    left: 50%;
+}
+.couple .heart {
+    width: 10%;
+    height: 35%;
+    top: 25%;
+    background: url(../svg/Heart.svg) no-repeat center;
+    background-size: cover;
+}
+.couple .mutual {
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #383838;
+    bottom: 20%;
+}
+
+
+
+.people .user {
+    background-size: cover;
+    background: no-repeat center;
+}
+.people .other {
+    background-size: cover;
+    background:  no-repeat center;
+}
+
+.people .user, .people .other {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    margin-top: -30px;
+}
+
+
+
+
+.main-match .talk, .main-match .miss {
+    margin-right: 15%;
+    margin-left: 15%;
+    padding: 17px 84px;
+    border-radius: 10px;
+    /**/
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.23;
+    color: #ffffff;
+}
+.main-match .talk {
+    margin-bottom: 22px;
+    background-color: #f24e86;
+}
+.main-match .miss {
+    background-color: #02b4ff;
+}
+
+@media (orientation: portrait) {
+    .main-match .couple {
+        height: 400px;
+    }
+    .couple .heart {
+        width: 15%;
+    }
+    .couple .mutual {
+        font-size: 60px;
+        line-height: 2.4;
+        bottom: 10%;
+    }
+    .people .user, .people .other {
+        width: 180px;
+        height: 180px;
+        margin-top: -85px;
+    }
+    .main-match .talk {
+        margin-bottom: 44px;
+    }
+    .main-match .talk, .main-match .miss {
+        padding: 17px 168px;
+        font-size: 32.5px;
+        line-height: 1.84;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    .main-match {
+        margin-top: 5%;
+    }
+    .main-match .couple {
+        margin-bottom: 5%;
+        height: 180px;
+    }
+    .couple .heart {
+        width: 5%;
+        height: 25%;
+        top: 35%;
+    }
+    .main-match .talk, .main-match .miss {
+        font-size: 19.5px;
+        line-height: 1.6;
+    }
+}

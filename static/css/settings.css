@@ -1,0 +1,226 @@
+﻿.main-s, .characters > div, .charactersP > div {
+    display: flex;
+}
+.main-s {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    height: 100%;
+}
+.black-name, .pink-name, .picture .slogan, .section, .picture .change-photo {
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+}
+.main-s .major > div, .main-s .privacy > div {
+    background: #fff;
+}
+.section, .black-name {
+    color: #383838;
+}
+
+.switch, .main-s .picture {
+    position: relative;
+}
+.picture .change-photo, .slider, .slider:before {
+    position: absolute;
+}
+
+.section {
+    background-color: #fafafa;
+    opacity: 0.6;
+    font-size: 12px;
+    line-height: 1.25;
+    letter-spacing: 1.2px;
+    border-bottom: 1px solid #e2e2e2;
+    border-top: 1px solid #e2e2e2;
+    padding: 15px 14px 14px;
+}
+
+.main-s .picture {
+    height: 20%;
+    background-color: #f24e86;
+}
+
+.picture .slogan {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.22;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.picture .change-photo {
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.23;
+    color: #f24e86;
+    /**/
+    border-radius: 18px;
+    padding: 8px 14px;
+    background: #fff;
+    transform: translate(-50%);
+    left: 50%;
+    bottom: 37px;
+}
+
+.characters > div {
+    justify-content: space-between;
+}
+/*--------------*/
+.switch {
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+.slider, .slider::before {
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+    .slider {
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+}
+
+        
+    .slider:before {
+        content: "";
+        height: 30px;
+        width: 30px;
+        left: 3px;
+        bottom: 2px;
+        background-color: white;
+    }
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(25px);
+    -ms-transform: translateX(25px);
+    transform: translateX(25px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 30px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+/**/
+
+.black-name {
+    font-size: 15px;
+    line-height: 1.2;
+    letter-spacing: normal;
+}
+
+.pink-name {
+    font-size: 14px;
+    line-height: 1.21;
+    color: #f24e86;
+}
+
+.characters > div {
+    margin: 0 14px;
+    padding-top: 21.5px;
+    padding-bottom: 20.5px;
+    border-bottom: 1px solid #f2f2f2;
+}
+.charactersP div .black-name {
+    padding: 22.5px 0 19.5px;
+
+}
+.charactersP div label {
+    margin: 14px 1.5px 15px;
+}
+.charactersP > div {
+    justify-content: space-between;
+    border-bottom: 1px solid #f2f2f2;
+    margin: 0 14px;
+}
+
+@media only screen and (orientation: portrait) {
+    .picture .slogan {
+        margin-top: 5%;
+        font-size: 40px;
+    }
+
+    .main-s .picture {
+        min-height: 250px;
+    }
+
+    .picture .change-photo {
+        bottom: 15%;
+        font-size: 32px;
+        padding: 12px 21px;
+    }
+
+    .characters > div {
+        padding-top: 25.5px;
+        padding-bottom: 24.5px;
+    }
+
+    .charactersP div label {
+        margin: 8px 1.5px 9px;
+    }
+
+    .major .section, .privacy .section {
+        font-size: 36px;
+    }
+
+    .major .characters .black-name, .charactersP .black-name {
+        font-size: 30px;
+    }
+
+    .major .characters .pink-name {
+        font-size: 29px;
+    }
+}
+
+@media (orientation: landscape) {
+    .main-s .picture {
+        height: 50%;
+        min-height: 250px;
+    }
+    .picture .slogan {
+        margin-top: 4%;
+        font-size: 32px;
+    }
+    .picture .change-photo {
+        bottom: 15%;
+        font-size: 26px;
+        padding: 12px 21px;
+    }
+    .characters > div {
+        padding-top: 20.5px;
+        padding-bottom: 19.5px;
+    }
+    .charactersP div label {
+        margin: 8px 1.5px 9px;
+    }
+    .major .section, .privacy .section {
+        font-size: 24px;
+    }
+    .major .characters .black-name, .charactersP .black-name {
+        font-size: 22.5px;
+    }
+    .major .characters .pink-name {
+        font-size: 21px;
+    }
+}

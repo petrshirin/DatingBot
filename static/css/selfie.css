@@ -1,0 +1,238 @@
+﻿/*............
+    COMMON
+ .............*/
+
+.photo .user, .skip, .act-box, form .btn {
+    position: absolute;
+}
+
+.skip, .btn, .words .cap, .words .show {
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+}
+.skip, .btn {
+    font-size: 13px;
+    color: #fff;
+}
+.skip, .btn, .words .cap {
+    font-weight: bold;
+}
+.words .cap, .words .show {
+    color: #383838;
+}
+.act-box, .photo, .btn {
+    left: 50%;
+}
+.btn, .act-box {
+    border-radius: 10px;
+}
+.take-photo, .btn {
+    cursor: pointer;
+}
+
+
+/*.......................*/
+.selfie-bg {
+    background: url("../img/bg-selfie.png") no-repeat center;
+    background-size: cover;
+    filter: blur(30px);
+    -webkit-filter: blur(30px);
+    height: 100%;
+}
+
+.photo .user {
+    top: 22.6px;
+    left: 22px;
+    right: 22px;
+    bottom: 26.2px;
+    background: red;
+}
+
+.skip {
+    z-index: 2;
+    top: 21px;
+    right: 21px;
+    line-height: 1.23;
+}
+
+
+
+.act-box {
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    background: #ffffff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16);
+}
+
+.photo {
+    border-radius: 100%;
+    border: 10px solid #fff;
+    width: 93px;
+    height: 93px;
+    top: -50%;
+    position: relative;
+    transform: translate(-50%, 100%);
+    background: #ade7ff;
+}
+
+.take-photo {
+    padding: 17px 26px;
+}
+#selfie {
+    visibility: hidden;
+}
+
+.btn {
+    bottom: 32.5px;
+    transform: translate(-50%);
+    background-color: #f24e86;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    width: auto;
+}
+
+.words {
+    top: 52px;
+    left: 44.5px;
+}
+
+.words .cap {
+    font-size: 17px;
+}
+
+
+.words .show {
+    opacity: 0.7;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.43;
+    margin-top: 10px;
+}
+
+
+/*..........
+    MEDIA
+............*/
+
+@media only screen and (orientation: portrait) {
+    .words, .words .show {
+        position: absolute;
+    }
+
+    .skip {
+        font-size: 1.5rem;
+    }
+
+    .act-box {
+        width: 630px;
+        height: 500px;
+        border-radius: 20px;
+    }
+    .words {
+        top: 140px;
+        transform: translate(-50%);
+        left: 50%;
+    }
+    .words .cap {
+        font-size: 34px;
+    }
+
+    .words .show {
+        font-size: 28px;
+        left: -50%;
+        right: -50%;
+        margin-top: 20px;
+    }
+    .photo {
+        width: 220px;
+        height: 220px;
+        top: -330px;
+    }
+    
+    .photo .user {
+        top: 66px;
+        left: 66px;
+        right: 66px;
+        bottom: 68px;
+        background: red;
+        
+    }
+    .take-photo {
+        padding: 34px 52px;
+    }
+    .btn {
+        font-size: 26px;
+        line-height: 32px;
+        padding-top: 34px;
+        padding-bottom: 34px;
+        border-radius: 15px;
+    }
+
+}
+
+@media only screen and (orientation: landscape) {
+
+    .words {
+        position: absolute;
+        transform: translate(-50%);
+        left: 50%;
+        margin-top: 10%;
+    }
+    .words .show {
+        width: auto;
+    }
+
+    .skip {
+        font-size: 1.2rem;
+    }
+
+    .act-box {
+        height: 300px;
+        width: 360px;
+        text-align: center;
+        border-radius: 20px;
+        min-width: 300px;
+        min-height: 300px;
+    }
+
+    .words {
+        top: 60px;
+    }
+    .words .cap {
+        font-size: 17px;
+    }
+    .words .show {
+        font-size: 14px;
+        margin-top: 10px;
+        width: 200px;
+    }
+
+    .photo {
+        height: 120px;
+        width: 120px;
+        top: -180px;
+    }
+
+    .photo .user {
+        top: 33px;
+        left: 32px;
+        right: 32px;
+        bottom: 34px;
+        background: red;    
+    }
+
+    .take-photo {
+        padding: 17px 26px;
+    }
+
+    .btn {
+        font-size: 16px;
+        line-height: 16px;
+        padding-top: 17px;
+        padding-bottom: 17px;
+        border-radius: 10px;
+    }
+}

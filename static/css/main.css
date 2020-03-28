@@ -1,0 +1,267 @@
+﻿body {
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    min-width: 300px;
+    min-height: 300px;
+    background-color: #f8f8f8;
+    box-sizing: border-box;
+}
+
+.panel ul li a, .whats-app, .user .user-name, .setting-title, .some-name, .its-data {
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.2;
+}
+
+.panel ul li a, .setting-title, .user .user-name, .some-name, .its-data {
+    letter-spacing: normal;
+    color: #383838;
+}
+
+.user .user-photo, .whats-app {
+    position: absolute;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 55px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 14.5px;
+    padding-top: 15px;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.16);
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+.header .sitebar, .header .messages {
+    height: 15px;
+    width: 20px;
+}
+.sitebar {
+    background: url("../svg/Menu.svg") no-repeat center;
+    background-size: cover;
+}
+.messages {
+    background: url("../svg/path-12.svg") no-repeat center;
+    background-size: cover;
+}
+
+#dark {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background: #343434;
+    opacity: 0.6;
+    position: absolute;
+}
+
+#menu {
+    width: 70%;
+    height: 99vh;
+    background: #fff;
+    position: fixed;
+    left: -70%;
+    transition: .5s ease;
+    margin: 0;
+    z-index: 100;
+    padding-top: 34px;
+}
+
+#menu .user {
+    position: relative;
+    text-align: center;
+    height: 240px;
+}
+
+.user .user-photo {
+    width: 25%;
+    height: 70%;
+    background: red;
+    border-radius: 100%;
+    transform: translate(-50%);
+    left: 50%;
+    z-index: -1;
+    background: url("../img/user.png") no-repeat center;
+    background-size: cover;
+}
+
+.user .user-name {
+    font-size: 25px;
+    font-weight: 300;
+    text-align: center;
+    padding-top: 30%;
+}
+
+#menu hr {
+    margin-top: 93px;
+    margin-bottom: 20px;
+    margin-right: 26.5px;
+    margin-left: 26.5px;
+    border: none;
+    background: lightgrey;
+    height: 1px;
+}
+.panel ul {
+    margin-top: 5%;
+    padding-left: 0;
+}
+
+.panel ul li a {
+    font-size: 20px;
+    font-weight: 300;
+    text-decoration: none;
+    padding-left: 5.1px;
+    padding-left: 70px;
+}
+
+.panel ul li {
+    margin-bottom: 10%;
+    list-style: none;
+    
+}
+
+.panel ul .search{
+    background: url("../svg/Group_29.svg") no-repeat center;
+    background-position: left;
+    background-position-x: 30px;
+}
+.panel ul .messagi{
+    background: url("../svg/path-12.svg") no-repeat center;
+    background-position: left;
+    background-position-x: 30px;
+}
+.panel ul .likes{
+    background: url("../svg/Group_33.svg") no-repeat center;
+    background-position: left;
+    background-position-x: 30px;
+}
+.panel ul .favorites{
+    background: url("../svg/Group_31.svg") no-repeat center;
+    background-position: left;
+    background-position-x: 30px;
+}
+.panel ul .settings{
+    background: url("../svg/Group_33.svg") no-repeat center;
+    background-position: left;
+    background-position-x: 30px;
+}
+
+.whats-app {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #f24e86;
+    padding: 28px 56px;
+    font-family: IntroInline;
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 1.6px;
+    text-align: center;
+    color: #ffffff;
+}
+
+
+.setting-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+@media only screen and (orientation: portrait) {
+    .header {
+        height: 110px;
+        padding: 35px 30px;
+    }
+    .header .sitebar, .header .messages {
+        height: 30px;
+        width: 40px;
+    }
+    .header .messages {
+        padding-top: 10px;
+    }
+    .header .setting-title {
+        font-size: 32px;
+    }
+    .messages > span {
+        padding: 0 17px;
+        padding-top: 12px;
+    }
+
+    #menu .user {
+        height: 80px;
+    }
+
+    .panel ul li a {
+        font-size: 36px;
+    }
+
+    .user .user-photo {
+        width: 160px;
+        height: 160px;
+    }
+
+    .user .user-name {
+        padding-top: 200px;
+        font-size: 48px;
+    }
+
+    .panel ul li {
+        margin-bottom: 10%;
+    }
+
+    #menu hr {
+        margin-top: 230px;
+        margin-bottom: 80px;
+    }
+
+}
+
+@media only screen and (orientation: landscape) {
+    #menu .user {
+        height: 60px;
+    }
+    .panel ul li a {
+        font-size: 22px;
+    }
+
+    .user .user-photo {
+        width: 90px;
+        height: 90px;
+    }
+    .user .user-name {
+        padding-top: 100px;
+        font-size: 26px;
+    }
+    .panel ul li {
+        margin-bottom: 3%;
+    }
+
+
+    .header {
+        height: 77.5px;
+        padding: 25px 25px;
+    }
+    .header .sitebar, .header .messages {
+        height: 22.5px;
+        width: 30px;
+    }
+    .header .messages {
+        padding-top: 9px;
+        padding-left: 4px;
+    }
+    .header .setting-title {
+        font-size: 24px;
+    }
+    .messages > span {
+        padding: 0 14px;
+        padding-top: 8px;
+    }
+
+    #menu hr {
+        margin-top: 123px;
+        margin-bottom: 40px;
+    }
+}
