@@ -13,7 +13,7 @@ site_url = 'https://site.ru/'
 
 from userprofile.models import *
 
-TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZXMiOlsiYWNjb3VudDphZGRfdXNlcnMiLCJhY2NvdW50OmVkaXRfb3duX3Byb2ZpbGUiLCJhY2NvdW50OmVkaXRfdXNlcnMiLCJhY2NvdW50OnJlbW92ZV91c2VycyIsImFjY291bnQ6dmlld191c2VycyIsImFwaXRva2Vuczppc3N1ZSIsImF0dGFjaG1lbnRzOnVwbG9hZCIsImNoYW5uZWw6Y3JlYXRlIiwiY2hhbm5lbDpnZXRfYnlfYWNjb3VudCIsImNoYXQ6Z2V0IiwiY2hhdDppbml0aWF0ZSIsImNoYXQ6bWFya19yZWFkIiwiY2hhdDptYXJrX3VucmVhZCIsImNoYXQ6cmVwbHkiLCJlbmR1c2VyX25vdGlmaWNhdGlvbnM6Z2V0X2luZm8iLCJlbmR1c2VyX25vdGlmaWNhdGlvbnM6Z2V0X3N1YnNjcmlwdGlvbnMiLCJlbmR1c2VyX25vdGlmaWNhdGlvbnM6bWFuZ2Vfd2lkZ2V0cyIsImVuZHVzZXJfbm90aWZpY2F0aW9uczpyZW1vdmVfc3Vic2NyaXB0aW9ucyIsImVuZHVzZXJfbm90aWZpY2F0aW9uczpzZW5kIiwiaW50ZXJhY3RpdmVfY2hhaW5zOm1hbmFnZSIsImludm9pY2VzOnBheSIsIm1lc3NhZ2VUZW1wbGF0ZTpnZXQiLCJtZXNzYWdlVGVtcGxhdGU6bWFuYWdlIiwibm90aWZpY2F0aW9uX3dlYmhvb2tzOmFkZCIsIm5vdGlmaWNhdGlvbl93ZWJob29rczpyZW1vdmUiLCJyZXBvcnRzOnZpZXciLCJzdWJzY3JpcHRpb25zOmFjdGl2YXRlIiwic3Vic2NyaXB0aW9uczpnZXQiLCJ3aWRnZXQ6Z2V0Iiwid2lkZ2V0Om1vZGlmeSJdLCJhY2NvdW50LmlkIjoiNDEzNzM5MzItZmNmOC00ZDFlLWIwOGEtZWY4MDVmYTE3YmIzIiwidXNlci5pZCI6IjZjMDQwZjVkLTQyYzYtNGI1ZC04ODE3LWIwZGNhMTBjYTk4NiIsIm5iZiI6MTU4MzE0NjQyNiwianRpIjoiOTM1N2FjMmEtOGQ4NS03NzE1LTMxOGEtMDE3MDlhZTE2MDczIiwiaWF0IjoxNTgzMTQ2NDI2LCJleHAiOjE1ODQzNTU2MDYsImlzcyI6Imh0dHBzOi8vaWQudGV4dGJhY2suaW8vYXV0aC8iLCJzdWIiOiI2YzA0MGY1ZC00MmM2LTRiNWQtODgxNy1iMGRjYTEwY2E5ODYifQ.s-1YyXvc7CjbZLs1YZMRhXnEVuENmelr99W2HG028Vc'
+TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZXMiOlsiYWNjb3VudDphZGRfdXNlcnMiLCJhY2NvdW50OmVkaXRfb3duX3Byb2ZpbGUiLCJhY2NvdW50OmVkaXRfdXNlcnMiLCJhY2NvdW50OnJlbW92ZV91c2VycyIsImFjY291bnQ6dmlld191c2VycyIsImFwaXRva2Vuczppc3N1ZSIsImF0dGFjaG1lbnRzOnVwbG9hZCIsImNoYW5uZWw6Y3JlYXRlIiwiY2hhbm5lbDpnZXRfYnlfYWNjb3VudCIsImNoYXQ6Z2V0IiwiY2hhdDppbml0aWF0ZSIsImNoYXQ6bWFya19yZWFkIiwiY2hhdDptYXJrX3VucmVhZCIsImNoYXQ6cmVwbHkiLCJlbmR1c2VyX25vdGlmaWNhdGlvbnM6Z2V0X2luZm8iLCJlbmR1c2VyX25vdGlmaWNhdGlvbnM6Z2V0X3N1YnNjcmlwdGlvbnMiLCJlbmR1c2VyX25vdGlmaWNhdGlvbnM6bWFuZ2Vfd2lkZ2V0cyIsImVuZHVzZXJfbm90aWZpY2F0aW9uczpyZW1vdmVfc3Vic2NyaXB0aW9ucyIsImVuZHVzZXJfbm90aWZpY2F0aW9uczpzZW5kIiwiaW50ZXJhY3RpdmVfY2hhaW5zOm1hbmFnZSIsImludm9pY2VzOnBheSIsIm1lc3NhZ2VUZW1wbGF0ZTpnZXQiLCJtZXNzYWdlVGVtcGxhdGU6bWFuYWdlIiwibm90aWZpY2F0aW9uX3dlYmhvb2tzOmFkZCIsIm5vdGlmaWNhdGlvbl93ZWJob29rczpyZW1vdmUiLCJyZXBvcnRzOnZpZXciLCJzdWJzY3JpcHRpb25zOmFjdGl2YXRlIiwic3Vic2NyaXB0aW9uczpnZXQiLCJ3aWRnZXQ6Z2V0Iiwid2lkZ2V0Om1vZGlmeSJdLCJhY2NvdW50LmlkIjoiMzQ0OTI1Y2QtY2U2MS00MDNmLWE2YWMtNTQ5ZTZkODY5NmEyIiwidXNlci5pZCI6ImQ1MGQ0YzkxLWU5NGEtNGVhMS05ZjBkLTAzOGY0ZjEyMmUyZSIsIm5iZiI6MTU4NTM3NjY3OSwianRpIjoiZDhkYzhmNTctZTAzNi0xNzhhLTEyNGYtMDE3MTFmZDA1NTI5IiwiaWF0IjoxNTg1Mzc2Njc5LCJleHAiOjE1ODY1ODYwOTksImlzcyI6Imh0dHBzOi8vaWQudGV4dGJhY2suaW8vYXV0aC8iLCJzdWIiOiJkNTBkNGM5MS1lOTRhLTRlYTEtOWYwZC0wMzhmNGYxMjJlMmUifQ.4nqdmqi1kzSlgcJI75hHjubNiPWKpM9VvaDKA_-Z-b8'
 
 ru = {"welcome": '''Привет тут сервисное сообщение приветствия''',
       'name': 'Как вас зовут?',
@@ -166,9 +166,9 @@ def whats_app_logic(self, message):
     elif chat.step == 5:
         user_profile = UserProfile.objects.filter(chat=chat).first()
         if message['text'] == '1' or message['text'].lower() == 'мужской':
-            user_profile.sex = 'Мужской'
+            user_profile.sex = 'Мужчина'
         elif message['text'] == '2' or message['text'].lower() == 'женский':
-            user_profile.sex = 'Женский'
+            user_profile.sex = 'Женщина'
         else:
             info['text'] = ru.get('understand')
             self.send_message(info)
@@ -185,7 +185,7 @@ def whats_app_logic(self, message):
         restaurants = UserRestaurant.objects.all()
         rest_str = ''
         for i in range(len(restaurants)):
-            rest_str += f'{i+1}. {restaurants[i].name}\n'
+            rest_str += f'{i + 1}. {restaurants[i].name}\n'
         info['text'] = ru.get('restaurant').format(rest_str)
         self.send_message(info)
         chat.step = 7
@@ -206,7 +206,7 @@ def whats_app_logic(self, message):
             info['text'] = ru.get('not_restaurant').format(rest_str)
             self.send_message(info)
             return
-        info['text'] = ru.get('complete_registration').format(site_url + str(chat.user_id) + '/')
+        info['text'] = ru.get('complete_registration').format(f'{site_url}profile/login/{str(chat.user_id)}/')
         self.send_message(info)
         chat.step = 8
         chat.save()
@@ -220,5 +220,5 @@ class TextBackException(Exception):
 if __name__ == '__main__':
     t = TextBack()
     while True:
-        t.get_updates([9420], whats_app_logic)
+        t.get_updates([9819], whats_app_logic)
         time.sleep(0.5)
