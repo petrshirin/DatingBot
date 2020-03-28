@@ -4,6 +4,7 @@ import datetime
 import json
 import os
 import django
+from django.db import Error
 
 os.environ["DJANGO_SETTINGS_MODULE"] = 'datingbot.settings'
 django.setup()
@@ -54,6 +55,10 @@ class TextBack:
         for message in updates['$items']:
             if 'w' in message['channel']:
                 exit()
+
+            if message['lastMessage']['text'] in ru.values():
+                self.time_update = message['lastMessage']['sentTimestamp'] + 1500
+                return
             try:
                 for channel_id in channel_ids:
                     if message['channelId'] == channel_id:
@@ -62,7 +67,7 @@ class TextBack:
                 print(err)
 
             print(time.ctime(self.time_update // 1000))
-            self.time_update = message['lastMessage']['sentTimestamp'] + 1000
+            self.time_update = message['lastMessage']['sentTimestamp'] + 1500
             print(time.ctime((message['lastMessage']['sentTimestamp'] + 1000) // 1000))
 
     @staticmethod
@@ -79,6 +84,7 @@ class TextBack:
     def logic(self, message, func):
         if func:
             func(self, message)
+            time.sleep(1)
         else:
             raise TextBackException()
 
@@ -114,8 +120,11 @@ def whats_app_logic(self, message):
                 chat.step = 2
                 chat.save()
 
-        elif message['text'] == '1' or message['text'].lower() == 'нет':
-            user = User.objects.create_user(message['chatId'], password=message['channelId'] + 'user=' + chat.id)
+        elif message['text'] == '2' or message['text'].lower() == 'нет':
+            try:
+                user = User.objects.create_user(message['chatId'], password=str(message['channelId']) + 'user=' + str(chat.id))
+            except Error:
+                pass
             info['text'] = ru.get('name')
             self.send_message(info)
             chat.step = 2
@@ -132,10 +141,12 @@ def whats_app_logic(self, message):
         self.send_message(info)
         chat.step = 3
         chat.save()
+        print(user_profile)
         user_profile.save()
 
     elif chat.step == 3:
-        user_profile = UserProfile.objects.filter(chat=chat).first()
+        user_profile = UserProfile.objects.filter(chat__id=chat.id).first()
+        print(UserProfile.objects.all())
         user_profile.second_name = message['text']
         info['text'] = ru.get('age')
         self.send_message(info)
@@ -210,4 +221,4 @@ if __name__ == '__main__':
     t = TextBack()
     while True:
         t.get_updates([9420], whats_app_logic)
-        time.sleep(1)
+        time.sleep(0.5)

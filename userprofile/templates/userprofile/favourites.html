@@ -1,0 +1,65 @@
+﻿﻿<!DOCTYPE html>
+
+{% load static %}
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>favourites</title>
+    <link rel="stylesheet" type="text/css" href={% static "/css/favourites.css" %} />
+    <link rel="stylesheet" type="text/css" href={% static "/css/main.css" %} />
+    <script src={% static "/js/sitebar.js" %}></script>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="sitebar"></div>
+            <span class="setting-title">Настройки</span>
+            <a href="/profile/messages/" class="messages">
+                <span></span>
+            </a>
+        </div>
+    </header>
+
+    <div id="dark"></div>
+    <div id="menu">
+        <div class="user">
+            <div class="user-photo"></div>
+            <div class="user-name">{{user.first_name}}</div>
+        </div>
+        <hr />
+        <div class="panel">
+            <ul>
+                <li class="search">
+                    <a href="">Поиск по имени</a>
+                </li>
+                <li class="messagi">
+                    <a href="/profile/messages/">Сообщения</a>
+                </li>
+                <li class="likes">
+                    <a href="/profile/favourites/">Мои лайки</a>
+                </li>
+                <li class="search">
+                    <a href="/profile/search/">Поиск</a>
+                </li>
+                <li class="settings">
+                    <a href="/profile/my/">Настройки профиля</a>
+                </li>
+            </ul>
+        </div>
+        <div class="whats-app">Назад в Whats App</div>
+    </div>
+
+    <div class="main-f">
+        <div class="people">
+            {%for iter in fav_users %}
+            <div class="person6" >
+                <img src="/media/{{iter.view_user.photo}}" width="400px"  height="400px" class="photo">
+                <div class="name">{{iter.view_user.first_name}}</div>
+                <div class="add">Added on {{iter.date.day}}.{{iter.date.month}}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

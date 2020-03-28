@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+{% load static %}
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>match</title>
+    <link rel="stylesheet" type="text/css" href={% static "/css/match.css" %} />
+    <link rel="stylesheet" type="text/css" href={% static "/css/main.css" %} />
+    <script src={% static "/js/sitebar.js" %}></script>
+</head>
+<body>
+ <div id="dark"></div>
+    <div id="menu">
+        <div class="user">
+            <div class="user-photo"></div>
+            <div class="user-name">{{user.first_name}}</div>
+        </div>
+        <hr />
+        <div class="panel">
+            <ul>
+                <li class="search">
+                    <a href="">Поиск по имени</a>
+                </li>
+                <li class="messagi">
+                    <a href="/profile/messages/">Сообщения</a>
+                </li>
+                <li class="likes">
+                    <a href="/profile/favourites/">Мои лайки</a>
+                </li>
+                <li class="search">
+                    <a href="/profile/search/">Поиск</a>
+                </li>
+                <li class="settings">
+                    <a href="/profile/my/">Настройки профиля</a>
+                </li>
+            </ul>
+        </div>
+        <div class="whats-app">Назад в Whats App</div>
+    </div>
+
+    <div class="main-match">
+        <div class="couple">
+            <div class="people">
+                <span class="user" style='background: url(/media/{{user.photo}}); background-size: cover'></span>
+                <span class="other" style='background: url(/media/{{other.photo}}); background-size: cover'></span>
+            </div>
+            <div class="heart"></div>
+            <div class="mutual">Это взаимно!</div>
+        </div>
+        <div class="talk"><a href=" https://wa.me/{{other.phone}}">Пообщаться</a></div>
+        <div class="miss" onClick="skip({{other.pk}})">Пропустить</div>
+    </div>
+</body>
+</html>
+
+<script>
+
+function skip(pk) {
+window.location.reload(false);
+}
+</script>

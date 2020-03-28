@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+{% load static %}
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>browse</title>
+    <link rel="stylesheet" type="text/css" href={% static "/css/main.css" %} />
+    <link rel="stylesheet" type="text/css" href={% static "/css/browse.css" %} />
+
+
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="sitebar"></div>
+            <span class="setting-title">Настройки</span>
+            <<a href="/profile/messages/" class="messages">
+                <span></span>
+            </a>
+        </div>
+    </header>
+
+    <div id="dark"></div>
+    <div id="menu">
+        <div class="user">
+            <div class="user-photo"></div>
+            <div class="user-name">{{user.first_name}}</div>
+        </div>
+        <hr />
+        <div class="panel">
+            <ul>
+                <li class="search">
+                    <a href="">Поиск по имени</a>
+                </li>
+                <li class="messagi">
+                    <a href="/profile/messages/">Сообщения</a>
+                </li>
+                <li class="likes">
+                    <a href="/profile/favourites/">Мои лайки</a>
+                </li>
+                <li class="search">
+                    <a href="/profile/search/">Поиск</a>
+                </li>
+                <li class="settings">
+                    <a href="/profile/my/">Настройки профиля</a>
+                </li>
+            </ul>
+        </div>
+        <div class="whats-app">Назад в Whats App</div>
+    </div>
+
+    <div class="picture-man">
+        <div class="photo-card1"></div>
+        <div class="photo-card2"></div>
+        <div class="photo-card3">
+            <div class="person" style="background-size: cover"></div>
+        </div>
+    </div>
+    <div class="circles">
+        <div class="star">
+            <div></div>
+        </div>
+        <div class="part-circle"></div>
+        <div class="some-name"></div>
+        <div class="its-data">
+            <span id="years_old"></span> &bull;
+            <span id="man_status"></span>
+        </div>
+        <div class="action">
+            <div class="refuse" onclick="dislike_user()"></div>
+            <div class="pass" onclick="like_user()"></div>
+        </div>
+    </div>  
+</body>
+</html>
+
+
+<script>
+    var current_user = null;
+    window.onload = function () {
+    var page = document.querySelector('.sitebar');
+    page.onclick = menuShow;
+    page.onmouseout = menuHide;
+
+    function menuShow() {
+        document.querySelector('#dark').style.display = 'block';
+        var menu = document.querySelector('#menu');
+        menu.style.top = 0;
+        menu.style.left = 0;
+
+    }
+    function menuHide() {
+        document.querySelector('#dark').style.display = 'none';
+        document.querySelector('#menu').style.left = '-70%';
+    }
+
+
+}
+
+
+function get_user() {
+    let request = new XMLHttpRequest();
+    request.responseType = 'json';
+    request.open('GET', "/api/get_user/");
+    request.addEventListener("readystatechange", () => {
+
+    if (request.readyState === 4 && request.status === 200) {
+        user = request.response;
+        if (user['error'] == 'Not users') {
+            document.getElementById('years_old').innerHTML = "Пользователей больше нет";
+            document.getElementById('man_status').innerHTML = "";
+            document.getElementsByClassName('person')[0].style.backgroundImage = "";
+            document.getElementsByClassName('person')[0].style.backgroundColor = "white";
+            current_user = null;
+            return;
+        }
+        current_user = user
+        console.log(document.getElementsByClassName('person')[0])
+        document.getElementById('years_old').innerHTML = user['age'] + "years old";
+        document.getElementById('man_status').innerHTML = user['status'] ? user['status'] : "";
+        if (user.photo) {
+            document.getElementsByClassName('person')[0].style.backgroundImage = "url(" + user.photo + ")";
+        }
+        else {
+            document.getElementsByClassName('person')[0].style.backgroundImage = "";
+            document.getElementsByClassName('person')[0].style.backgroundColor = "white";
+        }
+    }
+    });
+    request.send();
+}
+
+
+function like_user() {
+    let request = new XMLHttpRequest();
+    request.responseType = 'json';
+
+    if (current_user) {
+        request.open('GET', "/api/like_user/"+ current_user.pk + "/");
+        request.addEventListener("readystatechange", () => {
+
+        if (request.readyState === 4 && request.status === 200) {
+            get_user()
+        }
+        });
+        request.send();
+    }
+}
+
+
+function dislike_user() {
+    let request = new XMLHttpRequest();
+    request.responseType = 'json';
+
+    if (current_user) {
+        request.open('GET', "/api/dislike_user/"+ current_user.pk + "/");
+        request.addEventListener("readystatechange", () => {
+
+        if (request.readyState === 4 && request.status === 200) {
+            get_user()
+        }
+        });
+        request.send();
+    }
+}
+
+get_user()
+</script>

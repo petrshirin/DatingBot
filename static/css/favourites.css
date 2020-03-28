@@ -1,0 +1,147 @@
+﻿﻿.main-f {
+    color: #383838;
+}
+.main-f .search-by-name {
+    background: #f2f2f2;
+    padding: 10px 20px 10px 19px;
+}
+
+.search-by-name #search {
+    padding-top: 6px;
+    padding-bottom: 7px;
+    width: 100%;
+    border-radius: 10px;
+    border: solid 1px #eaeaea;
+    text-align: center;
+}
+
+div[class^="person"] .name, div[class^="person"] .add, .search-by-name #search::placeholder {
+    text-align: center;
+    font-family: Lato;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+}
+
+.search-by-name #search::placeholder {
+    opacity: 0.45;
+    font-size: 12px;
+    line-height: 1.25;
+}
+
+.main-f .people {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+div[class^="person"]::before {
+    content: "";
+    background: url(../svg/cancel.svg) no-repeat center;
+}
+
+.photo {
+    border-radius: 5px;
+    display: inline-block;
+    border-radius: 80%;
+}
+
+.photo img {
+    width: 30%;
+}
+
+div[class^="person"] .name {
+    font-size: 20px;
+    line-height: 1.2;
+}
+
+div[class^="person"] .add {
+    padding: 10px 30px;
+    opacity: 0.4;
+    font-size: 13px;
+    line-height: 1.23;
+}
+
+@media only screen and (orientation: portrait) {
+    .main-f .search-by-name {
+        padding: 30px 60px 30px 59px;
+    }
+    .search-by-name #search {
+        padding-top: 30px;
+        padding-bottom: 21px;
+        width: 100%;
+    }
+
+    .search-by-name #search::placeholder {
+        font-size: 36px;
+        line-height: 3.75;
+    }
+
+    div[class^="person"] {
+        margin: 5% 0 0;
+        background-size: 60%;
+        background-position-y: 5%;
+    }
+
+    div[class^="person"]::before {
+        padding: 60px;
+        background-size: 60px;
+        top: -5%;
+        right: 15%;
+        position: absolute;
+    }
+
+    div[class^="person"] .name {
+        font-size: 56px;
+        padding-top: 5%;
+    }
+
+    div[class^="person"] .add {
+        padding-right: 90px;
+        padding-left: 90px;
+        font-size: 39px;
+        width: 280px;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    .main-f .search-by-name {
+        padding: 10px 40px 10px 39px;
+    }
+    .search-by-name #search {
+        padding-top: 20px;
+        padding-bottom: 15px;
+        width: 100%;
+    }
+
+    .search-by-name #search::placeholder {
+        font-size: 24px;
+        line-height: 2.5;
+    }
+
+    div[class^="person"] {
+        padding: 15% 0 0;
+        margin: 5% 0 0;
+        background-size: 50%;
+        background-position-y: 5%;
+    }
+
+    div[class^="person"]::before {
+        padding: 25px;
+        background-size: 25px;
+        top: 0;
+        right: 20%;
+        position: absolute;
+    }
+
+    div[class^="person"] .name {
+        font-size: 35px;
+    }
+
+    div[class^="person"] .add {
+        padding-right: 60px;
+        padding-left: 60px;
+        font-size: 19.5px;
+    }
+}
