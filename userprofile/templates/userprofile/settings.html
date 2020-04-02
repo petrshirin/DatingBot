@@ -52,21 +52,39 @@
     <div class="main-s">
         <div class="picture">
             <div class="slogan">Слоган (добавим потом)</div>
-            <div class="change-photo">Изменить фото</div>
+            <input class="change-photo" type="file"></input>
         </div>
         <div class="major">
-            <div class="section">Основное</div>
+            <div class="section selectionMain">Основное
+            <span class="edit_info" id="editInfo" onClick="editInfo()"><span style="margin: 8px">Редактировать</span></span>
+            <span class="edit_info none" id="saveInfo" onClick="saveInfo()"><span style="margin: 8px">Сохранить</span></span>
+            </div>
             <div class="characters">
                 <div>
                     <span class="black-name">Ресторан</span>
+                    <span class="editInput none">
+                        <select class="select" type="text" id="restaurant_name" value="{{user.restaurant.name}}">
+                            {% for restaurant in restaurants %}
+                            <option>{{restaurant.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </span>
                     <span class="pink-name">{{user.restaurant.name}}</span>
                 </div>
                 <div>
                     <span class="black-name">Поиск по</span>
-                    <span class="pink-name">{{user.search_for}}</span>
+                    <span class="editInput none">
+                    <select class="select" type="text" id="search_for" value="{{user.search_for}}">
+                        {% for gender in genders %}
+                            <option>{{gender}}</option>
+                        {% endfor %}
+                    </select>
+                    </span>
+                    <span class="pink-name">{{user.search_for}}м</span>
                 </div>
                 <div>
                     <span class="black-name">Имя</span>
+                    <span class="editInput none"><input type="text" id="first_name" value="{{user.first_name}}"></span>
                     <span class="pink-name">{{user.first_name}}</span>
                 </div>
             </div>
@@ -103,6 +121,48 @@ function change_activity() {
     }
     });
     request.send();
+}
+
+
+function editInfo() {
+    document.getElementById("editInfo").classList.toggle("none");
+    document.getElementById("saveInfo").classList.toggle("none");
+    let inputs = document.getElementsByClassName("editInput");
+    for (let i = 0; i < inputs.length; i++)
+        inputs[i].classList.toggle("none");
+}
+
+function saveInfo() {
+    document.getElementById("editInfo").classList.toggle("none");
+    document.getElementById("saveInfo").classList.toggle("none");
+    let inputs = document.getElementsByClassName("editInput");
+    let values = document.getElementsByClassName("pink-name");
+
+    let request = new XMLHttpRequest();
+    request.open('POST', "/api/change_info/");
+    request.responseType = 'json';
+    request.setRequestHeader("Content-Type", "application/json")
+    var match = document.cookie.match(new RegExp('(^| )' + "csrftoken" + '=([^;]+)'));
+    if (match)
+    csrf = match[2];
+
+    request.setRequestHeader("X-CSRFToken", csrf)
+    request.addEventListener("readystatechange", () => {
+
+    if (request.readyState === 4 && request.status === 200) {
+        return;
+    }
+    });
+    data = {}
+    for (let i = 0; i < inputs.length; i++) {
+        input_field = inputs[i].getElementsByTagName("input")[0];
+        if (!input_field)
+            input_field = inputs[i].getElementsByTagName("select")[0];
+        values[i].innerHTML = input_field.value;
+        inputs[i].classList.toggle("none");
+        data[input_field.id] = input_field.value;
+    }
+    request.send(JSON.stringify(data));
 }
 
 </script>

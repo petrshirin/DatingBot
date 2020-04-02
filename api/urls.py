@@ -8,4 +8,5 @@ urlpatterns = [
     path('like_user/<int:pk>/',  LikeUser.as_view(), name='like'),
     path('dislike_user/<int:pk>/',  LikeUser.as_view(), name='like'),
     path('change_activity/', Activity.as_view(), name='activity'),
+    path('change_info/', ChangeInfo.as_view(), name="change_info")
 ]

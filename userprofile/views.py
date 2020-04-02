@@ -12,7 +12,9 @@ def view_profile(request):
         print(UserProfile.objects.get(pk=1))
         user_profile = UserProfile.objects.filter(user=request.user).first()
         print(user_profile)
-        return TemplateResponse(request, "userprofile/settings.html", {'user': user_profile})
+        restaurants = UserRestaurant.objects.all()
+        genders = ['Мужчинам', 'Женщинам']
+        return TemplateResponse(request, "userprofile/settings.html", {'user': user_profile, 'restaurants': restaurants, 'genders': genders})
     else:
         return bad_request(request)
 

@@ -21,6 +21,76 @@
     color: #383838;
 }
 
+.selectionMain {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.edit_info {
+    border: 1px solid #D8D8D8;
+    background: #D8D8D8;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+.none {
+    display: none;
+}
+
+.editInput input {
+   border: 1px solid #D8D8D8;
+   border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   -khtml-border-radius: 5px;
+   background: inherit !important;
+   outline: none;
+   height: 24px;
+   width: 200px;
+   color: #f24e86;
+   font-size: 29px;
+   line-height: 1.21;
+   font-family: Arial, Helvetica, sans-serif;
+   padding: 8px;
+}
+
+.select
+{
+  display: inline-block;
+  width: 200px;
+  line-height: 1.21;
+  position: relative;
+  -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark-color(#f24e86, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    -webkit-appearance: menulist;
+    box-sizing: border-box;
+    align-items: center;
+    white-space: pre;
+    -webkit-rtl-ordering: logical;
+    background-color: white;
+    cursor: default;
+    margin: 0em;
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #D8D8D8;
+    font-size: 29px;
+    color: #f24e86;
+    border-image: initial;
+    padding 8px;
+
+}
+
 .switch, .main-s .picture {
     position: relative;
 }
@@ -81,7 +151,7 @@
     transition: .4s;
 }
 
-    .slider {
+.slider {
     cursor: pointer;
     top: 0;
     left: 0;

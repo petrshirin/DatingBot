@@ -4,6 +4,7 @@ from userprofile.models import UserProfile, UserView, UserCoincidence
 from .serializers import *
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.parsers import JSONParser, FormParser, MultiPartParser
 
 # Create your views here.
 
@@ -81,3 +82,23 @@ class Activity(APIView):
         user_profile.is_active = not user_profile.is_active
         user_profile.save()
         return Response({'status': 'ok'}, status=200)
+
+
+class ChangeInfo(APIView):
+
+    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user_ser = UserProfileChangeSerializer(request.user.userprofile, data=request.data)
+
+        if user_ser.is_valid():
+            user_ser.save()
+            if 'Мужчин' in request.user.userprofile.search_for:
+                request.user.userprofile.search_for = 'Мужчина'
+            if 'Женщин' in request.user.userprofile.search_for:
+                request.user.userprofile.search_for = 'Женщина'
+            request.user.userprofile.save()
+            return Response({'status': 'ok'}, status=201)
+        else:
+            return Response({'status': 'fail', 'error': user_ser.errors}, status=422)
