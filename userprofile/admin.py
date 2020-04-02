@@ -5,3 +5,5 @@ from .models import *
 
 admin.site.register(UserProfile)
 admin.site.register(UserRestaurant)
+admin.site.register(UserView)
+admin.site.register(UserCoincidence)

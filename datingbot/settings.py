@@ -25,7 +25,7 @@ SECRET_KEY = '8%&o==x0))u833dyv2@0e*&n^^m8)l*@v9j^zs=wjjj-7e23=a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tkl.one', 'www.tkl.one']
 
 
 # Application definition

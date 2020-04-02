@@ -15,7 +15,7 @@ from userprofile.models import *
 
 TOKEN = os.environ.get('TEXTBACK_TOKEN')
 
-ru = {"welcome": '''Привет т    ут сервисное сообщение приветствия''',
+ru = {"welcome": '''Привет тут сервисное сообщение приветствия''',
       'name': 'Как вас зовут?',
       'surname': 'Ваша фамилия?',
       'age': 'Сколько вам лет?(можно пропустить)',
