@@ -46,7 +46,7 @@ class LikeUser(APIView):
             userprofile = UserProfile.objects.filter(user=request.user).first()
             view = UserView(user_profile=userprofile, view_user=v_userprofile, result=True)
             view.save()
-            view_other = UserView.objects.filter(view_user=v_userprofile, user_profile=userprofile, result=True).first()
+            view_other = UserView.objects.filter(user_profile=v_userprofile, view_user=userprofile, result=True).first()
             if view_other:
                 conf = UserCoincidence(user_1=v_userprofile, user_2=userprofile)
                 conf.save()
