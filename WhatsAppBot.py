@@ -106,9 +106,9 @@ def whats_app_logic(self, message):
 
     elif chat.step == 1:
         if message['text'] == '1' or message['text'].lower() == 'да':
-            user = UserProfile.objects.filter(user_id=message['chatId']).first()
+            user = UserProfile.objects.filter(user=User.objects.get(username=message['chatId'])).first()
             if user:
-                info['text'] = ru.get('is_old').format(site_url + str(chat.user_id) + '/')
+                info['text'] = ru.get('is_old').format(f'{site_url}profile/login/{str(chat.user_id)}/')
                 self.send_message(info)
                 chat.step = 30
                 chat.save()
