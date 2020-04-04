@@ -220,5 +220,5 @@ class TextBackException(Exception):
 if __name__ == '__main__':
     t = TextBack()
     while True:
-        t.get_updates([9819], whats_app_logic)
+        t.get_updates([9944], whats_app_logic)
         time.sleep(0.5)
