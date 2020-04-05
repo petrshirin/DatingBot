@@ -18,7 +18,7 @@ TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZXMiOlsiYWNjb3VudDphZGRfdX
 ru = {"welcome": '''Привет тут сервисное сообщение приветствия''',
       'name': 'Как вас зовут?',
       'surname': 'Ваша фамилия?',
-      'age': 'Сколько вам лет?(можно пропустить)',
+      'age': 'Сколько вам лет?(можно пропустить, введите 0)',
       'something_about_you': 'Пару слов о себе',
       'is_new': 'Вы уже зарегистрированны?\n1. Да\n2. Нет',
       'not_is_old': 'Такого пользователя нет, Введите свое имя?',
@@ -156,6 +156,7 @@ def whats_app_logic(self, message):
 
     elif chat.step == 4:
         user_profile = UserProfile.objects.filter(chat=chat).first()
+        if type(message['text']) == int:
         user_profile.age = message['text']
         info['text'] = ru.get('sex')
         self.send_message(info)
@@ -195,10 +196,12 @@ def whats_app_logic(self, message):
     elif chat.step == 7:
         user_profile = UserProfile.objects.filter(chat=chat).first()
         restaurants = UserRestaurant.objects.all()
+        i = 1
         for restaurant in restaurants:
-            if message['text'] == restaurant.name or message['text'] == restaurant.id:
+            if message['text'] == restaurant.name or message['text'] == str(i):
                 user_profile.restaurant = restaurant
                 break
+            i += 1
         if user_profile.restaurant is None:
             rest_str = ''
             for i in range(len(restaurants)):
