@@ -156,8 +156,12 @@ def whats_app_logic(self, message):
 
     elif chat.step == 4:
         user_profile = UserProfile.objects.filter(chat=chat).first()
-        if type(message['text']) == int:
-        user_profile.age = message['text']
+        try:
+            age = int(message['text'])
+            user_profile.age = message['text']
+        except Exception as err:
+            print(err)
+            user_profile.age = 0
         info['text'] = ru.get('sex')
         self.send_message(info)
         chat.step = 5
