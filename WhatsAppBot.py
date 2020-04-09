@@ -13,6 +13,7 @@ site_url = 'http://www.tkl.one/'
 
 from userprofile.models import *
 
+
 TOKEN = ''
 
 ru = {"welcome": '''Привет тут сервисное сообщение приветствия''',
@@ -95,7 +96,7 @@ def whats_app_logic(self, message):
     if not chat:
         chat = Chat(user_id=message['chatId'], step=0)
         chat.save()
-    if message['text'].lower() == 'старт':
+    if 'старт' in message['text'].lower() or 'start' in message['text'].lower():
         info['text'] = ru.get('welcome')
         self.send_message(info)
         time.sleep(0.5)
