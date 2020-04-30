@@ -159,7 +159,7 @@ def whats_app_logic(self, message):
         user_profile = UserProfile.objects.filter(chat=chat).first()
         try:
             age = int(message['text'])
-            user_profile.age = message['text']
+            user_profile.age = age
         except Exception as err:
             print(err)
             user_profile.age = 0

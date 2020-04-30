@@ -44,5 +44,3 @@ class UserCoincidence(models.Model):
     is_view_1 = models.BooleanField(default=False)
     is_view_2 = models.BooleanField(default=False)
 
-
-
