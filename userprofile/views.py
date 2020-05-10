@@ -33,6 +33,7 @@ def view_message(request):
                 other = coincidence.user_1
                 coincidence.is_view_2 = True
             coincidence.save()
+            other.phone = str(other.phone).replace('+', '')
             return TemplateResponse(request, "userprofile/match.html", {'user': user, 'other': other})
         else:
             return redirect('/profile/search/')

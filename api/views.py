@@ -5,8 +5,15 @@ from .serializers import *
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import JSONParser, FormParser, MultiPartParser
-
+from django.core.files.base import File
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
+
+
+class CsrfExemptSessionAuthentication(SessionAuthentication):
+
+    def enforce_csrf(self, request):
+        return  # To not perform the csrf check previously happening
 
 
 class User(APIView):
@@ -22,7 +29,7 @@ class User(APIView):
         for user_view in user_views:
             user_views_list.append(user_view.view_user)
         profile = None
-        print(profiles)
+        print(main_profile.restaurant, main_profile.sex, main_profile.search_for)
         print(user_views_list)
         for profile in profiles:
             if profile not in user_views_list:
@@ -77,6 +84,7 @@ class Activity(APIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
+
     def get(self, request):
         user_profile = UserProfile.objects.get(user=request.user)
         user_profile.is_active = not user_profile.is_active
@@ -86,19 +94,24 @@ class Activity(APIView):
 
 class ChangeInfo(APIView):
 
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
+    authentication_classes = [SessionAuthentication, BasicAuthentication, CsrfExemptSessionAuthentication]
     permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser]
 
     def post(self, request):
-        user_ser = UserProfileChangeSerializer(request.user.userprofile, data=request.data)
 
-        if user_ser.is_valid():
-            user_ser.save()
-            if 'Мужчин' in request.user.userprofile.search_for:
+        restaurant = UserRestaurant.objects.filter(name=request.data['restaurant_name']).first()
+        if restaurant:
+            request.user.userprofile.restaurant = restaurant
+            request.user.userprofile.first_name = request.data['first_name']
+            if request.data.get('photo'):
+                request.user.userprofile.photo = request.data.get('photo')
+
+            if 'Мужчин' in request.data['search_for']:
                 request.user.userprofile.search_for = 'Мужчина'
-            if 'Женщин' in request.user.userprofile.search_for:
+            if 'Женщин' in request.data['search_for']:
                 request.user.userprofile.search_for = 'Женщина'
             request.user.userprofile.save()
             return Response({'status': 'ok'}, status=201)
         else:
-            return Response({'status': 'fail', 'error': user_ser.errors}, status=422)
+            return Response({'status': 'fail'}, status=400)

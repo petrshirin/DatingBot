@@ -116,8 +116,8 @@ function get_user() {
             return;
         }
         current_user = user
-        console.log(document.getElementsByClassName('person')[0])
-        document.getElementById('years_old').innerHTML = user['age'] + "years old";
+
+        document.getElementById('years_old').innerHTML = user['first_name'] + " " + user['age'] + " " + "years old";
         document.getElementById('man_status').innerHTML = user['status'] ? user['status'] : "";
         if (user.photo) {
             document.getElementsByClassName('person')[0].style.backgroundImage = "url(" + user.photo + ")";

@@ -50,9 +50,10 @@
     </div>
 
     <div class="main-s">
+    <form>
+    {% csrf_token %}
         <div class="picture">
-            <div class="slogan">Слоган (добавим потом)</div>
-            <input class="change-photo" type="file"></input>
+            <input id="inputPhoto" class="change-photo noneVisibleBlock" type="file"></input>
         </div>
         <div class="major">
             <div class="section selectionMain">Основное
@@ -105,6 +106,7 @@
                 </div>
             </div>
         </div>
+    </form>
     </div>
 </body>
 </html>
@@ -127,6 +129,7 @@ function change_activity() {
 function editInfo() {
     document.getElementById("editInfo").classList.toggle("noneVisibleBlock");
     document.getElementById("saveInfo").classList.toggle("noneVisibleBlock");
+    document.getElementById("inputPhoto").classList.toggle("noneVisibleBlock");
     let inputs = document.getElementsByClassName("editInput");
     for (let i = 0; i < inputs.length; i++)
         inputs[i].classList.toggle("noneVisibleBlock");
@@ -135,34 +138,31 @@ function editInfo() {
 function saveInfo() {
     document.getElementById("editInfo").classList.toggle("noneVisibleBlock");
     document.getElementById("saveInfo").classList.toggle("noneVisibleBlock");
+    document.getElementById("inputPhoto").classList.toggle("noneVisibleBlock");
     let inputs = document.getElementsByClassName("editInput");
     let values = document.getElementsByClassName("pink-name");
-
-    let request = new XMLHttpRequest();
-    request.open('POST', "/api/change_info/");
-    request.responseType = 'json';
-    request.setRequestHeader("Content-Type", "application/json")
-    var match = document.cookie.match(new RegExp('(^| )' + "csrftoken" + '=([^;]+)'));
-    if (match)
-    csrf = match[2];
-
-    request.setRequestHeader("X-CSRFToken", csrf)
-    request.addEventListener("readystatechange", () => {
-
-    if (request.readyState === 4 && request.status === 200) {
-        return;
-    }
-    });
     data = {}
+
+    form = document.getElementsByTagName("form")[0]
+    const fData = new FormData(form);
+
     for (let i = 0; i < inputs.length; i++) {
         input_field = inputs[i].getElementsByTagName("input")[0];
         if (!input_field)
             input_field = inputs[i].getElementsByTagName("select")[0];
         values[i].innerHTML = input_field.value;
         inputs[i].classList.toggle("noneVisibleBlock");
-        data[input_field.id] = input_field.value;
+        fData.append(input_field.id, input_field.value);
     }
-    request.send(JSON.stringify(data));
+
+    file = document.getElementById("inputPhoto")
+    if (file.files[0])
+        fData.append('photo', file.files[0]);
+
+    fetch("/api/change_info/", {
+            method: 'POST',
+            body: fData
+        });
 }
 
 </script>
