@@ -32,6 +32,9 @@ class User(APIView):
         print(main_profile.restaurant, main_profile.sex, main_profile.search_for)
         print(user_views_list)
         for profile in profiles:
+            if profile == main_profile:
+                profile = None
+                continue
             if profile not in user_views_list:
                 break
             else:
