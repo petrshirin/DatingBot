@@ -34,7 +34,7 @@ def view_message(request):
                 coincidence.is_view_2 = True
             coincidence.save()
             other.phone = str(other.phone).replace('+', '')
-            chat = Chat.objects.filter(user_id=request.user.username).first()
+            chat = Chat.objects.filter(user_id=other.user.username).first()
             username = None
             if chat:
                 username = chat.username
