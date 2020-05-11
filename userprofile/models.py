@@ -10,6 +10,7 @@ class UserRestaurant(models.Model):
 
 class Chat(models.Model):
     user_id = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
     step = models.IntegerField()
 
 

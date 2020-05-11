@@ -14,9 +14,15 @@ site_url = 'http://www.tkl.one/'
 from userprofile.models import *
 
 
-TOKEN = ''
+TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzY29wZXMiOlsiYWNjb3VudDphZGRfdXNlcnMiLCJhY2NvdW50OmVkaXRfb3duX3Byb2ZpbGUiLCJhY2NvdW50OmVkaXRfdXNlcnMiLCJhY2NvdW50OnJlbW92ZV91c2VycyIsImFjY291bnQ6dmlld191c2VycyIsImFwaXRva2Vuczppc3N1ZSIsImF0dGFjaG1lbnRzOnVwbG9hZCIsImNoYW5uZWw6Y3JlYXRlIiwiY2hhbm5lbDpnZXRfYnlfYWNjb3VudCIsImNoYXQ6Z2V0IiwiY2hhdDppbml0aWF0ZSIsImNoYXQ6bWFya19yZWFkIiwiY2hhdDptYXJrX3VucmVhZCIsImNoYXQ6cmVwbHkiLCJlbmR1c2VyX25vdGlmaWNhdGlvbnM6Z2V0X2luZm8iLCJlbmR1c2VyX25vdGlmaWNhdGlvbnM6Z2V0X3N1YnNjcmlwdGlvbnMiLCJlbmR1c2VyX25vdGlmaWNhdGlvbnM6bWFuZ2Vfd2lkZ2V0cyIsImVuZHVzZXJfbm90aWZpY2F0aW9uczpyZW1vdmVfc3Vic2NyaXB0aW9ucyIsImVuZHVzZXJfbm90aWZpY2F0aW9uczpzZW5kIiwiaW50ZXJhY3RpdmVfY2hhaW5zOm1hbmFnZSIsImludm9pY2VzOnBheSIsIm1lc3NhZ2VUZW1wbGF0ZTpnZXQiLCJtZXNzYWdlVGVtcGxhdGU6bWFuYWdlIiwibm90aWZpY2F0aW9uX3dlYmhvb2tzOmFkZCIsIm5vdGlmaWNhdGlvbl93ZWJob29rczpyZW1vdmUiLCJyZXBvcnRzOnZpZXciLCJzdWJzY3JpcHRpb25zOmFjdGl2YXRlIiwic3Vic2NyaXB0aW9uczpnZXQiLCJ3aWRnZXQ6Z2V0Iiwid2lkZ2V0Om1vZGlmeSJdLCJhY2NvdW50LmlkIjoiZWQzNzUzMTItZmYzYy00ZTM4LThiNzQtYTY2ZTQzZGQ2ZTcyIiwidXNlci5pZCI6IjkzNGIxYjliLWYxZGUtNDVjZi05OWRiLTI2NTQwNjM2Yzk5YyIsIm5iZiI6MTU4NTgzNjU0MSwianRpIjoiOGM2NzdmNDAtZThmOC1hNGVkLThjYjUtMDE3MTNiMzk0NWZkIiwiaWF0IjoxNTg1ODM2NTQxLCJleHAiOjE2MTczNzI1NDEsImlzcyI6Imh0dHBzOi8vaWQudGV4dGJhY2suaW8vYXV0aC8iLCJzdWIiOiI5MzRiMWI5Yi1mMWRlLTQ1Y2YtOTlkYi0yNjU0MDYzNmM5OWMifQ.rlcuS7jtTNGkpBmM8rQhRoGTQrE9MvCqe8x9qAZYbrg'
 
 ru = {"welcome": '''Привет тут сервисное сообщение приветствия''',
+      "need_user_name": '''Для работы  нам необходим ваш username
+Как его создать:
+1. Заходим в настройки телеграмма 
+2. Вводим "имя пользователя" - @.... (Если имя пользователя уже заполнено, читай пункт 3)
+3. Вы готовы к общению''',
+
       'name': 'Как вас зовут?',
       'surname': 'Ваша фамилия?',
       'age': 'Сколько вам лет?(можно пропустить, введите 0)',
@@ -63,7 +69,7 @@ class TextBack:
             try:
                 for channel_id in channel_ids:
                     if message['channelId'] == channel_id:
-                        self.logic(message['lastMessage'], logic)
+                        self.logic(message, logic)
             except Exception as err:
                 print(err)
 
@@ -91,12 +97,25 @@ class TextBack:
 
 
 def whats_app_logic(self, message):
-    info = self.generate_message_body(message)
+    remote_contact = message['remoteContact']
+
     chat = Chat.objects.filter(user_id=message['chatId']).first()
     if not chat:
         chat = Chat(user_id=message['chatId'], step=0)
         chat.save()
-    if 'старт' in message['text'].lower() or 'start' in message['text'].lower():
+
+    if not remote_contact.get('channelUsername'):
+        info = self.generate_message_body(message)
+        info['text'] = ru.get('need_user_name')
+        self.send_message(info)
+        return
+    else:
+        chat.username = remote_contact.get('channelUsername')
+        chat.save()
+    message = message['lastMessage']
+    info = self.generate_message_body(message)
+    if 'старт' in message['text'].lower() or 'start' in message['text'].lower() or 'кактус' == message['text'].lower():
+        print(message['text'].lower())
         info['text'] = ru.get('welcome')
         self.send_message(info)
         time.sleep(0.5)
@@ -227,6 +246,8 @@ class TextBackException(Exception):
 
 if __name__ == '__main__':
     t = TextBack()
+    if 'старт' in ru.values():
+        print('start')
     while True:
         try:
             t.get_updates([9989], whats_app_logic)
