@@ -14,7 +14,11 @@ def view_profile(request):
         print(user_profile)
         restaurants = UserRestaurant.objects.all()
         genders = ['Мужчинам', 'Женщинам']
-        return TemplateResponse(request, "userprofile/settings.html", {'user': user_profile, 'restaurants': restaurants, 'genders': genders})
+        my_chat = Chat.objects.filter(user_id=request.user.username).first()
+        myusername = None
+        if my_chat:
+            myusername = my_chat.username
+        return TemplateResponse(request, "userprofile/settings.html", {'user': user_profile, 'restaurants': restaurants, 'genders': genders, 'username': myusername})
     else:
         return bad_request(request)
 
@@ -35,10 +39,14 @@ def view_message(request):
             coincidence.save()
             other.phone = str(other.phone).replace('+', '')
             chat = Chat.objects.filter(user_id=other.user.username).first()
+            my_chat = Chat.objects.filter(user_id=request.user.username).first()
+            myusername = None
+            if my_chat:
+                myusername = my_chat.username
             username = None
             if chat:
                 username = chat.username
-            return TemplateResponse(request, "userprofile/match.html", {'user': user, 'other': other, "username": username})
+            return TemplateResponse(request, "userprofile/match.html", {'user': user, 'other': other, "username": myusername, "other_username": username})
         else:
             return redirect('/profile/search/')
     else:
@@ -60,7 +68,12 @@ def login_user(request, user_id=None):
 def view_search(request):
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
-        return TemplateResponse(request, 'userprofile/browse.html', {'user': user_profile})
+        chat = Chat.objects.filter(user_id=user_profile.user.username).first()
+        my_chat = Chat.objects.filter(user_id=request.user.username).first()
+        myusername = None
+        if my_chat:
+            myusername = my_chat.username
+        return TemplateResponse(request, 'userprofile/browse.html', {'user': user_profile, "username": myusername})
     else:
         return bad_request(request)
 
@@ -69,7 +82,11 @@ def view_favourites(request):
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
         user_views = UserView.objects.filter(user_profile=user_profile).all()
-        return TemplateResponse(request, 'userprofile/favourites.html', {'user': user_profile, 'fav_users': user_views})
+        my_chat = Chat.objects.filter(user_id=request.user.username).first()
+        myusername = None
+        if my_chat:
+            myusername = my_chat.username
+        return TemplateResponse(request, 'userprofile/favourites.html', {'user': user_profile, 'fav_users': user_views, 'username': myusername})
     else:
         return bad_request(request)
 
