@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>RegTel</title>
+        <link rel="stylesheet" type="text/css" href={% static "/css/common.css" %} />
+        <link rel="stylesheet" type="text/css" href={% static "/css/header.css" %} />
+        <link rel="stylesheet" type="text/css" href={% static "/css/inputs.css" %} />
+        <link rel="stylesheet" type="text/css" href={% static "/css/edit.css" %} />
+        <link rel="stylesheet" type="text/css" href={% static "/css/registration.css" %} />
+
+        <script async src={% static "/js/sitebar.js" %}></script>
+        <script src={% static "/js/phoneInput.js" %}></script>
+    </head>
+    <body>
+        <header>
+            <div class="iconArrow"><a href="#"></a></div>
+            <div>
+                <div><a href="#"></a></div>
+                <div class="extraTxt headTxt">знакомства</div>
+            </div>
+            <div class="refMenu"></div>
+        </header>
+        
+        <main>
+            <div class="name section">Введи свой телефон</div>
+            <form class="editForm" method="post">
+                {% csrf_token %}
+
+                <div class="privacy">
+                    <div>
+                        <input name="tel" class="input" type="tel" id="tel"/>
+                    </div>
+
+                    <input type="submit" class="btn" id="button" value="Дальше" disabled />
+
+                </div>
+
+            </form>
+        </main>
+
+
+    </body>
+</html>

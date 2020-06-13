@@ -1,0 +1,46 @@
+{% extends "userprofile2/base.html" %}
+{% load static %}
+{% block title %}Чат с {{other_userprofile.first_name}}{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href={% static "/css/inputs.css" %} />
+<link rel="stylesheet" type="text/css" href={% static "/css/chat.css" %} />
+<link rel="stylesheet" type="text/css" href={% static "/css/chatInput.css" %} />
+{% endblock %}
+
+{% block sitebar %}
+<header>
+    <div class="iconArrow"><a href="/profile/menu/"><img src={% static "/svg/Line_38.svg" %} /></a></div>
+    <div>
+        <div><a href=""><img class="logo" src={% static "/svg/image_15.svg" %} ></a></div>
+        <div class="extraTxt headTxt">знакомства</div>
+    </div>
+    <div class="icon"><a href="/profile/search/"><img src={% static "/svg/close.svg" %} /></a></div>
+</header>
+{% endblock %}
+
+{% block content %}
+<main>
+    <div>
+        <div class="person">
+            <div><img class="img" src="{{ other_userprofile.photo.url }}" /></div>
+            <div class="name">{{ other_userprofile.first_name }}, {{other_userprofile.age}}</div>
+        </div>
+        <div class="advice">
+            <div>Пока ваш чат пуст. Напиши первый!</div>
+           <div>Например:</div>
+        </div>
+        <div class="samples" id="samples">
+            <div>Привет! Встретимся через 5 минут у барной стойки?</div>
+            <div >Привет, за каким ты столиком?</div>
+        </div>
+    </div>
+
+    <div class="inpField">
+        <span><textarea rows="1" class="input" id="textInp" oninput="checkEmptiness(this)"></textarea></span>
+        <input type="submit" id="send" value="" />
+    </div>
+</main>
+
+    <script src={% static "/js/chatInput.js" %} ></script>
+{% endblock %}

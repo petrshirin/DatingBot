@@ -1,0 +1,123 @@
+header {
+    text-align: center;
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+header > div {
+    display: inline-block;
+}
+
+.iconArrow {
+    position: relative;
+}
+.icon {
+    position: relative;
+    right: 41px;
+}
+
+.logo {
+    height: 24px;
+    width:  126px;
+}
+
+.refMenu {
+    position: relative;
+    background: url("../svg/menu.svg") center no-repeat;
+    background-size: contain;
+}
+
+.refMenu::before {
+    display: none; 
+    content: "";
+}
+
+.refMenu.circle::before {
+    display: block; 
+    content: "";
+    background-color: #F9D671;
+    border-radius: 100%;
+    border: 0.2770083102493075vh solid #1A1919;
+}
+
+@media only screen and (orientation: portrait) {
+    header {
+        margin-top: 2.9085872576177287vh;
+    }
+    .headTxt {
+        font-size: 2.25rem;
+        line-height: 2.8125rem;
+        margin-top: 36px;
+    }
+
+    .logo {
+        transform: scale(3, 3);
+    }
+
+    .icon > img, a > img {
+        height: 60px;
+        width:  60px;
+    }
+
+    .iconArrow, .icon {
+        margin-top: -8px;
+    }
+
+    .refMenu {
+        height: 48px;
+        width: 66px;
+    }
+
+    .refMenu::before {
+        width: 24px;
+        height: 24px;
+        margin-top: -15px;
+        margin-left: -12.5px;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    header {
+        margin-top: 2.9085872576177287vw;
+    }
+    .logo {
+        margin-bottom: 10px;
+        transform: scale(2, 2);
+    }
+
+    .iconMenu {
+        width: 3.3240997229916895vh;
+        height:  8.203125vw;
+    }
+
+    .headTxt {
+        font-size: 1.125rem;
+        line-height: 1.40625rem;
+        margin-top: 12px;
+    } 
+
+    a > img {
+        height: 40px;
+        width:  40px;
+    }
+
+    .iconArrow, .icon {
+        margin-top: 8px;
+    }
+    .iconArrow {
+        margin-left: -8px;
+    }
+
+    .refMenu {
+        height: 32px;
+        width: 44px;
+    }
+
+    .refMenu::before {
+        width: 18.5px;
+        height: 18.5px;
+        margin-top: -7.5px;
+        margin-left: -7.5px;
+    }
+}

@@ -1,0 +1,155 @@
+.main, .menu > div {
+    width: 100%;
+
+}
+
+.person, .menu > div:first-child {
+    display: inline-flex;
+}
+
+.matches::before, .btnMatches + div::before, .name + a {
+    display: inline-block;
+}
+
+.matches::before, .btnMatches + div::before, .btnMatches > span:last-child {
+    vertical-align: sub;
+}
+
+.main {
+    margin-top: 6.786703601108033vh;
+    height: 150px;
+}
+
+.personInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.name + a {
+    width: 50px;
+    height: 50px;
+    margin-left: 150px;
+    background: url("../svg/Vector.svg") center no-repeat;
+    background-size: contain;
+}
+.personPhoto {
+    border-radius: 100%;
+    border: 9px solid #F1D37D;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.personPhoto :first-child {
+    object-fit: contain;
+    object-position: center;
+}
+
+.menu > div {
+    font-size: 56px;
+    font-weight: bold;  
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu > div:first-child {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.matches::before, .btnMatches + div::before {
+    content: "";
+    background-color: brown;
+}
+
+.btnMatches > span:last-child {
+    display: none;  /*inline-block*/
+    background-color: #F9D671;
+    border-radius: 100%;
+    text-align: center;
+    color: #1A1919;
+}
+
+.iconArrow {visibility: hidden;}
+
+#fewWords {text-align: left;}
+
+@media only screen and (orientation: portrait) {
+    .person {
+        margin-bottom: 141px;
+    }
+
+    .personPhoto :first-child, .personPhoto {
+        width: 172.5px;
+        height: 172.5px;
+    }
+
+    .personInfo {
+        margin-left: 66px;
+    }
+
+    .menu > div {
+        font-size: 56px;
+        height: 220px;
+        line-height: 220px;
+    }
+
+    .matches::before, .btnMatches + div::before {
+        width: 56px;
+        height: 56px;
+        margin-right: 60px;
+        margin-left: 30px;
+    }
+
+    .menu > div:first-child :last-child {
+        width: 72px;
+        height: 72px;
+        line-height: 72px;
+    }
+
+    .name + a {
+        width: 50px;
+        height: 50px;
+        margin-left: 160px;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    .person {
+        margin-bottom: 56px;
+    }
+
+    .personPhoto :first-child, .personPhoto {
+        width: 130px;
+        height: 130px;
+    }
+
+    .personInfo {
+        margin-left: 49.5px;
+    }
+
+    .menu > div {
+        font-size: 30px;
+        height: 82.5px;
+        line-height: 82.5px;
+    }
+
+    .matches::before, .btnMatches + div::before {
+        width: 27px;
+        height: 27px;
+        margin-right: 45px;
+        margin-left: 22.5px;
+    }
+
+    .menu > div:first-child :last-child, .name + a {
+        width: 35px;
+        height: 35px;
+    }
+
+    .menu > div:first-child :last-child {
+        line-height: 35px;
+    }
+
+    .name + a {
+        margin-left: 410px;
+    }
+}

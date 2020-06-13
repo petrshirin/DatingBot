@@ -3,22 +3,37 @@ from django.template.response import TemplateResponse
 from django.contrib.auth import authenticate, login
 from .models import *
 from django.db.models import Q
-
+from django.contrib.auth.decorators import login_required
+from .forms import UserProfileForm
 # Create your views here.
 
 
 def view_profile(request):
     if request.user.is_authenticated:
-        print(UserProfile.objects.get(pk=1))
-        user_profile = UserProfile.objects.filter(user=request.user).first()
-        print(user_profile)
-        restaurants = UserRestaurant.objects.all()
-        genders = ['Мужчинам', 'Женщинам']
-        my_chat = Chat.objects.filter(user_id=request.user.username).first()
-        myusername = None
-        if my_chat:
-            myusername = my_chat.username
-        return TemplateResponse(request, "userprofile/settings.html", {'user': user_profile, 'restaurants': restaurants, 'genders': genders, 'username': myusername})
+        if request.method == 'GET':
+            user_profile = UserProfile.objects.filter(user=request.user).first()
+            return TemplateResponse(request, "userprofile2/edit.html", {'userprofile': user_profile})
+        elif request.method == 'POST':
+            form = UserProfileForm(request.POST, request.FILES)
+            user_profile = UserProfile.objects.filter(user=request.user).first()
+            if form.is_valid():
+                data = form.data
+                print(data)
+                user_profile.first_name = data['first_name']
+                user_profile.sex = data['sex']
+                user_profile.age = data['age']
+                user_profile.status = data['status']
+                if data['sex'] == 'Мужчина':
+                    user_profile.search_for = 'Женщина'
+                else:
+                    user_profile.search_for = 'Мужчина'
+
+                if request.FILES.get('photo'):
+                    user_profile.photo = request.FILES['photo']
+                user_profile.save()
+                return TemplateResponse(request, "userprofile2/edit.html", {'userprofile': user_profile})
+            else:
+                return TemplateResponse(request, "userprofile2/edit.html", {'userprofile': user_profile, 'errors': form.errors})
     else:
         return bad_request(request)
 
@@ -37,59 +52,160 @@ def view_message(request):
                 other = coincidence.user_1
                 coincidence.is_view_2 = True
             coincidence.save()
-            other.phone = str(other.phone).replace('+', '')
-            chat = Chat.objects.filter(user_id=other.user.username).first()
-            my_chat = Chat.objects.filter(user_id=request.user.username).first()
-            myusername = None
-            if my_chat:
-                myusername = my_chat.username
-            username = None
-            if chat:
-                username = chat.username
-            return TemplateResponse(request, "userprofile/match.html", {'user': user, 'other': other, "username": myusername, "other_username": username})
+            return TemplateResponse(request, "userprofile2/meet.html", {'userprofile': user, 'otheruserprofile': other})
         else:
-            return redirect('/profile/search/')
+            user_views = UserView.objects.filter(user_profile=user_profile, result=True).all()
+            return TemplateResponse(request, "userprofile2/matchList.html", {'userprofile': user_profile, 'userviews': user_views})
     else:
         return bad_request(request)
 
 
-def login_user(request, user_id=None):
-    if user_id is None:
-        return bad_request(request)
-    user_profile = UserProfile.objects.filter(chat__user_id=user_id).first()
-    if user_profile:
-        user = user_profile.user
-        login(request, user)
-        return redirect('/profile/my/', {'user': user_profile})
-    else:
-        return bad_request(request)
+@login_required
+def view_menu(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    count_new_coincidence = UserCoincidence.objects.filter((Q(user_1=user_profile, is_view_1=False) | Q(user_2=user_profile, is_view_2=False))).count()
+    return TemplateResponse(request, "userprofile2/menu.html", {'userprofile': user_profile, 'countnewcoincidence': count_new_coincidence})
 
 
 def view_search(request):
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
-        chat = Chat.objects.filter(user_id=user_profile.user.username).first()
-        my_chat = Chat.objects.filter(user_id=request.user.username).first()
-        myusername = None
-        if my_chat:
-            myusername = my_chat.username
-        return TemplateResponse(request, 'userprofile/browse.html', {'user': user_profile, "username": myusername})
-    else:
-        return bad_request(request)
-
-
-def view_favourites(request):
-    if request.user.is_authenticated:
-        user_profile = UserProfile.objects.get(user=request.user)
-        user_views = UserView.objects.filter(user_profile=user_profile).all()
-        my_chat = Chat.objects.filter(user_id=request.user.username).first()
-        myusername = None
-        if my_chat:
-            myusername = my_chat.username
-        return TemplateResponse(request, 'userprofile/favourites.html', {'user': user_profile, 'fav_users': user_views, 'username': myusername})
+        count_new_coincidence = UserCoincidence.objects.filter((Q(user_1=user_profile, is_view_1=False) | Q(user_2=user_profile, is_view_2=False))).count()
+        return TemplateResponse(request, 'userprofile2/search.html', {'user': user_profile, 'countnewcoincidence': count_new_coincidence})
     else:
         return bad_request(request)
 
 
 def bad_request(request):
     return render(request, 'userprofile/404.html', status=404)
+
+
+def register_user(request, restaurant_id):
+    rest = UserRestaurant.objects.filter(pk=restaurant_id).first()
+    if not rest:
+        return bad_request(request)
+    if request.method == 'POST':
+
+        phone = request.POST['tel']
+        if not phone:
+            return TemplateResponse(request, 'userprofile2/RegTel.html', {"error": "Неверный номер телефона, введите заного"})
+        phone = phone.strip()
+        user_profile = UserProfile.objects.filter(phone=phone).first()
+        print(user_profile)
+        if user_profile:
+            login(request, user_profile.user)
+            user_profile.restaurant = rest
+            user_profile.save()
+            return redirect('/profile/my/', {'userprofile': user_profile})
+        else:
+            user = User.objects.create_user(phone, password=phone + 'user=' + phone)
+            user_profile = UserProfile(user=user, restaurant=rest, phone=phone)
+            user_profile.save()
+            login(request, user)
+            return redirect('/profile/addname/', {'user': user_profile})
+
+    elif request.method == 'GET':
+        return TemplateResponse(request, 'userprofile2/RegTel.html', {"error": ""})
+
+    else:
+        return bad_request(request)
+
+
+@login_required
+def add_name_sex(request):
+    if request.method == 'POST':
+        sex = request.POST['sex']
+        first_name = request.POST['name']
+        user_profile = UserProfile.objects.get(user=request.user)
+        user_profile.first_name = first_name
+        if sex == 'male':
+            user_profile.sex = 'Мужчина'
+            user_profile.search_for = 'Женщина'
+        else:
+            user_profile.sex = 'Женщина'
+            user_profile.search_for = 'Мужчина'
+        user_profile.save()
+        return redirect('/profile/addage/', {'user': user_profile})
+
+    elif request.method == 'GET':
+        return TemplateResponse(request, 'userprofile2/RegName.html', {"error": ""})
+
+    else:
+        return bad_request(request)
+
+
+@login_required
+def add_age(request):
+    if request.method == 'POST':
+        age = request.POST['age']
+        user_profile = UserProfile.objects.get(user=request.user)
+        user_profile.age = int(age)
+        user_profile.save()
+        return redirect('/profile/addstatus/', {'user': user_profile})
+
+    elif request.method == 'GET':
+        return TemplateResponse(request, 'userprofile2/RegAge.html', {"error": ""})
+
+    else:
+        return bad_request(request)
+
+
+@login_required
+def add_status(request):
+    if request.method == 'POST':
+        status = request.POST['me']
+        user_profile = UserProfile.objects.get(user=request.user)
+        user_profile.status = status
+        user_profile.save()
+        return redirect('/profile/addphoto/', {'user': user_profile})
+
+    elif request.method == 'GET':
+        return TemplateResponse(request, 'userprofile2/RegWords.html', {"error": ""})
+
+    else:
+        return bad_request(request)
+
+
+@login_required
+def add_photo(request):
+    if request.method == 'POST':
+        file = request.FILES['inpFile']
+        user_profile = UserProfile.objects.get(user=request.user)
+        user_profile.photo = file
+
+        user_profile.save()
+        return redirect('/profile/go/', {'user': user_profile})
+
+    elif request.method == 'GET':
+        return TemplateResponse(request, 'userprofile2/RegPhoto.html', {"error": ""})
+
+    else:
+        return bad_request(request)
+
+
+@login_required
+def all_done(request):
+    if request.method == 'GET':
+        user_profile = UserProfile.objects.get(user=request.user)
+        return TemplateResponse(request, 'userprofile2/Go.html', {"userprofile": user_profile})
+    else:
+        return bad_request(request)
+
+
+@login_required
+def not_users(request):
+    if request.method == 'GET':
+        user_profile = UserProfile.objects.get(user=request.user)
+        count_new_coincidence = UserCoincidence.objects.filter((Q(user_1=user_profile, is_view_1=False) | Q(user_2=user_profile, is_view_2=False))).count()
+        return TemplateResponse(request, 'userprofile2/endOfSearch.html', {"userprofile": user_profile, 'countnewcoincidence': count_new_coincidence})
+    else:
+        return bad_request(request)
+
+
+@login_required
+def view_restaurants(request):
+    if request.method == 'GET':
+        user_profile = UserProfile.objects.get(user=request.user)
+        return TemplateResponse(request, 'userprofile2/restaurants.html', {"userprofile": user_profile})
+    else:
+        return bad_request(request)

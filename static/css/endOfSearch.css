@@ -1,0 +1,80 @@
+.section, .fewWords {
+    text-align: center;
+}
+
+
+main > .yellowO, .yellowO > div {
+    box-sizing: border-box;
+    border-radius: 100%; 
+    margin: auto;
+}
+
+main .yellowO {
+    background: radial-gradient(50% 50% at 50% 50%, rgba(241, 211, 125, 0) 67.27%, rgba(241, 211, 125, 0.1) 100%);
+    border: 2px solid #F1D37D;
+    position: relative;
+}
+
+.yellowO > div {
+    border: 2px solid #FFFFFF;
+}
+
+@media only screen and (orientation: portrait) {
+    main > div:nth-child(2) {
+        margin-bottom: 33px;
+    }
+    
+    main .yellowO {
+        width: 801px;
+        height: 801px;
+        margin-top: 208px;
+    }
+
+    .yellowO > div {
+        width: 405px;
+        height: 405px;
+        margin-top: 198px;
+    }
+
+    .yellowO > div > div:first-child,  main > div:nth-child(2) {
+        margin-top: 96px;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    main {
+        display: block;
+    }
+
+    main > div:nth-child(2) {
+        margin-top: 32px;
+        margin-bottom: 11px;
+    }
+
+    main > div:last-child {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .user {
+        text-align: center;
+    }
+
+    .user > img:first-child {
+        margin: auto;
+        margin-top: 26px;
+        border-width: 3px;
+    }
+
+    main .yellowO {
+        width: 217px;
+        height: 217px;
+        margin-top: 52px;
+    }
+
+    .yellowO > div {
+        width: 135px;
+        height: 135px;
+        margin-top: 40px;
+    }
+}

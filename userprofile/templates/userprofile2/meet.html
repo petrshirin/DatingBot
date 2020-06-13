@@ -1,0 +1,22 @@
+{% extends "userprofile2/base.html" %}
+{% load static %}
+{% block title %}Meet{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href={% static "/css/inputs.css" %} />
+<link rel="stylesheet" type="text/css" href={% static "/css/regPhoto.css" %} />
+<link rel="stylesheet" type="text/css" href={% static "/css/meet.css" %} />
+
+<script src={% static "/js/regPhoto.js" %} ></script>
+{% endblock %}
+
+{% block content %}
+<div>
+    <img class="photo" src={{ otheruserprofile.photo.url }} />
+    <a class="cancel" href="/profile/menu/" ></a>
+</div>
+<div class="match">Match!</div>
+<div class="extraTxt fewWords explanation">{{otheruserprofile.first_name}} тоже тебя лайкнула!<br/>Напиши чтобы встретиться с ней</div>
+<div class="btn"><a href="/chat/{{otheruserprofile.id}}/">Встретиться у барной стойки</a></div>
+<div><a href="/chat/{{otheruserprofile.id}}/">Написать</a></div>
+{% endblock %}

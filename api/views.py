@@ -118,3 +118,17 @@ class ChangeInfo(APIView):
             return Response({'status': 'ok'}, status=201)
         else:
             return Response({'status': 'fail'}, status=400)
+
+
+class ChangeRest(APIView):
+
+    authentication_classes = [SessionAuthentication, BasicAuthentication, CsrfExemptSessionAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, rest_id):
+        user_profile = UserProfile.objects.get(user=request.user)
+        restaurant = UserRestaurant.objects.filter(pk=rest_id).first()
+        user_profile.restaurant = restaurant
+        user_profile.save()
+        return Response({'status': 'ok'}, status=200)
+

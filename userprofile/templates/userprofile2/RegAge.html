@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>RegAge</title>
+        <link rel="stylesheet" type="text/css" href={% static "/css/common.css" %} />
+        <link rel="stylesheet" type="text/css" href={% static "/css/header.css" %} />
+        <link rel="stylesheet" type="text/css" href={% static "/css/inputs.css" %} />
+        <link rel="stylesheet" type="text/css" href={% static "/css/edit.css" %} />
+        <link rel="stylesheet" type="text/css" href={% static "/css/registration.css" %} />
+
+        <script async src={% static "/js/sitebar.js" %}></script>
+        <script async src={% static "/js/checkAge.js" %}></script>
+    </head>
+    <body>
+        <header>
+            <div class="iconArrow"><a href="#"></a></div>
+            <div>
+                <div><a href="#"></a></div>
+                <div class="extraTxt headTxt">знакомства</div>
+            </div>
+            <div class="refMenu"></div>
+        </header>
+        
+        <main>
+            <div class="name section">Сколько тебе лет?</div>
+            <form class="editForm" method="post">
+                {% csrf_token %}
+                <div class="privacy">
+                    <div>
+                        <input name="age" class="input" type="text" id="age" onkeypress="checkAge(event.key)"/>
+                    </div>
+
+                    <input type="submit" class="btn" id="button" value="Дальше" />
+
+                    <a href="/profile/addstatus/"><input type="buttonSkip" class="btn btnSkip" id="buttonSkip" value="Пропустить" /></a>
+
+                </div>
+
+            </form>
+        </main>
+    </body>
+</html>

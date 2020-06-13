@@ -1,0 +1,166 @@
+html, body {height: 100%;}
+
+body {
+    position: relative;
+    background: linear-gradient(144.46deg, #FBE3C1 8.27%, #E8D79F 45.76%, #C08E25 105.12%) no-repeat;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.photo {
+    object-position: center;
+    object-fit: fill;
+    border-radius: 13.93974px;
+    box-shadow: 0px 2.32329px 36.6782px rgba(0, 0, 0, 0.2);
+}
+.cancel {
+    display:block; 
+    background: url('../svg/closeB.svg') center no-repeat; 
+    background-size: cover; 
+
+    position: absolute;
+    right: 41px;
+}
+
+body > div:first-child {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.match, .explanation, body > div:first-child {
+    width: 100%;
+}
+
+.btn {
+    display: block;
+    background: #1A1919;
+    border-radius: 117px;
+}
+.btn > a {
+    font-weight: 500;
+    text-align: center;
+    color: #F9D671;
+}
+
+body > div:last-child {
+    font-weight: 500;
+}
+
+body > div:last-child, .match, .explanation {
+    margin: auto;
+    text-align: center;
+}
+
+body > div:last-child > a, .match, .explanation {
+    color: #1A1919;
+}
+
+
+@media only screen and (orientation: portrait) {
+
+    body > div:first-child {
+        margin-top: 72.5px;
+    }
+
+    .photo {
+        width: 409.475px;
+        height: 530px;
+        margin-bottom: 87px;
+    }
+
+    .cancel {
+        width: 60px; 
+        height: 60px;
+    }
+
+    .match {
+        font-size: 150px;
+        line-height: 177.5px;
+        height: 177.5px;
+        margin-bottom: 30px;
+    }
+
+    .explanation {
+        font-size: 40px;
+        line-height: 50px;
+        margin-bottom: 78px;
+    }
+
+    .btn, .btn > a {
+        height: 160px;
+    }
+    .btn > a {
+        line-height: 160px;
+    }
+
+    body > div:last-child {
+        width: 384px;
+        height: 90px;
+        line-height: 66px;
+    }
+
+    .btn > a, body > div:last-child {
+        font-size: 54px;
+    }
+
+    .btn, body > div:last-child {
+        margin-bottom: 99px;
+    }
+
+}
+
+@media only screen and (orientation: landscape) {
+
+    body > div:first-child {
+        margin-top: 43.5px;
+    }
+
+    .photo {
+        width: 163.79px;
+        height: 212px;
+        margin-bottom: 29px;
+    }
+
+    .cancel {
+        width: 30px; 
+        height: 30px;
+    }
+
+    .match {
+        font-size: 60px;
+        line-height: 71px;
+        height: 71px;
+        margin-bottom: 10px;
+    }
+
+    .explanation {
+        font-size: 24px;
+        line-height: 30px;
+        margin-bottom: 26px;
+    }
+    .btn, .btn > a {
+        height: 80px;
+    }
+    .btn {
+        width: 400px;
+        margin-bottom: 33px;
+        padding: 0 7.5%;
+    }
+
+    .btn > a {
+        line-height: 80px;
+    }
+
+    .btn > a, body > div:last-child {
+        font-size: 30px;
+    }
+
+    body > div:last-child {
+        width: 128px;
+        height: 30px;
+        line-height: 30px;
+        margin-bottom: 66px;
+    }
+
+}

@@ -1,0 +1,106 @@
+body {
+    background-color: #1A1919;
+    font-family: DIN Pro;
+    font-style: normal;
+}
+
+a, body {
+    color: #ffffff;
+}
+
+.section {
+    margin-top: 5.955678670360111vh;
+    margin-bottom: 7.894736842105263vh;
+}
+
+.section, .name, .match {
+    font-weight: bold;
+}
+
+.section, .match {
+    text-align: center;
+}
+
+.extraTxt {
+    opacity: 0.7;
+    font-weight: normal;
+}
+
+.fewWords {
+    font-weight: 500;
+}
+
+a {
+    text-decoration: none;
+}
+
+.user {
+    margin: auto;
+}
+
+.user :first-child {
+    border-radius: 100%;
+    border: 9px solid #F1D37D;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    object-fit: contain;
+    object-position: center;
+}
+
+#menu {
+    display: none; 
+    z-index: 100; 
+}
+
+@media only screen and (orientation: portrait) {
+    body {
+        margin-left: 64px;
+        margin-right: 64px;
+    }
+
+    .name {
+        font-size: 80px;
+        line-height: 94px;
+    }
+
+    .fewWords {
+        margin-top: 9px;
+        font-size: 50px;
+        line-height: 50px;
+    }
+        
+    .section {
+        font-size: 90px;
+        line-height: 114px;
+    }
+
+    .user, .user :first-child {
+        width: 213px;
+        height: 213px;
+    }
+    
+    .user {
+        margin-top: 162px;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    body {
+        margin-left: 32px;
+        margin-right: 32px;
+    }
+
+    .name {
+        font-size: 50px;
+    }
+
+    .fewWords {
+        font-size: 25px;
+    }
+
+    .section {
+        font-size: 48px;
+        line-height: 57px;
+    }
+}

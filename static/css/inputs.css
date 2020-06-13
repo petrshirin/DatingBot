@@ -1,0 +1,161 @@
+input[id^="choice"], input[type="radio"]::after, input[type='radio']:checked:after {
+    position: relative;
+}
+
+input[type="radio"]::after, input[type='radio']:checked:after {
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border-radius: 100%;
+    border-style: solid;
+    border-color: white;
+}
+
+input[type="radio"]::after {
+    background-color: #1A1919;
+}
+
+input[type='radio']:checked:after {
+    background-color: #F9D671;
+}
+
+hr {
+    opacity: 0.1;
+    border: 1.5px solid #FFFFFF;
+}
+
+.btn {
+    background: #CFCDC8;
+    border-radius: 117px;
+
+    font-weight: 500;
+    text-align: center;
+
+    color: #1A1919;
+
+    border: none;
+}
+
+
+/*-------- Input field -------- */
+.input, .inputCapture {
+    font-weight: 500;
+}
+
+.inputCapture {
+    color: #CFCDC8;
+}
+
+.input {
+    background: #343434;
+    border-radius: 15px;
+    border: none;
+
+    color: #FFFFFF;
+}
+
+.input:focus {
+    box-shadow: 0 0 0 4px #F9D671 inset;
+    border: none;
+}
+
+label > .sex {
+    font-weight: bold;
+}
+/*-------- -------- */
+
+.btnSkip {
+    color: #F9D671;
+    background-color: #1A1919;
+}
+
+input {
+    outline: none;
+}
+
+
+@media only screen and (orientation: portrait) {
+
+    input[type="radio"]::after, input[type='radio']:checked:after, #choice {
+        width: 50px; 
+        height: 50px;
+    }
+
+    #choice {
+        top: 50px;
+    }
+    
+    input[type="radio"]::after, input[type='radio']:checked:after {
+        border-width: 6px;
+    }
+    
+    input[type='radio']:checked:after {
+        box-shadow: 0 0 0 6px #1A1919 inset;
+    }
+    
+    hr {
+        height: 90px;
+        margin-top: -10px;
+    }
+
+    .btn, .input {
+        font-size: 54px;
+        line-height: 66px;
+    }
+
+    .btn {
+        margin-top: 48px;
+        margin-bottom: 141px;
+
+        width: 100%;
+        height: 135px;
+    }
+
+    .btnSkip {
+        margin-top: -84px;
+    }
+
+    .inputCapture {
+        font-size: 42px;
+        line-height: 51px;
+    }
+
+    .input {
+        margin-top: 20px;
+        width: calc(100% - 50px);
+        height: 125px;
+    
+        padding-left: 50px;
+    }
+
+    label > .sex {
+        font-size: 60px;
+        line-height: 75px;
+    }
+
+    .refNext {
+        line-height: 135px;
+        font-size: 54px;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+
+    input[type="radio"]::after, input[type='radio']:checked:after, #choice {
+        width: 25px; 
+        height: 25px;
+    }
+
+    #choice {
+        top: 30px;
+    }
+
+    input[type="radio"]::after, input[type='radio']:checked:after {
+        border-width: 4px;
+    }
+    
+    input[type='radio']:checked:after {
+        box-shadow: 0 0 0 4px #1A1919 inset;
+    }
+
+}

@@ -1,0 +1,36 @@
+{% extends "userprofile2/base.html" %}
+{% load static %}
+{% block title %}Go{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href={% static "/css/edit.css" %} />
+<link rel="stylesheet" type="text/css" href={% static "/css/inputs.css" %} />
+<link rel="stylesheet" type="text/css" href={% static "/css/regPhoto.css" %} />
+<link rel="stylesheet" type="text/css" href={% static "/css/go.css" %} />
+{% endblock %}
+
+{% block sitebar %}
+<header>
+        <div class="iconArrow"><a href="/profile/menu/"><img src={% static "/svg/Line_38.svg" %} /></a></div>
+        <div>
+            <div><a href=""><img class="logo" src={% static "/svg/image_15.svg" %} ></a></div>
+            <div class="extraTxt headTxt">знакомства</div>
+        </div>
+        <div id="getMenuBar" class="refMenu"></div>
+</header>
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="user">
+        <img src={{userprofile.photo.url}} />
+    </div>
+    <div class="name section">{{userprofile.first_name}}<br /> всё готово!</div>
+        <div class="privacy">
+
+            <a class="btn btnAdmit refNext" href="/profile/search/" >Поехали</a>
+
+            <a href="/profile/my/" class="btn btnSkip refNext" >Редактировать данные</a>
+        </div>
+</main>
+{% endblock %}

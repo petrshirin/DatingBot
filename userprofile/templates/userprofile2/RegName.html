@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>SayMyName</title>
+        <link rel="stylesheet" type="text/css" href={% static "/css/common.css" %} />
+        <link rel="stylesheet" type="text/css" href={% static "/css/header.css" %} />
+        <link rel="stylesheet" type="text/css" href={% static "/css/inputs.css" %} />
+        <link rel="stylesheet" type="text/css" href={% static "/css/edit.css" %} />
+        <link rel="stylesheet" type="text/css" href={% static "/css/registration.css" %} />
+
+        <script async src={% static "/js/sitebar.js" %}></script>
+        <script async src={% static "/js/RegName.js" %}></script>
+    </head>
+    <body>
+        <header>
+            <div class="iconArrow"><a href="#"></a></div>
+            <div>
+                <div><a href="#"></a></div>
+                <div class="extraTxt headTxt">знакомства</div>
+            </div>
+            <div class="refMenu"></div>
+        </header>
+        
+        <main>
+            <div class="name section">Как тебя зовут?</div>
+            <form class="editForm" method="post">
+                {% csrf_token %}
+                <div class="privacy">
+                    <div>
+                        <input name="name" class="input" type="text" id="myName" oninput="checkNnT()"/>
+                    </div>
+
+                    <div>
+                        <label>
+                            <input type="radio" name="sex" id="choice" value="male" onclick="checkNnT()" />
+                            <span class="sex">Мужчина</span>
+                        </label>
+                        <hr />
+                        <label>
+                            <input type="radio" name="sex" id="choice" value="female" onclick="checkNnT()" />
+                            <span class="sex">Женщина</span>
+                        </label>
+                    </div>
+
+                    <input type="submit" class="btn" id="button" value="Дальше" disabled />
+
+                </div>
+
+            </form>
+        </main>
+    </body>
+</html>

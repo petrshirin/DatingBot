@@ -8,6 +8,5 @@ urlpatterns = [
     path('get_user/', User.as_view(), name='user'),
     path('like_user/<int:pk>/',  LikeUser.as_view(), name='like'),
     path('dislike_user/<int:pk>/',  DislikeUser.as_view(), name='dislike'),
-    path('change_activity/', Activity.as_view(), name='activity'),
-    path('change_info/', ChangeInfo.as_view(), name="change_info")
+    path('change_rest/<int:rest_id>/',  ChangeRest.as_view(), name='change_rest'),
 ]

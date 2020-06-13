@@ -1,0 +1,142 @@
+.editForm .photo, .inputFile {
+    position: relative;
+}
+
+.refMenu, .iconArrow {
+    visibility: hidden;
+}
+
+.editForm .photo {
+    box-sizing: initial;
+
+    background: #343434;
+    border: 12px dashed #505050;
+    border-radius: 42px;
+    margin: auto;
+}
+
+.privacy > div, #inpFile, #inpFile::before {
+    display: block;
+}
+
+#inpFile, #inpFile::before {
+    content: "";
+}
+
+#inpFile {
+    border-radius: 100%;
+    position: absolute;
+    overflow: hidden;
+    color: rgba(0, 0, 0, 0);
+}
+
+#inpFile::before {
+    background: url("../svg/Group 1.svg") center no-repeat;
+}
+
+.imagePreviewImage {
+    display: none;
+}
+
+.imagePreviewDefaultTxt {
+    text-align: center;
+    margin: auto;
+}
+
+.btnAdmit, #inpFile {
+    background-color: #F9D671;
+}
+
+.btn {
+    display: none;
+}
+
+#inpFile, .inputFile {
+    overflow: hidden;
+}
+
+.inputFile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    z-index: -1;
+}
+
+
+@media only screen and (orientation: portrait) {
+
+    .editForm .photo, .imagePreviewImage, .imagePreview {
+        width: 534px;
+        height: 603px;
+    }
+
+    #inpFile {
+        bottom: -12%;
+        right: -12%;
+    }
+    
+    #inpFile::before {
+        background-size: 40% 40%;
+    }
+
+    .btnAdmit {
+        margin-top: 183px;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+
+    .editForm, .imagePreview, .imagePreviewImage, .input {
+        width: 100%;
+    }
+
+    .editForm {
+        display: inline-flex;
+        justify-content: start;
+        margin-bottom: 50px;
+    }
+
+    .privacy {
+        margin-left: 50px;
+        width: calc(62.5% - 84px);
+    }
+
+    .editForm .photo {
+        width: 27.5%;
+    }
+
+    .editForm .photo, .imagePreview, .imagePreviewImage {
+        height: 30.5vw;
+    }
+    
+    #inpFile, #inpFile::before {
+        width: 90px;
+        height: 90px;
+    }
+
+    #inpFile {
+        bottom: -10%;
+        right: -10%;
+    }
+
+    #inpFile::before {
+        background-size: 35% 35%;
+    }
+
+    .btnAdmit {
+        margin-top: 0;
+    }
+
+    .refNext, #buttonSkip {
+        line-height: 60px;
+        width: 50%;
+    }
+
+    .btn, .privacy {
+        margin: auto;
+    }
+
+    #buttonSkip {
+        margin-top: 24px;
+    }
+}

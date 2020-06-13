@@ -1,0 +1,136 @@
+.iconArrow {visibility: hidden;}
+
+.photo, .photo > img {
+    display: block;
+} 
+.photo {
+    position: relative;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 24px;
+    box-sizing: border-box;
+}
+
+.photo > img {
+    object-fit: cover;
+    object-position: center;
+    border-radius: 24px;
+}
+
+.bar {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.bar > span:first-child {
+    background: url("../svg/x.svg") center no-repeat;
+}
+
+.bar > span:last-child {
+    background: url("../svg/heart.svg") center no-repeat;
+}
+
+.bar > span {
+    background-size: contain;
+}
+
+.bar > span:nth-child(2) {
+    opacity: 0.1;
+    border: none;
+    background-color: #CFCDC8;
+    width: 1px;
+}
+
+
+@media only screen and (orientation: portrait) {
+    .photo, .photo > img {
+        width: 100%;
+        height: 1092px;
+    }
+
+    .photo {
+        margin-top: 66px;
+        margin-bottom: 48px;
+    }
+
+    .section {
+        margin-top: 0;
+        margin-bottom: 33px;
+        text-align: left;
+    }
+
+    .bar {
+        margin-top: 10vh;
+        height: 100%;
+    }
+
+    .bar > span {
+        width: 24px;
+        height: 24px;
+        transform: scale(3, 3);
+    }
+
+    .bar > span:first-child, .bar > span:last-child {
+        margin-top: 10px;
+    }
+
+    .bar > span:nth-child(2) {
+        height: 60px;
+        margin-bottom: 10px;
+    }
+
+}
+
+@media only screen and (orientation: landscape) {
+
+    main, .photo > img {
+        width: 100%;
+    }
+
+    main {
+        display: inline-flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
+
+    main > div:last-child {
+        width: 72.5%;
+        margin-left: 40px;
+    }
+
+    .photo, .photo > img {
+        height: 30vw;
+    }
+
+    .photo {
+        margin-top: 66px;
+        width: 27.5%;
+        margin-top: 40px;
+    }
+
+    .section {
+        margin-bottom: 33px;
+        text-align: left;
+    }
+
+    .bar {
+        position: absolute;
+        bottom: 57px;
+        margin-top: 15vw;
+        width: 65%
+    }
+
+    .bar > span {
+        width: 24px;
+        height: 24px;
+        transform: scale(1.5, 1.5);
+    }
+
+    .bar > span:first-child, .bar > span:last-child {
+        margin-top: 10px;
+    }
+
+    .bar > span:nth-child(2) {
+        height: 40px;
+    }   
+}

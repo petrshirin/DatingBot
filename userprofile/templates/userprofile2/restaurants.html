@@ -1,0 +1,48 @@
+{% extends "userprofile2/base.html" %}
+{% load static %}
+{% block title %}Рестораны{% endblock %}
+{% block links %}
+<link rel="stylesheet" type="text/css" href={% static "/css/MAR.css" %} />
+<link rel="stylesheet" type="text/css" href={% static "/css/inputs.css" %} />
+<script src={% static "/js/restaurants.js" %}></script>
+{% endblock %}
+
+{% block sitebar %}
+<header>
+    <div class="iconArrow"><a href="/profile/menu/"><img src={% static "/svg/Line_38.svg" %} ></a></div>
+    <div>
+        <div><a href=""><img class="logo" src={% static "/svg/image_15.svg" %} ></a></div>
+        <div class="extraTxt headTxt">знакомства</div>
+    </div>
+    <div class="icon"><a href="/profile/search/"><img src={% static "/svg/close.svg" %} ></a></div>
+</header>
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="name section">Выбор ресторана</div>
+    <form>
+        <label class="item choice" for="choice1">
+            <input type="radio" name="restaurant1" id="choice1" onclick="change_rest(1)" />
+            <div class="restaurantN">
+                <div class="name nameR">Савушкина</div>
+                <div class="extraTxt fewWords">ул. Савушкина, 141</div>
+            </div>
+        </label>
+        <label class="item choice" for="choice2">
+            <input type="radio" name="restaurant2" id="choice2" onclick="change_rest(2)"/>
+            <div class="restaurantN">
+                <div class="name nameR">Купчино</div>
+                <div class="extraTxt fewWords">Балканская пл. 5</div>
+            </div>
+        </label>
+        <label class="item choice" for="choice3">
+            <input type="radio" name="restaurant3" id="choice3" onclick="change_rest(3)"/>
+            <div class="restaurantN">
+                <div class="name nameR">Озерки</div>
+                <div class="extraTxt fewWords">пр. Энгельса, 124</div>
+            </div>
+        </label>
+     </form>
+</main>
+{% endblock %}

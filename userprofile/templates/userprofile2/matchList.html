@@ -1,0 +1,37 @@
+{% extends "userprofile2/base.html" %}
+{% load static %}
+{% block title %}Ваши мэтчи{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href={% static "/css/common.css" %} />
+<link rel="stylesheet" type="text/css" href={% static "/css/header.css" %} />
+<link rel="stylesheet" type="text/css" href={% static "/css/MAR.css" %} />
+{% endblock %}
+
+{% block sitebar %}
+<header>
+        <div class="iconArrow"><a href="/profile/menu/"><img src={% static "/svg/Line_38.svg" %} /></a></div>
+        <div>
+            <div><a href=""><img class="logo" src={% static "/svg/image_15.svg" %} ></a></div>
+            <div class="extraTxt headTxt">знакомства</div>
+        </div>
+        <div id="getMenuBar" class="refMenu"></div>
+</header>
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="name section">Список Мэтчей</div>
+    <div class="items">
+        {% for userview in userviews %}
+        <div class="item">
+            <div class="photo"><img src="{{userview.view_user.photo.url}}" /></div>
+            <div>
+                <div class="name nameR"><a href="/chat/{{userprofile.id}}/">{{userview.view_user.first_name}}, {{userview.view_user.age}}</a></div>
+                <div class="extraTxt fewWords">{{userview.view_user.status}}</div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+{% endblock %}

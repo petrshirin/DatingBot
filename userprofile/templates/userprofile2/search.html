@@ -1,0 +1,77 @@
+{% extends "userprofile2/base.html" %}
+{% load static %}
+{% block title %}Поиск{% endblock %}
+
+{% block links %}
+
+<link rel="stylesheet" type="text/css" href={% static "/css/search.css" %} />
+{% endblock %}
+
+{% block sitebar %}
+<div id="menu">
+    <header>
+        <div class="iconArrow"><a href="/profile/menu/"><img src={% static "/svg/Line_38.svg" /></a></div>
+        <div>
+            <div><a href=""><img class="logo" src={% static "/svg/image_15.svg"/></a></div>
+            <div class="extraTxt headTxt">знакомства</div>
+        </div>
+        <div class="icon" id="close"><img src={% static "/svg/close.svg" /></div>
+    </header>
+    <div class="main">
+        <div class="person">
+            <div class="personPhoto"><img src="{{userprofile.photo.url}}" /></div>
+            <div class="personInfo">
+                <div>
+                    <span class="name">{{userprofile.first_name}}, {{userprofile.age}}</span>
+                    <a href="/profile/my/"></a>
+                </div>
+                <div class="extraTxt fewWords">userprofile.status</div>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="btnMatches">
+                <a href="/profile/favourites/"><span class="matches">Список Мэтчей</span></a>
+                <span></span>
+            </div>
+            <div><a href="/profile/restaurants/">Выбор ресторана</a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="mainWindow">
+    <header>
+        <div class="iconArrow"><a href="/profile/menu/"><img src={% static "/svg/Line_38.svg" %} /></a></div>
+        <div>
+            <div><a href=""><img class="logo" src={% static "/svg/image_15.svg" %} ></a></div>
+            <div class="extraTxt headTxt">знакомства</div>
+        </div>
+        {% if countnewcoincidence > 0 %}
+            <div id="getMenuBar" class="refMenu circle"></div>
+
+        {% else %}
+            `<div id="getMenuBar" class="refMenu"></div>
+        {% endif %}
+    </header>
+
+    <main>
+        <div class="photo">
+            <img src="" alt="" class="img" id="userPhoto"/>
+        </div>
+        <div>
+            <div>
+                <div class="section" id="userName"></div>
+                <div class="extraTxt fewWords" id="userStatus"></div>
+            </div>
+            <div class="bar" >
+                <span onclick="dislike_user()"></span>
+                <span></span>
+                <span onclick="like_user()"></span>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script src={% static "/js/searchUsers.js" %}></script>
+{% endblock %}

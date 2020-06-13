@@ -1,0 +1,167 @@
+.section {
+    margin-bottom: 5.54016620498615vh;
+}
+.editForm .photo, .imagePreviewImage, .imagePreview {
+    border-radius: 24px;
+}
+
+.editForm .photo {
+    position: relative;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+}
+
+.privacy > div, #inpFile, #inpFile::before {
+    display: block;
+}
+
+#inpFile, #inpFile::before {
+    content: "";
+}
+
+#inpFile {
+    border-radius: 100%;
+    position: absolute;
+    overflow: hidden;
+    background-color: #F9D671;
+    color: rgba(0, 0, 0, 0);
+}
+
+#inpFile::before {
+    background: url("../svg/VectorB.svg") center no-repeat;
+}
+
+.imagePreview {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #CFCDC835;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.imagePreviewImage {
+    display: none;
+}
+
+.privacy > div:nth-child(2) {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 10px
+}
+
+#choice {
+    top: 0;
+    margin-right: 33px;
+}
+
+@media only screen and (orientation: portrait) {
+
+    .editForm .photo, .imagePreviewImage, .imagePreview {
+        width: 100%;
+        height: 1092px;
+    }
+
+    .editForm .photo {
+        margin-bottom: 115px;
+    }
+    
+    #inpFile, #inpFile::before {
+        width: 182.5px;
+        height: 182.5px;
+    }
+
+    #inpFile {
+        bottom: -3%;
+        right: -3%;
+    }
+    
+    #inpFile::before {
+        background-size: 30% 30%;
+    }
+
+    .privacy > div {
+        margin-bottom: 96px;
+    }
+    
+}
+
+@media only screen and (orientation: landscape) {
+
+    .editForm, .imagePreview, .imagePreviewImage, .input {
+        width: 100%;
+    }
+
+    .editForm .photo, .imagePreview, .imagePreviewImage {
+        height: 40.5vw;
+        width: 100%;
+    }
+
+    .editForm {
+        display: inline-flex;
+        justify-content: start;
+    }
+
+    .privacy {
+        margin-left: 50px;
+        width: calc(62.5% - 84px);
+    }
+
+    .editForm .photo {
+        width: 37.5%;
+        margin-bottom: 115px;
+        font-size: 2rem;
+    }
+    
+    #inpFile, #inpFile::before {
+        width: 73px;
+        height: 73px;
+    }
+
+    #inpFile {
+        bottom: -4%;
+        right: -4%;
+    }
+
+    #inpFile::before {
+        background-size: 25% 25%;
+    }
+
+    .privacy > div {
+        margin-bottom: 16px;
+    }
+
+    hr {
+        height: 45px;
+        margin-top: -10px;
+    }
+
+    .btn, .inputCapture, .input {
+        font-size: 26px;
+        line-height: 34px;
+    }
+
+    .btn {
+        margin-top: 32px;
+        margin-bottom: 47px;
+
+        padding: 0 7.5%;
+        height: 60px;
+    }
+
+    .input {
+        margin-top: 10px;
+        height: 50px;
+    
+        padding-left: 25px;
+    }
+
+    label > .sex {
+        font-size: 30px;
+        line-height: 37.5px;
+    }
+    
+}

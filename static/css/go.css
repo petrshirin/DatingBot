@@ -1,0 +1,36 @@
+.btn {
+    display: block;
+}
+
+.refMenu, .iconArrow {
+    visibility: hidden;
+}
+
+@media only screen and (orientation: portrait) {
+}
+
+@media only screen and (orientation: landscape) {
+
+    .privacy {
+        width: 100%;  
+        margin-left: 0;
+    }
+
+    .btn {
+        margin: auto;
+        margin-bottom: 23.5px;
+    }
+
+    .refNext {
+        width: 27.5%;
+    }
+
+    .user, .user :first-child {
+        width: 142px;
+        height: 142px;
+    }
+    
+    .user {
+        margin-top: 54px;
+    }
+}

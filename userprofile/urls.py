@@ -3,9 +3,16 @@ from .views import *
 
 urlpatterns = [
     path('my/', view_profile, name='profile'),
+    path('reg/<int:restaurant_id>', register_user, name='register'),
+    path('addname/', add_name_sex, name='addname'),
+    path('addage/', add_age, name='addage'),
+    path('addstatus/', add_status, name='addstatus'),
+    path('addphoto/', add_photo, name='addphoto'),
+    path('go/', all_done, name='addphoto'),
     path('', view_profile, name='profile'),
-    path(r'login/<str:user_id>/', login_user, name='login'),
     path('search/', view_search, name='search'),
-    path('messages/', view_message, name='messages'),
-    path('favourites/', view_favourites, name='favourites')
+    path('notusers/', not_users, name='addphoto'),
+    path('favourites/', view_message, name='favourites'),
+    path('menu/', view_menu, name='favourites'),
+    path('restaurants/', view_restaurants, name='favourites'),
 ]

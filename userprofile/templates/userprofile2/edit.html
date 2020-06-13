@@ -1,0 +1,77 @@
+{% extends "userprofile2/base.html" %}
+{% load static %}
+{% block title %}Edit{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href={% static "/css/inputs.css" %} />
+<link rel="stylesheet" type="text/css" href={% static "/css/edit.css" %} />
+<script src={% static "/js/editPhoto.js" %}></script>
+{% endblock %}
+
+{% block sitebar %}
+<header>
+    <div class="iconArrow"><a href="/profile/menu/"><img src={% static "/svg/Line_38.svg" %} /></a></div>
+    <div>
+        <div><a href=""><img class="logo" src={% static "/svg/image_15.svg" %} ></a></div>
+        <div class="extraTxt headTxt">знакомства</div>
+    </div>
+    <div class="icon"><a href="/profile/search/"><img src={% static "/svg/close.svg" %} /></a></div>
+</header>
+{% endblock %}
+
+{% block content %}
+<main>
+    <div class="name section">Редактировать</div>
+    <form class="editForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="photo">
+            <div class="imagePreview" id="imagePreview">
+                <img src="{{userprofile.photo.url}}" alt="Image preview" class="imagePreviewImage" style="display: block;" />
+            </div>
+            <input type="file" name="photo" id="inpFile" accept=".jpg, .jpeg, .png, .svg"  onclick="upload()"/>
+        </div>
+
+        <div class="privacy">
+            <div>
+                <label class="inputCapture" for="myName" >Имя</label><br/>
+                <input name="first_name" class="input" type="text" id="myName" value="{{ userprofile.first_name }}"/>
+            </div>
+
+            <div>
+                <label>
+                    {% if userprofile.sex == "Мужчина" %}
+                        <input type="radio" name="sex" id="choice" value="Мужчина" checked/>
+                    {% else %}
+                        <input type="radio" name="sex" id="choice" value="Мужчина" />
+                    {% endif %}
+                    <span class="sex">Мужчина</span>
+                </label>
+                <hr />
+                <label>
+                    {% if userprofile.sex == "Женщина" %}
+                        <input type="radio" name="sex" id="choice" value="Женщина" checked/>
+                    {% else %}
+                        <input type="radio" name="sex" id="choice" value="Женщина" />
+                    {% endif %}
+                    <span class="sex">Женщина</span>
+                </label>
+            </div>
+
+            <div>
+                <label class="inputCapture" for="age" >Возраст</label><br/>
+                <input name="age" class="input" type="text" id="age" value="{{userprofile.age}}"/>
+            </div>
+            <div>
+                <label class="inputCapture" for="me" >Пару слов о себе</label><br/>
+                <input name="status" class="input" type="text" id="me" value="{{userprofile.status}}" />
+            </div>
+            <input type="submit" class="btn" id="button" value="Сохранить" />
+             <div class="errors">
+                {% for error in errors %}
+                    <p class="error">{{error}}</p>
+                {% endfor %}
+            </div>
+        </div>
+    </form>
+</main>
+{% endblock %}

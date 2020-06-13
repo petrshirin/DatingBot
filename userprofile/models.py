@@ -17,19 +17,18 @@ class Chat(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, default=None, null=True, blank=True)
     first_name = models.CharField(max_length=255, default=None, blank=True, null=True)
-    second_name = models.CharField(max_length=255, default=None, blank=True, null=True)
     photo = models.FileField(default=None, null=True, blank=True, upload_to='image/profile/')
     sex = models.CharField(max_length=20, default=None, null=True, blank=True)
     age = models.IntegerField(default=None, null=True, blank=True)
     status = models.TextField(default=None, null=True, blank=True)
     phone = models.CharField(max_length=20, default=None, null=True, blank=True)
     restaurant = models.ForeignKey(UserRestaurant, on_delete=models.CASCADE, default=None, null=True, blank=True)
-    chat = models.OneToOneField(Chat, on_delete=models.CASCADE, default=None, null=True, blank=True)
+    # chat = models.OneToOneField(Chat, on_delete=models.CASCADE, default=None, null=True, blank=True)
     is_active = models.BooleanField(default=True)
     search_for = models.CharField(max_length=20, default=None, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.first_name} {self.second_name}'
+        return f'{self.first_name} {self.phone}'
 
 
 class UserView(models.Model):
