@@ -69,6 +69,7 @@ def view_menu(request):
     count_new_coincidence = UserCoincidence.objects.filter((Q(user_1=user_profile, is_view_1=False) | Q(user_2=user_profile, is_view_2=False))).count()
     return TemplateResponse(request, "userprofile2/menu.html", {'userprofile': user_profile, 'countnewcoincidence': count_new_coincidence})
 
+
 @login_required
 def view_search(request):
     if request.user.is_authenticated:
@@ -99,6 +100,16 @@ def register_user(request, restaurant_id):
             login(request, user_profile.user)
             user_profile.restaurant = rest
             user_profile.save()
+
+            if not user_profile.first_name:
+                return redirect('/profile/addname/', {'userprofile': user_profile})
+
+            if not user_profile.age:
+                return redirect('/profile/addage/', {'userprofile': user_profile})
+
+            if not user_profile.status:
+                return redirect('/profile/addstatus/', {'userprofile': user_profile})
+
             if not user_profile.photo:
                 return redirect('/profile/addphoto/', {'userprofile': user_profile})
             return redirect('/profile/my/', {'userprofile': user_profile})
