@@ -55,8 +55,10 @@ def view_message(request):
             coincidence.save()
             return TemplateResponse(request, "userprofile2/meet.html", {'userprofile': user, 'otheruserprofile': other})
         else:
-            user_views = UserView.objects.filter(user_profile=user_profile, result=True).all()
-            return TemplateResponse(request, "userprofile2/matchList.html", {'userprofile': user_profile, 'userviews': user_views})
+            coincidences = UserCoincidence.objects.filter((Q(user_1=user_profile) | Q(user_2=user_profile))).all()
+            i = 0
+
+            return TemplateResponse(request, "userprofile2/matchList.html", {'userprofile': user_profile, 'userviews': coincidences})
     else:
         return bad_request(request)
 
@@ -72,7 +74,7 @@ def view_search(request):
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
         count_new_coincidence = UserCoincidence.objects.filter((Q(user_1=user_profile, is_view_1=False) | Q(user_2=user_profile, is_view_2=False))).count()
-        return TemplateResponse(request, 'userprofile2/search.html', {'user': user_profile, 'countnewcoincidence': count_new_coincidence})
+        return TemplateResponse(request, 'userprofile2/search.html', {'userprofile': user_profile, 'countnewcoincidence': count_new_coincidence})
     else:
         return bad_request(request)
 
@@ -97,6 +99,8 @@ def register_user(request, restaurant_id):
             login(request, user_profile.user)
             user_profile.restaurant = rest
             user_profile.save()
+            if not user_profile.photo:
+                return redirect('/profile/addphoto/', {'userprofile': user_profile})
             return redirect('/profile/my/', {'userprofile': user_profile})
         else:
             user = User.objects.create_user(phone, password=phone + 'user=' + phone)

@@ -1,4 +1,5 @@
-var website = window.location.host
+
+var website = window.location.host;
 
 try{
     var sock = new WebSocket('ws://' + website + '/ws');
