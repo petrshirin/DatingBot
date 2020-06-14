@@ -59,7 +59,7 @@
 
             <div>
                 <label class="inputCapture" for="age" >Возраст</label><br/>
-                <input name="age" class="input" type="text" id="age" value="{{userprofile.age}}"/>
+                <input name="age" class="input" type="text" id="age" value="{% if userprofile.age %} {{userprofile.age}} {% endif %}"/>
             </div>
             <div>
                 <label class="inputCapture" for="me" >Пару слов о себе</label><br/>
