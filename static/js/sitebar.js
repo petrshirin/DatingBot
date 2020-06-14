@@ -1,3 +1,4 @@
+try {
 document.getElementById("getMenuBar").addEventListener("click", ()=> {
     document.querySelector("#menu").style.display = "block";
 
@@ -9,3 +10,8 @@ document.getElementById("close").addEventListener("click", ()=> {
 
     document.getElementById("mainWindow").style.display = "block";
 })
+
+}
+catch(err) {
+    console.log(err);
+}

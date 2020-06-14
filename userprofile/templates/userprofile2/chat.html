@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href={% static "/css/inputs.css" %} />
 <link rel="stylesheet" type="text/css" href={% static "/css/activeChat.css" %} />
 <link rel="stylesheet" type="text/css" href={% static "/css/chatInput.css" %} />
+
 {% endblock %}
 
 {% block sitebar %}
@@ -36,13 +37,15 @@
                     <div class="mine">{{ message.text }}</div>
                 </div>
             {% endif %}
+        {% endfor %}
     </div>
 
     <div class="inpField">
         <span><textarea rows="1" class="input" id="textInp" oninput="checkEmptiness(this)"></textarea></span>
-        <input type="submit" id="send" value="" />
+        <input type="button" id="send" value="" onclick="sendMessage()"/>
     </div>
 </main>
 
-    <script async src={% static "/js/activeChatInput.js" %} ></script>
+    <script src={% static "/js/activeChatInput.js" %} ></script>
+    <script src={% static "/js/websocket.js" %} ></script>
 {% endblock %}

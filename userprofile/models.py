@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.timezone import now
 
 # Create your models here.
 
@@ -20,7 +21,7 @@ class UserProfile(models.Model):
     photo = models.FileField(default=None, null=True, blank=True, upload_to='image/profile/')
     sex = models.CharField(max_length=20, default=None, null=True, blank=True)
     age = models.IntegerField(default=None, null=True, blank=True)
-    status = models.TextField(default=None, null=True, blank=True)
+    status = models.TextField(default="", null=True, blank=True)
     phone = models.CharField(max_length=20, default=None, null=True, blank=True)
     restaurant = models.ForeignKey(UserRestaurant, on_delete=models.CASCADE, default=None, null=True, blank=True)
     # chat = models.OneToOneField(Chat, on_delete=models.CASCADE, default=None, null=True, blank=True)
@@ -43,4 +44,11 @@ class UserCoincidence(models.Model):
     user_2 = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='+', null=True, blank=True)
     is_view_1 = models.BooleanField(default=False)
     is_view_2 = models.BooleanField(default=False)
+
+
+class Message(models.Model):
+    sender = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='user_sender')
+    recipient = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='user_recipient')
+    text = models.CharField(max_length=500)
+    time = models.DateTimeField(default=now)
 

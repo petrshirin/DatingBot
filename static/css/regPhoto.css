@@ -31,7 +31,7 @@
 }
 
 #inpFile::before {
-    background: url("../svg/Group 1.svg") center no-repeat;
+    background: url("/static/svg/Group_1.svg") center no-repeat;
 }
 
 .imagePreviewImage {

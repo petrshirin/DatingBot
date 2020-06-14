@@ -1,0 +1,131 @@
+main {
+    display: flex; 
+    flex-direction:column; 
+    justify-content: space-between;
+    height: 100%;
+}
+
+.icon { visibility: hidden;}
+
+.person, .samples {
+    margin: auto;
+}
+
+.advice, .person, .samples {
+    text-align: center;
+}
+
+.img {
+    object-fit: fill;
+    object-position: center;
+
+    border-radius: 100%;
+    box-sizing: border-box;
+    border: solid #F1D37D;
+}
+
+.advice {
+    font-weight: 500;
+}
+
+.samples {
+    font-weight: normal;
+}
+
+.advice, .samples {
+    color: #FFFFFF;
+}
+
+.samples > div:first-child {
+    border-bottom: 1px solid #CFCDC840;
+    border-bottom-width: 3px;
+}
+
+
+@media only screen and (orientation: portrait) {
+
+    body {
+        height: calc(100vh - 175px);
+    }
+
+    .person {
+        margin-top: 147px;
+    }
+    
+    .img {
+        width: 432px;
+        height: 432px;
+        border-width: 21px;
+    }
+    
+    .name {
+        margin-top: 33px;
+        margin-bottom: 33px;
+    }
+
+    .advice {
+        font-size: 48px;
+        line-height: 60px;
+        margin-bottom: 72px;
+    }
+
+    .samples {
+        width: 594px;
+        font-size: 36px;
+        line-height: 45px;
+    }
+
+    .samples > div:first-child {
+        padding-bottom: 51px;
+    }
+
+    .samples > div {
+        margin-bottom: 51px;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+
+    body {
+        height: calc(100vh - 175px);
+    }
+
+    .person {
+        margin-top: 49px;
+    }
+    
+    .img {
+        width: 144px;
+        height: 144px;
+        border-width: 7px;
+    }
+    
+    .name {
+        margin-top: 11px;
+        margin-bottom: 11px;
+    }
+
+    .advice {
+        font-size: 24px;
+        line-height: 30px;
+        margin-bottom: 24px;
+    }
+
+    .samples {
+        width: 297px;
+        font-size: 18px;
+        line-height: 22.5px;
+    }
+
+    .samples > div:first-child {
+        padding-bottom: 17px;
+    }
+
+    .samples > div {
+        margin-bottom: 17px;
+    }
+    
+    .samples > div:last-child {
+        margin-bottom: 51px;
+    }
+}

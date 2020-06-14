@@ -15,4 +15,5 @@ urlpatterns = [
     path('favourites/', view_message, name='favourites'),
     path('menu/', view_menu, name='favourites'),
     path('restaurants/', view_restaurants, name='favourites'),
+    path('chat/<int:chat_id>', view_chat, name='chat'),
 ]

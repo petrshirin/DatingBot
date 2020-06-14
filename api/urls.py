@@ -9,4 +9,5 @@ urlpatterns = [
     path('like_user/<int:pk>/',  LikeUser.as_view(), name='like'),
     path('dislike_user/<int:pk>/',  DislikeUser.as_view(), name='dislike'),
     path('change_rest/<int:rest_id>/',  ChangeRest.as_view(), name='change_rest'),
+    path('chat_info/', ChatInfo.as_view(), name='chat_info')
 ]

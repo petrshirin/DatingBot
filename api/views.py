@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import JSONParser, FormParser, MultiPartParser
 from django.core.files.base import File
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework.authtoken.models import Token
 # Create your views here.
 
 
@@ -132,3 +133,13 @@ class ChangeRest(APIView):
         user_profile.save()
         return Response({'status': 'ok'}, status=200)
 
+
+class ChatInfo(APIView):
+
+    authentication_classes = [SessionAuthentication, BasicAuthentication, CsrfExemptSessionAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user_profile = UserProfile.objects.get(user=request.user)
+        token = Token.objects.get(user=request.user)
+        return Response({'token': token.key, 'user_id': user_profile.pk}, status=200)

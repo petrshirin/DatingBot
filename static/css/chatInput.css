@@ -1,0 +1,94 @@
+textarea { outline: none; resize: none;}
+
+.inpField {
+    display: inline-flex;
+}
+
+.input {
+    height: auto;
+
+    margin-top: 0;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    font-weight: 500;
+}
+
+#send {
+    display: block;
+    background: url("../svg/Line_38B.svg") center no-repeat;
+    background-size: 50%;
+    background-color: #343434;
+    border-radius: 100%;
+    border: none;
+
+    align-self: flex-end;
+}
+
+textarea::-webkit-scrollbar {
+    width: 1px;
+}
+
+
+@media only screen and (orientation: portrait) {
+
+    .inpField {
+        margin-bottom: 67.5px;
+    }
+
+    .input, .inpField > span:first-child {
+        min-height: 75px;
+    }
+
+    .inpField > span:first-child {
+        margin-right: 54px; 
+        width: calc(100% - 150px - 54px);
+    }
+    
+    .input {
+        max-height: 180px;
+        width: calc(100% - 104px);
+
+        padding-right: 50px;
+        padding-top: 40px;
+        padding-bottom: 35px;
+
+        font-size: 48px;
+        line-height: 60px;
+    }
+
+    #send {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media only screen and (orientation: landscape) {
+    .inpField {
+        margin-bottom: 27px;
+    }
+
+    .input, .inpField > span:first-child {
+        min-height: 44px;
+    }
+
+    .inpField > span:first-child {
+        margin-right: 27px; 
+        width: calc(100% - 75px - 27px);
+    }
+    
+    .input {
+        max-height: 90px;
+        width: calc(100% - 54px);
+
+        padding: 16px 25px 17px;
+
+        font-size: 28px;
+        line-height: 35px;
+    }
+
+    #send {
+        width: 75px;
+        height: 75px;
+    }
+}

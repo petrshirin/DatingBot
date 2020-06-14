@@ -35,11 +35,14 @@
             <div >Привет, за каким ты столиком?</div>
         </div>
     </div>
-
+     <form method="post">
+         {% csrf_token %}
     <div class="inpField">
-        <span><textarea rows="1" class="input" id="textInp" oninput="checkEmptiness(this)"></textarea></span>
-        <input type="submit" id="send" value="" />
+            <span><textarea rows="1" class="input" id="textInp" name="message" oninput="checkEmptiness(this)"></textarea></span>
+            <input type="submit" id="send" value="" />
+
     </div>
+    </form>
 </main>
 
     <script src={% static "/js/chatInput.js" %} ></script>

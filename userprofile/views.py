@@ -5,6 +5,7 @@ from .models import *
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
+from rest_framework.authtoken.models import Token
 # Create your views here.
 
 
@@ -66,7 +67,7 @@ def view_menu(request):
     count_new_coincidence = UserCoincidence.objects.filter((Q(user_1=user_profile, is_view_1=False) | Q(user_2=user_profile, is_view_2=False))).count()
     return TemplateResponse(request, "userprofile2/menu.html", {'userprofile': user_profile, 'countnewcoincidence': count_new_coincidence})
 
-
+@login_required
 def view_search(request):
     if request.user.is_authenticated:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -100,6 +101,8 @@ def register_user(request, restaurant_id):
         else:
             user = User.objects.create_user(phone, password=phone + 'user=' + phone)
             user_profile = UserProfile(user=user, restaurant=rest, phone=phone)
+            token = Token(user=user)
+            token.save()
             user_profile.save()
             login(request, user)
             return redirect('/profile/addname/', {'user': user_profile})
@@ -207,5 +210,42 @@ def view_restaurants(request):
     if request.method == 'GET':
         user_profile = UserProfile.objects.get(user=request.user)
         return TemplateResponse(request, 'userprofile2/restaurants.html', {"userprofile": user_profile})
+    else:
+        return bad_request(request)
+
+
+@login_required
+def view_chat(request, chat_id):
+    if request.method == 'GET':
+        user_profile = UserProfile.objects.get(user=request.user)
+        other_user_profile = UserProfile.objects.get(pk=chat_id)
+        messages = Message.objects.filter(Q(sender=user_profile, recipient=other_user_profile) | Q(sender=other_user_profile, recipient=user_profile)).all()
+        if len(messages) == 0:
+
+            return TemplateResponse(request, 'userprofile2/emptyChat.html', {"userprofile": user_profile, 'other_userprofile': other_user_profile})
+        else:
+
+            for message in messages:
+                message.time = message.time.time().strftime('%H:%M')
+
+            return TemplateResponse(request, 'userprofile2/chat.html', {"userprofile": user_profile, 'other_userprofile': other_user_profile, 'messages': messages})
+
+    elif request.method == 'POST':
+        text = request.POST['message']
+        user_profile = UserProfile.objects.get(user=request.user)
+        other_user_profile = UserProfile.objects.get(pk=chat_id)
+        message = Message(sender=user_profile, recipient=other_user_profile, text=text)
+        message.save()
+        messages = Message.objects.filter(Q(sender=user_profile, recipient=other_user_profile) | Q(sender=other_user_profile, recipient=user_profile)).all()
+        if len(messages) == 0:
+
+            return TemplateResponse(request, 'userprofile2/emptyChat.html', {"userprofile": user_profile, 'other_userprofile': other_user_profile})
+        else:
+
+            for message in messages:
+                message.time = message.time.time().strftime('%H:%M')
+
+            return TemplateResponse(request, 'userprofile2/chat.html', {"userprofile": user_profile, 'other_userprofile': other_user_profile, 'messages': messages})
+
     else:
         return bad_request(request)

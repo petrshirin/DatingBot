@@ -1,4 +1,4 @@
-input[id^="choice"], input[type="radio"]::after, input[type='radio']:checked:after {
+.choice_radio, input[type="radio"]::after, input[type='radio']:checked:after {
     position: relative;
 }
 
@@ -76,12 +76,12 @@ input {
 
 @media only screen and (orientation: portrait) {
 
-    input[type="radio"]::after, input[type='radio']:checked:after, #choice {
+    input[type="radio"]::after, input[type='radio']:checked:after, #choice, .choice_radio {
         width: 50px; 
         height: 50px;
     }
 
-    #choice {
+    #choice, .choice_radio {
         top: 50px;
     }
     
@@ -141,12 +141,12 @@ input {
 
 @media only screen and (orientation: landscape) {
 
-    input[type="radio"]::after, input[type='radio']:checked:after, #choice {
+    input[type="radio"]::after, input[type='radio']:checked:after, #choice, .choice_radio {
         width: 25px; 
         height: 25px;
     }
 
-    #choice {
+    #choice, .choice_radio {
         top: 30px;
     }
 

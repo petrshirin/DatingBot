@@ -23,21 +23,34 @@
     <div class="name section">Выбор ресторана</div>
     <form>
         <label class="item choice" for="choice1">
-            <input type="radio" name="restaurant1" id="choice1" onclick="change_rest(1)" />
+
+            {% if userprofile.restaurant.pk == 1 %}
+                <input type="radio" name="restaurant1" id="choice1" class="choice_radio" onclick="change_rest(1)" checked="checked" />
+            {% else %}
+                <input type="radio" name="restaurant1" id="choice1" class="choice_radio" onclick="change_rest(1)" />
+            {% endif %}
             <div class="restaurantN">
                 <div class="name nameR">Савушкина</div>
                 <div class="extraTxt fewWords">ул. Савушкина, 141</div>
             </div>
         </label>
         <label class="item choice" for="choice2">
-            <input type="radio" name="restaurant2" id="choice2" onclick="change_rest(2)"/>
+            {% if userprofile.restaurant.pk == 2 %}
+                <input type="radio" name="restaurant2" id="choice2" class="choice_radio" onclick="change_rest(2)" checked="checked" />
+            {% else %}
+                <input type="radio" name="restaurant2" id="choice2" class="choice_radio" onclick="change_rest(2)"/>
+            {% endif %}
             <div class="restaurantN">
                 <div class="name nameR">Купчино</div>
                 <div class="extraTxt fewWords">Балканская пл. 5</div>
             </div>
         </label>
         <label class="item choice" for="choice3">
-            <input type="radio" name="restaurant3" id="choice3" onclick="change_rest(3)"/>
+            {% if userprofile.restaurant.pk == 3 %}
+                <input type="radio" name="restaurant3" id="choice3" class="choice_radio" onclick="change_rest(3)" checked="checked" />
+            {% else %}
+                <input type="radio" name="restaurant3" id="choice3" class="choice_radio" onclick="change_rest(3)"/>
+            {% endif %}
             <div class="restaurantN">
                 <div class="name nameR">Озерки</div>
                 <div class="extraTxt fewWords">пр. Энгельса, 124</div>
