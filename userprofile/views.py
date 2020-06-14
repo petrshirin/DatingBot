@@ -104,12 +104,6 @@ def register_user(request, restaurant_id):
             if not user_profile.first_name:
                 return redirect('/profile/addname/', {'userprofile': user_profile})
 
-            if not user_profile.age:
-                return redirect('/profile/addage/', {'userprofile': user_profile})
-
-            if not user_profile.status:
-                return redirect('/profile/addstatus/', {'userprofile': user_profile})
-
             if not user_profile.photo:
                 return redirect('/profile/addphoto/', {'userprofile': user_profile})
             return redirect('/profile/my/', {'userprofile': user_profile})
