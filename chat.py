@@ -1,5 +1,6 @@
-from aiohttp_chat.main import run
+from aiohttp_chat.main import init
+import asyncio
+from aiohttp import web
 
 
-if __name__ == '__main__':
-    run()
+web.run_app(init(), host='127.0.0.1', port=8081)
