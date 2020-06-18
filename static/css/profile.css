@@ -1,17 +1,25 @@
-.main, .menu > div {
+.main, .menu > div, .person {
     width: 100%;
 
 }
 
-.person, .menu > div:first-child {
+.person, .menu > div:first-child, .person > div:first-child {
     display: inline-flex;
 }
 
-.matches::before, .btnMatches + div::before, .name + a {
+.person {
+    justify-content: space-between;
+}
+
+.person > div:first-child {
+    justify-content: start;
+}
+
+.matches::before, .rests::before, .pen {
     display: inline-block;
 }
 
-.matches::before, .btnMatches + div::before, .btnMatches > span:last-child {
+.matches::before, .rests::before, .btnMatches > span:last-child {
     vertical-align: sub;
 }
 
@@ -26,10 +34,7 @@
     justify-content: center;
 }
 
-.name + a {
-    width: 50px;
-    height: 50px;
-    margin-left: 150px;
+.pen {
     background: url("../svg/Vector.svg") center no-repeat;
     background-size: contain;
 }
@@ -41,13 +46,13 @@
 }
 
 .personPhoto :first-child {
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
 }
 
 .menu > div {
     font-size: 56px;
-    font-weight: bold;  
+    font-weight: bold;
     border-top: 2px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -56,9 +61,18 @@
     align-items: center;
 }
 
-.matches::before, .btnMatches + div::before {
+.matches::before, .rests::before {
     content: "";
-    background-color: brown;
+}
+
+.matches::before {
+    background: url("../svg/list.svg") center no-repeat;
+    background-size: 200%;
+}
+
+.rests::before {
+    background: url("../svg/map-pin.svg") center no-repeat;
+    background-size: 200%;
 }
 
 .btnMatches > span:last-child {
@@ -73,6 +87,16 @@
 
 #fewWords {text-align: left;}
 
+.personPhoto :first-child, .personPhoto {
+        width: 172.5px;
+        height: 172.5px;
+}
+
+.ref {
+    display: block;
+    width: 100%;
+}
+
 @media only screen and (orientation: portrait) {
     .person {
         margin-bottom: 141px;
@@ -84,7 +108,7 @@
     }
 
     .personInfo {
-        margin-left: 66px;
+        margin-left: 48px;
     }
 
     .menu > div {
@@ -93,11 +117,15 @@
         line-height: 220px;
     }
 
-    .matches::before, .btnMatches + div::before {
+    .matches::before, .rests::before {
         width: 56px;
         height: 56px;
         margin-right: 60px;
         margin-left: 30px;
+    }
+
+    .rests::before {
+        height: 70px;
     }
 
     .menu > div:first-child :last-child {
@@ -106,10 +134,11 @@
         line-height: 72px;
     }
 
-    .name + a {
+    .pen {
         width: 50px;
         height: 50px;
-        margin-left: 160px;
+        margin-top: 35px;
+        margin-right: 41px;
     }
 }
 
@@ -133,14 +162,18 @@
         line-height: 82.5px;
     }
 
-    .matches::before, .btnMatches + div::before {
+    .matches::before, .rests::before {
         width: 27px;
         height: 27px;
         margin-right: 45px;
         margin-left: 22.5px;
     }
 
-    .menu > div:first-child :last-child, .name + a {
+    .rests::before {
+        height: 40px;
+    }
+
+    .menu > div:first-child :last-child, .pen {
         width: 35px;
         height: 35px;
     }
@@ -149,7 +182,8 @@
         line-height: 35px;
     }
 
-    .name + a {
-        margin-left: 410px;
+    .pen {
+        margin-right: 41px;
+        margin-top: 30px;
     }
 }

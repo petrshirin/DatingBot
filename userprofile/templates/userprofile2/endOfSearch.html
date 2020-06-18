@@ -18,7 +18,7 @@
             <a href="/profile/menu/"><div id="getMenuBar" class="refMenu circle"></div></a>
 
         {% else %}
-        `   <a href="/profile/menu/"><div id="getMenuBar" class="refMenu"></div></a>
+            <a href="/profile/menu/"><div id="getMenuBar" class="refMenu"></div></a>
         {% endif %}
     </header>
 
@@ -26,7 +26,7 @@
         <div class="yellowO">
             <div>
                 <div class="user">
-                    <img src={% static "/svg/image_18.svg" %} />
+                    <img src="{{ userprofile.photo.url }}" />
                 </div>
             </div>
         </div>

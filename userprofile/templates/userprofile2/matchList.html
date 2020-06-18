@@ -12,7 +12,7 @@
 <header>
         <div class="iconArrow"><a href="/profile/menu/"><img src={% static "/svg/Line_38.svg" %} /></a></div>
         <div>
-            <div><a href=""><img class="logo" src={% static "/svg/image_15.svg" %} ></a></div>
+            <div><a href="/profile/my/"><img class="logo" src={% static "/svg/image_15.svg" %} ></a></div>
             <div class="extraTxt headTxt">знакомства</div>
         </div>
         <a href="/profile/search/"><div id="getMenuBar" class="refMenu"></div></a>
@@ -28,7 +28,7 @@
                 <div class="item">
                     <div class="photo"><img src="{{userview.user_2.photo.url}}" /></div>
                     <div>
-                        <div class="name nameR"><a href="/profile/chat/{{userview.user_2.id}}">{{userview.user_2.first_name}}, {{% if userprofile.age %} {{ userview.user_2.age }} {% endif %}</a></div>
+                        <div class="name nameR"><a href="/profile/chat/{{userview.user_2.id}}">{{userview.user_2.first_name}}, {% if userprofile.age %} {{ userview.user_2.age }} {% endif %}</a></div>
                         <div class="extraTxt fewWords">{{userview.user_2.status}}</div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                 <div class="item">
                     <div class="photo"><img src="{{userview.user_1.photo.url}}" /></div>
                     <div>
-                        <div class="name nameR"><a href="/profile/chat/{{userview.user_1.id}}">{{userview.user_1.first_name}}, {{% if userprofile.age %} {{ userview.user_1.age }} {% endif %}</a></div>
+                        <div class="name nameR"><a href="/profile/chat/{{userview.user_1.id}}">{{userview.user_1.first_name}}, {% if userprofile.age %} {{ userview.user_1.age }} {% endif %}</a></div>
                         <div class="extraTxt fewWords">{{userview.user_1.status}}</div>
                     </div>
                 </div>

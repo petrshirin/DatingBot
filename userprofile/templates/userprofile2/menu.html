@@ -14,25 +14,27 @@
 {% block content %}
 <div class="main">
     <div class="person">
-        <div class="personPhoto"><img src="{{ userprofile.photo.url }}" /></div>
-        <div class="personInfo">
-            <div>
-                <span class="name">{{ userprofile.first_name }}, {% if userprofile.age %} {{ userprofile.age }} {% endif %} </span>
-                <a href="/profile/my/"></a>
+        <div>
+            <div class="personPhoto"><img src="{{ userprofile.photo.url }}" /></div>
+            <div class="personInfo">
+                <div class="name">{{ userprofile.first_name }}, {% if userprofile.age %} {{ userprofile.age }} {% endif %} </div>
+                <div class="extraTxt fewWords">{{ userprofile.status }}</div>
             </div>
-            <div class="extraTxt fewWords">{{ userprofile.status }}</div>
         </div>
+        <a class="pen" href="/profile/my/"></a>
     </div>
     <div class="menu">
         <div class="btnMatches">
-            <a href="/profile/favourites/"><span class="matches">Список Мэтчей</span></a>
+            <a class="ref" href="/profile/favourites/"><span class="matches">Список Мэтчей</span></a>
             {% if countnewcoincidence > 0 %}
             <span style="display: inline-block">{{countnewcoincidence}}</span>
             {% else %}
             <span></span>
             {% endif %}
         </div>
-        <div><a href="/profile/restaurants/">Выбор ресторана</a></div>
+        <div class="btnMatches" >
+            <a class="ref" href="/profile/restaurants/"><span class="rests">Выбор ресторана</span></a>
+        </div>
     </div>
 </div>
 {% endblock %}

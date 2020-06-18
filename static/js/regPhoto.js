@@ -8,8 +8,6 @@ function upload() {
     inpFile.addEventListener("change", function() {
         const file = this.files[0];
 
-        console.log(file);
-
         if (file) {
             for (let i = 0; i < 2; i++) {
                 document.getElementsByClassName("btn")[i].style.display = "block";
