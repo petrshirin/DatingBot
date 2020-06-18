@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
 from rest_framework.authtoken.models import Token
+from datetime import datetime, timedelta, time
 # Create your views here.
 
 
@@ -32,7 +33,8 @@ def view_profile(request):
                 if request.FILES.get('photo'):
                     user_profile.photo = request.FILES['photo']
                 user_profile.save()
-                return TemplateResponse(request, "userprofile2/edit.html", {'userprofile': user_profile})
+                count_new_coincidence = UserCoincidence.objects.filter((Q(user_1=user_profile, is_view_1=False) | Q(user_2=user_profile, is_view_2=False))).count()
+                return redirect('/profile/search/', {'userprofile': user_profile, 'countnewcoincidence': count_new_coincidence})
             else:
                 return TemplateResponse(request, "userprofile2/edit.html", {'userprofile': user_profile, 'errors': form.errors})
     else:
@@ -235,7 +237,7 @@ def view_chat(request, chat_id):
         else:
 
             for message in messages:
-                message.time = message.time.time().strftime('%H:%M')
+                message.time = (message.time + timedelta(hours=3)).time().strftime('%H:%M')
 
             return TemplateResponse(request, 'userprofile2/chat.html', {"userprofile": user_profile, 'other_userprofile': other_user_profile, 'messages': messages})
 
