@@ -2,7 +2,8 @@
     visibility: hidden;
 }
 
-@media only screen and (orientation: portrait) {
+/*@media only screen and (orientation: portrait) {*/
+@media screen and (max-device-aspect-ratio: 1/1), (max-aspect-ratio: 1/1) {
     .input {
         margin-top: -10px;
     }

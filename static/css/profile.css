@@ -97,7 +97,8 @@
     width: 100%;
 }
 
-@media only screen and (orientation: portrait) {
+/*@media only screen and (orientation: portrait) {*/
+@media screen and (max-device-aspect-ratio: 1/1), (max-aspect-ratio: 1/1) {
     .person {
         margin-bottom: 141px;
     }

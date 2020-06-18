@@ -64,6 +64,8 @@ main .yellowO {
         margin: auto;
         margin-top: 26px;
         border-width: 3px;
+        width: 71px;
+        height: 71px;
     }
 
     main .yellowO {

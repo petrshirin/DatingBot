@@ -63,7 +63,8 @@ a {
     z-index: 100; 
 }
 
-@media only screen and (orientation: portrait) {
+/*@media only screen and (orientation: portrait) {*/
+@media screen and (max-device-aspect-ratio: 1/1), (max-aspect-ratio: 1/1) {
     body {
         margin-left: 64px;
         margin-right: 64px;

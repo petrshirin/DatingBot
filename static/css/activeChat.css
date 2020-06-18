@@ -73,7 +73,8 @@ main, .messages {
     margin-left: 48px;
 }
 
-@media only screen and (orientation: portrait) {
+/*@media all and (orientation: portrait) {*/
+@media screen and (max-device-aspect-ratio: 1/1), (max-aspect-ratio: 1/1) {
 
     body {
         height: calc(100vh - 175px);
@@ -114,7 +115,7 @@ main, .messages {
 
 }
 
-@media only screen and (orientation: landscape) {
+@media all and (orientation: landscape) {
 
     body {
         height: calc(100vh - 130px);
