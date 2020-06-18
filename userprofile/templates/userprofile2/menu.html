@@ -1,5 +1,10 @@
 {% extends "userprofile2/base.html" %}
 {% load static %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href={% static "/css/profile.css" %} />
+{% endblock %}
+
 {% block sitebar %}
 <header>
     <div class="iconArrow"><a href="/profile/search/"><img src={% static "/svg/Line_38.svg" %} /></a></div>
