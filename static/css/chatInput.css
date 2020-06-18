@@ -2,6 +2,9 @@ textarea { outline: none; resize: none;}
 
 .inpField {
     display: inline-flex;
+    position: fixed;
+    background-color: #1A1919;
+    bottom: 0;
 }
 
 .input {
@@ -33,7 +36,10 @@ textarea::-webkit-scrollbar {
 @media only screen and (orientation: portrait) {
 
     .inpField {
-        margin-bottom: 67.5px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        right: 64px;
+        left: 64px;
     }
 
     .input, .inpField > span:first-child {
@@ -65,7 +71,10 @@ textarea::-webkit-scrollbar {
 
 @media only screen and (orientation: landscape) {
     .inpField {
-        margin-bottom: 27px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+        right: 32px;
+        left: 32px;
     }
 
     .input, .inpField > span:first-child {

@@ -13,6 +13,7 @@ catch(err){
 
 // show message in div#subscribe
 function showMessage(message) {
+    lastMsg( orientation(0) );
 
     let messages = document.querySelector(".messages");
 
@@ -35,6 +36,9 @@ function showMessage(message) {
 
         messages.append(div);
     };
+
+    lastMsg( orientation(1) );
+    document.querySelector(".messages > div:last-child").scrollIntoView();
 }
 
 
@@ -64,7 +68,6 @@ sock.onmessage = function(event) {
     if (data['text'] == '|open|') {
         return;
     }
-
     showMessage(data);
 };
 
@@ -118,6 +121,8 @@ function getTime() {
 
 
 function sendMessage() {
+    lastMsg( orientation(0) );
+
     let msg = document.querySelector("#textInp").value;
     split_url = window.location.href.split('/');
     let s_msg = {
@@ -128,6 +133,19 @@ function sendMessage() {
     sock.send(JSON.stringify(s_msg));
     addMyMsg(msg);
     document.querySelector("#textInp").value = "";
+
+    lastMsg( orientation(1) );
+    document.querySelector(".messages > div:last-child").scrollIntoView();
+}
+
+function lastMsg(bottom) {
+    document.querySelector(".messages > div:last-child").style.marrginBottom = bottom;
+}
+
+function orientation(mode) { // mode - новое (1) или старое (0) последнее сообщение
+    let orientation = screen.orientation.type;
+    if (mode) return orientation.includes("portrait") ? "360px" : "180px";
+    else return orientation.includes("portrait") ? "120px" : "60px";
 }
 
 
