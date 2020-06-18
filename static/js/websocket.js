@@ -66,9 +66,11 @@ sock.onopen = function(){
 sock.onmessage = function(event) {
     data = JSON.parse(event.data);
     if (data['text'] == '|open|') {
-        return;
+        console.log(data);
     }
-    showMessage(data);
+    else {
+        showMessage(data);
+    }
 };
 
 
@@ -139,7 +141,7 @@ function sendMessage() {
 }
 
 function lastMsg(bottom) {
-    document.querySelector(".messages > div:last-child").style.marrginBottom = bottom;
+    document.querySelector(".messages > div:last-child").style.marginBottom = bottom;
 }
 
 function orientation(mode) { // mode - новое (1) или старое (0) последнее сообщение
