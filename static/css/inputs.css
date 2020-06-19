@@ -75,7 +75,7 @@ input {
 
 
 /*@media only screen and (orientation: portrait) {*/
-@media only screen and (min-width: 481px) and (orientation: portrait) {
+@media only screen and (min-width: 570px) and (orientation: portrait) {
 
     input[type="radio"]::after, input[type='radio']:checked:after, #choice, .choice_radio {
         width: 50px; 
@@ -140,7 +140,7 @@ input {
     }
 }
 
-@media only screen and (min-device-width: 481px) and (orientation: landscape) {
+@media only screen and (min-device-width: 570px) and (orientation: landscape) {
 
     input[type="radio"]::after, input[type='radio']:checked:after, #choice, .choice_radio {
         width: 25px; 

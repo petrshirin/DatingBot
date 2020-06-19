@@ -3,13 +3,13 @@
 }
 
 /*@media only screen and (orientation: portrait) {*/
-@media only screen and (min-width: 481px) and (orientation: portrait) {
+@media only screen and (min-width: 570px) and (orientation: portrait) {
     .input {
         margin-top: -10px;
     }
 }
 
-@media only screen and (min-device-width: 481px) and (orientation: landscape) {
+@media only screen and (min-device-width: 570px) and (orientation: landscape) {
     
     .privacy  {
         margin-left: 16px;
