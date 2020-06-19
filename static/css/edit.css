@@ -66,7 +66,7 @@
 }
 
 /*@media only screen and (orientation: portrait) {*/
-@media screen and (max-device-aspect-ratio: 1/1), (max-aspect-ratio: 1/1) {
+@media only screen and (min-width: 481px) and (orientation: portrait) {
 
     .editForm .photo, .imagePreviewImage, .imagePreview {
         width: 100%;
@@ -97,7 +97,7 @@
     
 }
 
-@media only screen and (orientation: landscape) {
+@media only screen and (min-device-width: 481px) and (orientation: landscape) {
 
     .editForm, .imagePreview, .imagePreviewImage, .input {
         width: 100%;
