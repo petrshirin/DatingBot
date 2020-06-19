@@ -35,6 +35,11 @@ document.addEventListener("click", (event)=> {
     for (let i = 0; i < samples.length; i++) {
         if (samples[i].innerHTML === target) {
             inp.value = target;
+            if ( screen.orientation.type.includes("portrait") ) {
+                document.querySelector("#textInp").style.height = "180px";
+            } else {
+                document.querySelector("#textInp").style.height = "90px";
+            }
         }
     }
 })
