@@ -58,15 +58,8 @@
     margin-right: 33px;
 }
 
-.input {
-    position: relative;
-    right: 0;
-    left: 0;
-    width: 100%;
-}
+@media only screen and (orientation: portrait) {
 
-/*@media only screen and (orientation: portrait) {*/
-@media screen and (max-device-aspect-ratio: 1/1), (max-aspect-ratio: 1/1) {
 
     .editForm .photo, .imagePreviewImage, .imagePreview {
         width: 100%;

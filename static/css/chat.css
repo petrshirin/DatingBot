@@ -42,8 +42,8 @@ main {
 }
 
 
-/*@media only screen and (orientation: portrait) {*/
-@media screen and (max-device-aspect-ratio: 1/1), (max-aspect-ratio: 1/1) {
+@media only screen and (orientation: portrait) {
+
 
     body {
         height: calc(100vh - 175px);

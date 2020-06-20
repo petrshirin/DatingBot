@@ -38,8 +38,8 @@ textarea::-webkit-scrollbar {
 }
 
 
-/*@media only screen and (orientation: portrait) {*/
-@media screen and (max-device-aspect-ratio: 1/1), (max-aspect-ratio: 1/1) {
+@media only screen and (orientation: portrait) {
+
 
     .inpField {
         padding-top: 50px;
