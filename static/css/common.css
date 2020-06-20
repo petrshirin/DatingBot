@@ -91,7 +91,7 @@ a {
     }
 }
 
-@media only screen and (min-device-width: 800px) and (orientation: landscape) {
+@media (orientation: landscape) {
     body {
         margin-left: 32px;
         margin-right: 32px;
