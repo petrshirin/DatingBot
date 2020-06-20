@@ -3,21 +3,21 @@
 }
 
 /*@media only screen and (orientation: portrait) {*/
-@media only screen and (min-width: 800px) and (orientation: portrait) {
+@media screen and (max-device-aspect-ratio: 1/1), (max-aspect-ratio: 1/1) {
     .input {
         margin-top: -10px;
     }
 }
 
-@media only screen and (min-device-width: 800px) and (orientation: landscape) {
+@media only screen and (orientation: landscape) {
     
     .privacy  {
         margin-left: 16px;
     }
 
-    /*#tel, #myName, #age, #me {
+    #tel, #myName, #age, #me {
         width: 175%;
-    }*/
+    }
 
     .input {
         margin-top: 0px;

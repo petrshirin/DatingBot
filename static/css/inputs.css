@@ -75,7 +75,7 @@ input {
 
 
 /*@media only screen and (orientation: portrait) {*/
-@media only screen and (min-width: 800px) and (orientation: portrait) {
+@media screen and (max-device-aspect-ratio: 1/1), (max-aspect-ratio: 1/1) {
 
     input[type="radio"]::after, input[type='radio']:checked:after, #choice, .choice_radio {
         width: 50px; 
@@ -140,7 +140,7 @@ input {
     }
 }
 
-@media only screen and (min-device-width: 720px) and (orientation: landscape) {
+@media only screen and (orientation: landscape) {
 
     input[type="radio"]::after, input[type='radio']:checked:after, #choice, .choice_radio {
         width: 25px; 
@@ -157,14 +157,6 @@ input {
     
     input[type='radio']:checked:after {
         box-shadow: 0 0 0 4px #1A1919 inset;
-    }
-
-     .input {
-        margin-top: 20px;
-        width: calc(100% - 50px);
-        height: 125px;
-
-        padding-left: 50px;
     }
 
 }

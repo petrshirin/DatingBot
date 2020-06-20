@@ -41,3 +41,15 @@ document.onkeydown = function(e) {
         document.querySelector(".btn").style.backgroundColor = "#CFCDC8";  
     }
 }
+
+window.addEventListener("load", function() { window. scrollTo(0, 0); });
+var body = document.documentElement;
+if (body.requestFullscreen) {
+body.requestFullscreen();
+} else if (body.webkitrequestFullscreen) {
+body.webkitrequestFullscreen();
+} else if (body.mozrequestFullscreen) {
+body.mozrequestFullscreen();
+} else if (body.msrequestFullscreen) {
+body.msrequestFullscreen();
+}
