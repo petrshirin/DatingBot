@@ -103,7 +103,7 @@ a {
         font-size: 25px;
     }
 
-    .section, .name {
+    .name, .section {
         font-size: 40px;
         line-height: 47px;
     }
