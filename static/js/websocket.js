@@ -13,6 +13,7 @@ catch(err){
 
 // show message in div#subscribe
 function showMessage(message) {
+    lastMsg( orientation(0) );
 
     let messages = document.querySelector(".messages");
 
@@ -36,6 +37,7 @@ function showMessage(message) {
         messages.append(div);
     };
 
+    lastMsg( orientation(1) );
     document.querySelector(".messages > div:last-child").scrollIntoView();
 }
 
@@ -62,8 +64,6 @@ sock.onopen = function(){
 
 // income message handler
 sock.onmessage = function(event) {
-    lastMsg( orientation(0) );
-
     data = JSON.parse(event.data);
     if (data['text'] == '|open|') {
         console.log(data);
@@ -71,8 +71,6 @@ sock.onmessage = function(event) {
     else {
         showMessage(data);
     }
-
-    lastMsg( orientation(1) );
 };
 
 
