@@ -15,11 +15,6 @@ textarea { outline: none; resize: none;}
     overflow-y: scroll;
 
     font-weight: 500;
-
-    position: relative;
-    right: 0;
-    left: 0;
-    width: 100%;
 }
 
 #send {
@@ -49,7 +44,7 @@ textarea::-webkit-scrollbar {
     }
 
     .input, .inpField > span:first-child {
-        min-height: 150px;
+        min-height: 75px;
     }
 
     .inpField > span:first-child {
@@ -59,9 +54,7 @@ textarea::-webkit-scrollbar {
     
     .input {
         max-height: 180px;
-/*
         width: calc(100% - 104px);
-*/
 
         padding-right: 50px;
         padding-top: 40px;
@@ -86,7 +79,7 @@ textarea::-webkit-scrollbar {
     }
 
     .input, .inpField > span:first-child {
-        min-height: 75px;
+        min-height: 44px;
     }
 
     .inpField > span:first-child {
@@ -96,7 +89,7 @@ textarea::-webkit-scrollbar {
     
     .input {
         max-height: 90px;
-        /*width: calc(100% - 54px);*/
+        width: calc(100% - 54px);
 
         padding: 16px 25px 17px;
 
