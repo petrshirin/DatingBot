@@ -104,8 +104,8 @@
     }
 
     .personPhoto :first-child, .personPhoto {
-        width: 172.5px;
-        height: 172.5px;
+        min-width: 172.5px;
+        min-height: 172.5px;
     }
 
     .personInfo {
@@ -149,8 +149,8 @@
     }
 
     .personPhoto :first-child, .personPhoto {
-        width: 130px;
-        height: 130px;
+        min-width: 130px;
+        min-height: 130px;
     }
 
     .personInfo {
