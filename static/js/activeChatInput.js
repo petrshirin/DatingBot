@@ -1,10 +1,11 @@
 function checkEmptiness(element) {
 
     element.style.height = "5px";
-    element.style.height = (element.scrollHeight + 3)+"px";
+    element.style.height = (element.scrollHeight)+"px";
     if (element.value) {
         document.querySelector("#send").style.backgroundColor = "#F9D671";
     }
+    document.querySelector('.input').scrollTo(0, document.querySelector('.input').scrollHeight)
 }
 
 let inp = document.getElementById("textInp");
@@ -23,7 +24,7 @@ function fixHeight() {
     if (orientation.includes("landscape")) {
         primary = "44px";
     } else {
-        primary = "75px";
+        primary = "85px";
     }
     if (inp.style.height !== primary) {
         inp.style.height = primary;
