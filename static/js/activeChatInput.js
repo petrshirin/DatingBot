@@ -11,7 +11,7 @@ function checkEmptiness(element) {
 let inp = document.getElementById("textInp");
 
 document.onkeydown = function(e) {
-    if (e.keyCode == 8 && inp.value.length == 0 ) {
+    if (e.keyCode == 8 && inp.value.length <= 1 ) {
         document.querySelector("#send").style.backgroundColor = "#343434";
     }
 

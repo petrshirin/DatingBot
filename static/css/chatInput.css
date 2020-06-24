@@ -25,6 +25,7 @@ textarea { outline: none; resize: none;}
     background-color: #343434;
     border-radius: 100%;
     border: none;
+    cursor: pointer;
 
     align-self: flex-end;
 }
