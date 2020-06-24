@@ -156,7 +156,7 @@ function orientation(mode) { // mode - новое (1) или старое (0) п
 
 function deleteLastMessage() {
      let messages_block = document.querySelector(".messages");
-     messages = messages_block.getElementsByClassName('mine')
+     messages = messages_block.getElementsByClassName('me')
      messages[messages.length - 1].remove()
 }
 
