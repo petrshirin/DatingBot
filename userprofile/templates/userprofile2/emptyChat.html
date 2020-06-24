@@ -25,7 +25,10 @@
     <div>
         <div class="person">
             <div><img class="img" src="{{ other_userprofile.photo.url }}" /></div>
-            <div class="name">{{ other_userprofile.first_name }}, {% if userprofile.age %} {{ other_userprofile.age }} {% endif %}</div>
+            <div class="name">{{ other_userprofile.first_name }}
+                {% if userprofile.age %}
+                ,{{ other_userprofile.age }}
+                {% endif %}</div>
         </div>
         <div class="advice">
             <div>Пока ваш чат пуст. Напиши первый!</div>
