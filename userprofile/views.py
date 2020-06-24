@@ -7,7 +7,9 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserProfileForm
 from rest_framework.authtoken.models import Token
 from datetime import datetime, timedelta, time
+import logging
 # Create your views here.
+LOG = logging.getLogger(__name__)
 
 
 def view_profile(request):
@@ -20,11 +22,16 @@ def view_profile(request):
             user_profile = UserProfile.objects.filter(user=request.user).first()
             if form.is_valid():
                 data = form.data
-                print(data)
+                LOG.debug(data)
+                if data['age']:
+                    try:
+                        user_profile.age = int(data['age'])
+                    except ValueError:
+                        user_profile.age = None
                 user_profile.first_name = data['first_name']
                 user_profile.sex = data['sex']
-                user_profile.age = data['age']
-                user_profile.status = data['status']
+                if data['status']:
+                    user_profile.status = data['status']
                 if data['sex'] == 'Мужчина':
                     user_profile.search_for = 'Женщина'
                 else:
@@ -97,7 +104,7 @@ def register_user(request, restaurant_id):
             return TemplateResponse(request, 'userprofile2/RegTel.html', {"error": "Неверный номер телефона, введите заного"})
         phone = phone.strip()
         user_profile = UserProfile.objects.filter(phone=phone).first()
-        print(user_profile)
+        LOG.debug(user_profile)
         if user_profile:
             login(request, user_profile.user)
             user_profile.restaurant = rest
@@ -245,9 +252,13 @@ def view_chat(request, chat_id):
         text = request.POST['message']
         user_profile = UserProfile.objects.get(user=request.user)
         other_user_profile = UserProfile.objects.get(pk=chat_id)
-        message = Message(sender=user_profile, recipient=other_user_profile, text=text)
-        message.save()
         messages = Message.objects.filter(Q(sender=user_profile, recipient=other_user_profile) | Q(sender=other_user_profile, recipient=user_profile)).all()
+        messages = list(messages)
+        if not messages:
+            message = Message(sender=user_profile, recipient=other_user_profile, text=text)
+            message.save()
+            messages.append(message)
+
         if len(messages) == 0:
 
             return TemplateResponse(request, 'userprofile2/emptyChat.html', {"userprofile": user_profile, 'other_userprofile': other_user_profile})

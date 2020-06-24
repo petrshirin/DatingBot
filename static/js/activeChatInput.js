@@ -1,7 +1,7 @@
 function checkEmptiness(element) {
 
     element.style.height = "5px";
-    element.style.height = (element.scrollHeight)+"px";
+    element.style.height = (element.scrollHeight + 3)+"px";
     if (element.value) {
         document.querySelector("#send").style.backgroundColor = "#F9D671";
     }

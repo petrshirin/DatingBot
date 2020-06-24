@@ -43,7 +43,7 @@ function showMessage(message) {
 
 
 sock.onopen = function(){
-
+    addMyMsg("Устанавливаю соединение")
     let request = new XMLHttpRequest();
     request.responseType = 'json';
     request.open('GET', "/api/chat_info/");
@@ -60,6 +60,8 @@ sock.onopen = function(){
     }
     });
     request.send();
+    deleteLastMessage();
+
 }
 
 // income message handler
@@ -150,6 +152,13 @@ function orientation(mode) { // mode - новое (1) или старое (0) п
     else return orientation.includes("portrait") ? "120px" : "60px";
 }
 
+
+
+function deleteLastMessage() {
+     let messages_block = document.querySelector(".messages");
+     messages = messages_block.getElementsByClassName('mine')
+     messages[messages.length - 1].remove()
+}
 
 
 
