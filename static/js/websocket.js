@@ -126,9 +126,9 @@ function getTime() {
 
 function sendMessage() {
     lastMsg( orientation(0) );
-
+    document.getElementById("textInp").value = "";
     let msg = document.querySelector("#textInp").value;
-    document.querySelector("#textInp").value = "";
+
     split_url = window.location.href.split('/');
     let s_msg = {
         "text": msg,
