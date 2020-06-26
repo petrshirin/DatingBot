@@ -160,9 +160,6 @@ function deleteLastMessage() {
      messages[messages.length - 1].remove()
 }
 
-window.addEventListener('load', function(){
-  document.getElementById('send').addEventListener('click', sendMessage, false);
-}, false);
-
+document.getElementById('send').addEventListener('click', sendMessage, false);
 
 //document.querySelector('.inpField > input').addEventListener("click", sendMessage() )
