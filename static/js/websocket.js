@@ -159,11 +159,10 @@ function deleteLastMessage() {
      messages[messages.length - 1].remove()
 }
 
-document.getElementById('send').addEventListener('touchstart', function(e){
+document.getElementById('send').addEventListener('click touchstart', function(e){
         sendMessage();
 }, false);
 
-document.getElementById('send').addEventListener('click', sendMessage, false);
 
 
 
