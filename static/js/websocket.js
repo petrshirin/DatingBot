@@ -161,7 +161,7 @@ function deleteLastMessage() {
 
 document.getElementById('send').addEventListener('touchstart', function(e){
         sendMessage();
-});
+}, false);
 
 
 
