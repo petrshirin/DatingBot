@@ -133,7 +133,6 @@ function sendMessage() {
         "text": msg,
         "chat_id": Number(split_url[split_url.length - 1])
     };
-    console.log(s_msg)
     sock.send(JSON.stringify(s_msg));
     addMyMsg(msg);
     document.querySelector("#textInp").value = "";
@@ -161,5 +160,11 @@ function deleteLastMessage() {
 }
 
 document.getElementById('send').addEventListener('click', sendMessage, false);
+
+window.addEventListener('load', function(){ // после загрузки страницы
+    document.getElementById('send').addEventListener('touchstart', function(e){
+        sendMessage();
+    }, false)
+}, false)
 
 //document.querySelector('.inpField > input').addEventListener("click", sendMessage() )
