@@ -125,9 +125,10 @@ function getTime() {
 
 
 function sendMessage() {
-    //lastMsg( orientation(0) );
+    lastMsg( orientation(0) );
 
     let msg = document.querySelector("#textInp").value;
+    document.querySelector("#textInp").value = "";
     split_url = window.location.href.split('/');
     let s_msg = {
         "text": msg,
@@ -135,9 +136,8 @@ function sendMessage() {
     };
     sock.send(JSON.stringify(s_msg));
     addMyMsg(msg);
-    document.querySelector("#textInp").value = "";
 
-    //lastMsg( orientation(1) );
+    lastMsg( orientation(1) );
     document.querySelector(".messages > div:last-child").scrollIntoView();
 }
 
