@@ -159,12 +159,12 @@ function deleteLastMessage() {
      messages[messages.length - 1].remove()
 }
 
+document.getElementById('send').addEventListener('touchstart', function(e){
+        sendMessage();
+}, false);
+
 document.getElementById('send').addEventListener('click', sendMessage, false);
 
-window.addEventListener('load', function(){ // после загрузки страницы
-    document.getElementById('send').addEventListener('touchstart', function(e){
-        sendMessage();
-    }, false)
-}, false)
+
 
 //document.querySelector('.inpField > input').addEventListener("click", sendMessage() )
