@@ -125,7 +125,7 @@ function getTime() {
 
 
 function sendMessage() {
-    lastMsg( orientation(0) );
+    //lastMsg( orientation(0) );
 
     let msg = document.querySelector("#textInp").value;
     split_url = window.location.href.split('/');
@@ -137,7 +137,7 @@ function sendMessage() {
     addMyMsg(msg);
     document.querySelector("#textInp").value = "";
 
-    lastMsg( orientation(1) );
+    //lastMsg( orientation(1) );
     document.querySelector(".messages > div:last-child").scrollIntoView();
 }
 
