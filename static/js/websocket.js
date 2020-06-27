@@ -128,14 +128,16 @@ function sendMessage() {
     lastMsg( orientation(0) );
 
     let msg = document.querySelector("#textInp").value;
-    document.querySelector("#textInp").value = "";
-    split_url = window.location.href.split('/');
-    let s_msg = {
-        "text": msg,
-        "chat_id": Number(split_url[split_url.length - 1])
-    };
-    sock.send(JSON.stringify(s_msg));
-    addMyMsg(msg);
+    if (msg) {
+        document.querySelector("#textInp").value = "";
+        split_url = window.location.href.split('/');
+        let s_msg = {
+            "text": msg,
+            "chat_id": Number(split_url[split_url.length - 1])
+        };
+        sock.send(JSON.stringify(s_msg));
+        addMyMsg(msg);
+    }
 
     lastMsg( orientation(1) );
     document.querySelector(".messages > div:last-child").scrollIntoView();
@@ -159,10 +161,12 @@ function deleteLastMessage() {
      messages[messages.length - 1].remove()
 }
 
-document.getElementById('send').addEventListener('touchstart', function(e){
-        sendMessage();
-}, false);
+//document.getElementById('send').addEventListener('touchstart', function(e){
+//        sendMessage();
+//}, false);
 
+document.getElementById("send").ontouchstart = sendMessage;
+// Если не сработает, можно попробовать в HTML у #send прописать ontouchstart="sendMessage(ent)"
 
 
 

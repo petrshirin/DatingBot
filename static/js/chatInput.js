@@ -12,14 +12,7 @@ function checkEmptiness(element) {
 
 let inp = document.getElementById("textInp");
 
-inp.onblur = ()=> {
-    document.querySelector(".advice > div:last-child").style.display = "block";
-    document.querySelector(".samples").style.display = "block";
-    fixHeight();
-}
-
-
-inp.addEventListener("focusout", ()=> {
+    inp.addEventListener("focusout", ()=> {
     document.querySelector(".advice > div:last-child").style.display = "block";
     document.querySelector(".samples").style.display = "block";
     fixHeight();    
