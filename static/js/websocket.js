@@ -165,7 +165,7 @@ function deleteLastMessage() {
 //        sendMessage();
 //}, false);
 
-document.getElementById("send").ontouchstart = sendMessage;
+//document.getElementById("send").ontouchstart = sendMessage;
 // Если не сработает, можно попробовать в HTML у #send прописать ontouchstart="sendMessage(ent)"
 
 
