@@ -43,7 +43,7 @@ function showMessage(message) {
 
 
 sock.onopen = function(){
-
+    addMyMsg("Устанавливаю соединение")
     let request = new XMLHttpRequest();
     request.responseType = 'json';
     request.open('GET', "/api/chat_info/");
@@ -60,6 +60,8 @@ sock.onopen = function(){
     }
     });
     request.send();
+    deleteLastMessage();
+
 }
 
 // income message handler
@@ -126,15 +128,14 @@ function sendMessage() {
     lastMsg( orientation(0) );
 
     let msg = document.querySelector("#textInp").value;
+    document.querySelector("#textInp").value = "";
     split_url = window.location.href.split('/');
     let s_msg = {
         "text": msg,
         "chat_id": Number(split_url[split_url.length - 1])
     };
-    console.log(s_msg)
     sock.send(JSON.stringify(s_msg));
     addMyMsg(msg);
-    document.querySelector("#textInp").value = "";
 
     lastMsg( orientation(1) );
     document.querySelector(".messages > div:last-child").scrollIntoView();
@@ -150,6 +151,17 @@ function orientation(mode) { // mode - новое (1) или старое (0) п
     else return orientation.includes("portrait") ? "120px" : "60px";
 }
 
+
+
+function deleteLastMessage() {
+     let messages_block = document.querySelector(".messages");
+     messages = messages_block.getElementsByClassName('me')
+     messages[messages.length - 1].remove()
+}
+
+document.getElementById('send').addEventListener('touchstart', function(e){
+        sendMessage();
+}, false);
 
 
 

@@ -5,12 +5,13 @@ function checkEmptiness(element) {
     if (element.value) {
         document.querySelector("#send").style.backgroundColor = "#F9D671";
     }
+    document.querySelector('.input').scrollTo(0, document.querySelector('.input').scrollHeight)
 }
 
 let inp = document.getElementById("textInp");
 
 document.onkeydown = function(e) {
-    if (e.keyCode == 8 && inp.value.length == 0 ) {
+    if (e.keyCode == 8 && inp.value.length <= 1 ) {
         document.querySelector("#send").style.backgroundColor = "#343434";
     }
 
@@ -23,7 +24,7 @@ function fixHeight() {
     if (orientation.includes("landscape")) {
         primary = "44px";
     } else {
-        primary = "75px";
+        primary = "85px";
     }
     if (inp.style.height !== primary) {
         inp.style.height = primary;
