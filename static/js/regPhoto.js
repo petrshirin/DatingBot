@@ -28,21 +28,3 @@ function upload() {
         }
     })
 }
-
-function uploadViaBtn(inp) {
-    const inpFile = document.getElementById("buttonSkip");
-    const previewContainer = document.getElementById("imagePreview");
-    const previewImage = previewContainer.querySelector(".imagePreviewImage");
-
-    const file = inp.files[0];
-
-    if (file) {
-        const reader = new FileReader();
-
-            reader.addEventListener("load", function() {
-                previewImage.setAttribute("src", this.result);
-            })
-
-            reader.readAsDataURL(file);
-        }
-}
