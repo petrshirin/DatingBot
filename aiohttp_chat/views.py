@@ -44,7 +44,7 @@ async def websocket_handler(request):
                                     session['token'] = json_d['token']
                                     if not session.get('chat_id'):
                                         session['chat_id'] = json_d['chat_id']
-                                        request.app['wslist'].append({'ws': ws, 'chat_id': json_d['chat_id']})
+                                        request.app['wslist'].append({'ws': ws, 'chat_id': json_d['chat_id'], 'token': session['token']})
                             if not is_valid_token:
                                 await ws.close()
                                 return ws
@@ -70,7 +70,7 @@ async def websocket_handler(request):
 
                     for ws_n in request.app['wslist']:
 
-                        if ws_n['chat_id'] == json_d['chat_id']:
+                        if ws_n['chat_id'] == json_d['chat_id'] and ws_n['token'] == session['token']:
                             await ws_n['ws'].send_json(answer)
 
         elif msg.type == WSMsgType.ERROR:
