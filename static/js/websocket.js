@@ -130,12 +130,12 @@ function sendMessage() {
     let msg = document.querySelector("#textInp").value;
     if (msg) {
         document.querySelector("#textInp").value = "";
-        split_url = window.location.href.split('/');
-        let s_msg = {
+        splitUrl = window.location.href.split('/');
+        let sMsg = {
             "text": msg,
-            "chat_id": Number(split_url[split_url.length - 1])
+            "chat_id": Number(splitUrl[splitUrl.length - 1])
         };
-        sock.send(JSON.stringify(s_msg));
+        sock.send(JSON.stringify(sMsg));
         addMyMsg(msg);
     }
 
@@ -148,9 +148,9 @@ function lastMsg(bottom) {
 }
 
 function orientation(mode) { // mode - новое (1) или старое (0) последнее сообщение
-    let orientation = screen.orientation.type;
-    if (mode) return orientation.includes("portrait") ? "360px" : "180px";
-    else return orientation.includes("portrait") ? "120px" : "60px";
+    let orient = screen.orientation.type;
+    if (mode) return orient.includes("portrait") ? "360px" : "180px";
+    else return orient.includes("portrait") ? "120px" : "60px";
 }
 
 
@@ -165,7 +165,7 @@ function deleteLastMessage() {
 //        sendMessage();
 //}, false);
 
-document.getElementById("send").ontouchstart = sendMessage;
+//document.getElementById("send").ontouchstart = sendMessage;
 // Если не сработает, можно попробовать в HTML у #send прописать ontouchstart="sendMessage(ent)"
 
 
