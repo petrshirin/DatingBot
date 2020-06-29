@@ -159,11 +159,3 @@ function deleteLastMessage() {
      messages[messages.length - 1].remove()
 }
 
-//document.getElementById('send').addEventListener('touchstart', function(e){
-//        sendMessage();
-//}, false);
-
-//document.getElementById("send").ontouchstart = sendMessage;
-// Если не сработает, можно попробовать в HTML у #send прописать ontouchstart="sendMessage(ent)"
-
-//document.querySelector('.inpField > input').addEventListener("click", sendMessage() )
