@@ -13,7 +13,6 @@ catch(err){
 
 // show message in div#subscribe
 function showMessage(message) {
-    lastMsg( orientation(0) );
 
     let messages = document.querySelector(".messages");
 
@@ -37,8 +36,6 @@ function showMessage(message) {
         messages.append(div);
     };
 
-    lastMsg( orientation(1) );
-    document.querySelector(".messages > div:last-child").scrollIntoView();
 }
 
 
@@ -124,7 +121,6 @@ function getTime() {
 
 
 function sendMessage() {
-    lastMsg( orientation(0) );
 
     let msg = document.querySelector("#textInp").value;
     if (msg) {
@@ -136,21 +132,24 @@ function sendMessage() {
         };
         sock.send(JSON.stringify(sMsg));
         addMyMsg(msg);
+
+        document.querySelector("#send").style.backgroundColor = "#343434";
+
+        let inp = document.getElementById("textInp");
+        let primary = "";
+        let orientation = window.screen.orientation.type;
+        if (orientation.includes("landscape")) {
+            primary = "44px";
+        } else {
+            primary = "75px";
+        }
+        if (inp.style.height !== primary) {
+            inp.style.height = primary;
+        }
     }
 
-    lastMsg( orientation(1) );
-    document.querySelector(".messages > div:last-child").scrollIntoView();
 }
 
-function lastMsg(bottom) {
-    document.querySelector(".messages > div:last-child").style.marginBottom = bottom;
-}
-
-function orientation(mode) { // mode - новое (1) или старое (0) последнее сообщение
-    let orient = screen.orientation.type;
-    if (mode) return orient.includes("portrait") ? "360px" : "180px";
-    else return orient.includes("portrait") ? "120px" : "60px";
-}
 
 
 
@@ -166,7 +165,5 @@ function deleteLastMessage() {
 
 //document.getElementById("send").ontouchstart = sendMessage;
 // Если не сработает, можно попробовать в HTML у #send прописать ontouchstart="sendMessage(ent)"
-
-
 
 //document.querySelector('.inpField > input').addEventListener("click", sendMessage() )

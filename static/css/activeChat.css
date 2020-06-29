@@ -10,6 +10,10 @@ main, .messages {
     height: 85%;
 }
 
+main {
+    overflow-y: scroll;
+}
+
 .messages > div {
     display: inline-flex;
     flex-direction: row;
@@ -85,7 +89,8 @@ main, .messages {
         -webkit-box-pack: justify;
         -webkit-justify-content: space-between;
         justify-content: space-between;
-        height: calc(100% - 210px);
+        height: calc(100% - 285px);
+        max-height: calc(100vh - 285px);
         margin-top: 75px;
     }
 
@@ -114,6 +119,9 @@ main, .messages {
         margin-bottom: 90px;
     }
 
+    /*.messages > div:last-child {
+        margin-bottom: 360px;
+    }*/
 }
 
 @media (orientation: landscape) {
@@ -126,7 +134,8 @@ main, .messages {
         -webkit-box-pack: justify;
         -webkit-justify-content: space-between;
         justify-content: space-between;
-        height: calc(100% - 80px);
+        height: calc(100% - 130px);
+        max-height: calc(100vh-130px);
         margin-top: 25px;
     }
 
@@ -154,5 +163,9 @@ main, .messages {
         margin-top: 25px;
         margin-bottom: 30px;
     }
+
+    /*.messages > div:last-child {
+        margin-bottom: 180px;
+    }*/
 
 }
