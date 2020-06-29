@@ -34,6 +34,7 @@ document.addEventListener("click", (event)=> {
     for (let i = 0; i < samples.length; i++) {
         if (samples[i].innerHTML === target) {
             inp.value = target;
+            document.querySelector("#send").style.backgroundColor = "#F9D671";
             if ( screen.orientation.type.includes("portrait") ) {
                 document.querySelector("#textInp").style.height = "180px";
             } else {
