@@ -237,7 +237,7 @@ def view_chat(request, chat_id):
     if request.method == 'GET':
         user_profile = UserProfile.objects.get(user=request.user)
         other_user_profile = UserProfile.objects.get(pk=chat_id)
-        messages = Message.objects.filter(Q(sender=user_profile, recipient=other_user_profile) | Q(sender=other_user_profile, recipient=user_profile)).all()
+        messages = Message.objects.filter(Q(sender=user_profile, recipient=other_user_profile) | Q(sender=other_user_profile, recipient=user_profile)).order_by('time')
         if len(messages) == 0:
 
             return TemplateResponse(request, 'userprofile2/emptyChat.html', {"userprofile": user_profile, 'other_userprofile': other_user_profile})
@@ -252,7 +252,7 @@ def view_chat(request, chat_id):
         text = request.POST['message']
         user_profile = UserProfile.objects.get(user=request.user)
         other_user_profile = UserProfile.objects.get(pk=chat_id)
-        messages = Message.objects.filter(Q(sender=user_profile, recipient=other_user_profile) | Q(sender=other_user_profile, recipient=user_profile)).all()
+        messages = Message.objects.filter(Q(sender=user_profile, recipient=other_user_profile) | Q(sender=other_user_profile, recipient=user_profile)).order_by('time')
         messages = list(messages)
         if not messages:
             message = Message(sender=user_profile, recipient=other_user_profile, text=text)
