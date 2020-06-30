@@ -33,13 +33,16 @@ main {
 }
 
 .mine, .theirs {
+    display: inline-flex;
+    flex-direction: column;
+    flex-basis: 100%;
+
     border-radius: 36px;
     font-weight: 500;
     text-align: left;
     box-sizing: border-box;
     height: auto;
     word-break: break-all;
-    height: 100%;
 }
 
 .theirs {
