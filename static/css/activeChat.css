@@ -15,7 +15,9 @@ main, .messages {
 
 main {
     overflow-y: scroll;
+/*
     height: 85%;
+*/
 }
 
 .messages > div {
