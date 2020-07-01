@@ -1,12 +1,12 @@
 body { overflow-y: scroll; }
 
 main, .messages {
-    display: -webkit-box;
+    /*display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;*/
 }
 
 .messages {
@@ -32,6 +32,7 @@ main, .messages {
 .me {
     justify-content: flex-end;
     align-self: flex-end;
+    float: right;
 }
 
 .mine, .theirs {
@@ -65,6 +66,7 @@ main, .messages {
 
 .date {
     opacity: 0.7;
+    position: relative;
 }
 
 .day {
@@ -86,6 +88,10 @@ main, .messages {
 }
 .theirTime {
     margin-left: 48px;
+}
+
+.partner {
+    float: left;
 }
 
 @media only screen and (orientation: portrait) {
@@ -124,6 +130,7 @@ main, .messages {
     .date {
         font-size: 36px;
         line-height: 45px;
+        top: 0px;
     }
     .day {
         margin-top: 75px;
