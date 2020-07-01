@@ -2,7 +2,7 @@ textarea { outline: none; resize: none;}
 
 .inpField {
     display: inline-flex;
-    position: absolute;
+    position: fixed;
     background-color: #1A1919;
     bottom: 0;
     right: 32px;

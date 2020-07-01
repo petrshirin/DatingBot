@@ -113,8 +113,8 @@ function getTime() {
     let time = new Date();
     let min = time.getMinutes();
     let hours = time.getHours();
-    if (!(min / 10)) min = '0' + min;
-    if (!(hours / 10)) hours = '0' + hours;
+    if (!Math.trunc(min / 10)) min = '0' + min;
+    if (!Math.trunc(hours / 10)) hours = '0' + hours;
     time = hours + ':' + min;
     return time;
 }
