@@ -47,10 +47,12 @@ sock.onopen = function(){
 
     if (request.readyState === 4 && request.status === 200) {
         data = request.response
+        splitUrl = window.location.href.split('/');
         let s_msg = {
         "text": '|open|',
         "chat_id": data.user_id,
-        "token": data.token
+        "token": data.token,
+        "partner_id": Number(splitUrl[splitUrl.length - 1])
     };
     sock.send(JSON.stringify(s_msg));
     }
