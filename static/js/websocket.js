@@ -58,7 +58,6 @@ sock.onopen = function(){
     }
     });
     request.send();
-    deleteLastMessage();
 
 }
 
