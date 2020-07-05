@@ -1,13 +1,72 @@
 
 var website = window.location.host;
 
-try{
-    var sock = new WebSocket('ws://' + website + '/ws');
-}
-catch(err){
-    var sock = new WebSocket('wss://' + website + '/ws');
-}
+function startWebsocket () {
 
+    try{
+        var sock = new WebSocket('ws://' + website + '/ws');
+    }
+    catch(err){
+        var sock = new WebSocket('wss://' + website + '/ws');
+    }
+
+
+    sock.onopen = function(){
+        let request = new XMLHttpRequest();
+        request.responseType = 'json';
+        request.open('GET', "/api/chat_info/");
+        request.addEventListener("readystatechange", () => {
+
+        if (request.readyState === 4 && request.status === 200) {
+            data = request.response
+            splitUrl = window.location.href.split('/');
+            let s_msg = {
+            "text": '|open|',
+            "chat_id": data.user_id,
+            "token": data.token,
+            "partner_id": Number(splitUrl[splitUrl.length - 1])
+        };
+        sock.send(JSON.stringify(s_msg));
+        }
+        });
+        request.send();
+
+    }
+
+    // income message handler
+    sock.onmessage = function(event) {
+        data = JSON.parse(event.data);
+        if (data['text'] == '|open|') {
+            console.log(data);
+        }
+        else {
+            showMessage(data);
+        }
+    };
+
+
+    sock.onclose = function(event){
+        if(event.wasClean){
+            showMessage({
+            'text': 'Соединения окончено, если это сделани не вы, перезагрузите страницу',
+            'chat_id': 0
+            });
+        }
+        else{
+            sock = null;
+            setTimeout(startWebsocket, 5000);
+
+        }
+    };
+
+    sock.onerror = function(error){
+        showMessage({
+            'text': error,
+            'chat_id': 0
+            });
+    }
+
+}
 
 
 
@@ -37,64 +96,6 @@ function showMessage(message) {
     };
 
 }
-
-
-sock.onopen = function(){
-    let request = new XMLHttpRequest();
-    request.responseType = 'json';
-    request.open('GET', "/api/chat_info/");
-    request.addEventListener("readystatechange", () => {
-
-    if (request.readyState === 4 && request.status === 200) {
-        data = request.response
-        splitUrl = window.location.href.split('/');
-        let s_msg = {
-        "text": '|open|',
-        "chat_id": data.user_id,
-        "token": data.token,
-        "partner_id": Number(splitUrl[splitUrl.length - 1])
-    };
-    sock.send(JSON.stringify(s_msg));
-    }
-    });
-    request.send();
-
-}
-
-// income message handler
-sock.onmessage = function(event) {
-    data = JSON.parse(event.data);
-    if (data['text'] == '|open|') {
-        console.log(data);
-    }
-    else {
-        showMessage(data);
-    }
-};
-
-
-sock.onclose = function(event){
-    if(event.wasClean){
-        showMessage({
-        'text': 'Clean connection end',
-        'chat_id': 0
-        });
-    }
-    else{
-        showMessage({
-        'text': 'Connection broken',
-        'chat_id': 0
-        });
-    }
-};
-
-sock.onerror = function(error){
-    showMessage({
-        'text': error,
-        'chat_id': 0
-        });
-}
-
 
 function addMyMsg(msg) {
     let messages = document.querySelector(".messages");
@@ -147,12 +148,10 @@ function sendMessage() {
         if (inp.style.height !== primary) {
             inp.style.height = primary;
         }
+    scrollToLastMsg();
     }
 
 }
-
-
-
 
 function deleteLastMessage() {
      let messages_block = document.querySelector(".messages");
@@ -160,3 +159,10 @@ function deleteLastMessage() {
      messages[messages.length - 1].remove()
 }
 
+function scrollToLastMsg() {
+    block = document.querySelector('.messages');
+    block.scrollTop = block.scrollHeight;
+}
+
+startWebsocket();
+scrollToLastMsg();
