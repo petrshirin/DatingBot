@@ -160,7 +160,7 @@ function deleteLastMessage() {
 }
 
 function scrollToLastMsg() {
-    block = document.querySelector('.messages');
+    block = document.querySelector('html');
     block.scrollTop = block.scrollHeight;
 }
 
