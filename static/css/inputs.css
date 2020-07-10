@@ -74,7 +74,6 @@ input {
 }
 
 
-@media only screen and (orientation: portrait) {
 
     input[type="radio"]::after, input[type='radio']:checked:after, #choice, .choice_radio {
         width: 50px; 
@@ -137,9 +136,9 @@ input {
         line-height: 135px;
         font-size: 54px;
     }
-}
 
-@media only screen and (orientation: landscape) {
+
+/*@media only screen and (orientation: landscape) {
 
     input[type="radio"]::after, input[type='radio']:checked:after, #choice, .choice_radio {
         width: 25px; 
@@ -158,4 +157,4 @@ input {
         box-shadow: 0 0 0 4px #1A1919 inset;
     }
 
-}
+} */
