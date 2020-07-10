@@ -63,8 +63,6 @@
 }
 
 
-@media only screen and (orientation: portrait) {
-
     .editForm .photo, .imagePreviewImage, .imagePreview {
         width: 534px;
         height: 603px;
@@ -82,9 +80,9 @@
     .btnAdmit {
         margin-top: 159px;
     }
-}
 
-@media only screen and (orientation: landscape) {
+
+/*@media only screen and (orientation: landscape) {
 
     .editForm, .imagePreview, .imagePreviewImage, .input {
         width: 100%;
@@ -139,4 +137,4 @@
     #buttonSkip {
         margin-top: 24px;
     }
-}
+} */

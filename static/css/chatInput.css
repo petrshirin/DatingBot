@@ -38,7 +38,6 @@ textarea::-webkit-scrollbar {
 }
 
 
-@media only screen and (orientation: portrait) {
 
     .inpField {
         padding: 50px 32px;
@@ -69,9 +68,9 @@ textarea::-webkit-scrollbar {
         width: 150px;
         height: 150px;
     }
-}
 
-@media only screen and (orientation: landscape) {
+
+/*@media only screen and (orientation: landscape) {
     .inpField {
         padding-top: 25px;
         padding-bottom: 25px;
@@ -100,4 +99,4 @@ textarea::-webkit-scrollbar {
         width: 75px;
         height: 75px;
     }
-}
+} */

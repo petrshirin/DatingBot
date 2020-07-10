@@ -45,7 +45,6 @@ main {
     overflow-y: scroll;
 }
 
-@media only screen and (orientation: portrait) {
 
 
     body {
@@ -90,9 +89,9 @@ main {
     .fstDivInMain {
         margin-bottom: 250px;
     }
-}
 
-@media only screen and (orientation: landscape) {
+
+/*@media only screen and (orientation: landscape) {
 
     body {
         height: calc(100vh - 175px);
@@ -140,4 +139,4 @@ main {
     .fstDivInMain {
         margin-bottom: 40px;
     }
-}
+} */
