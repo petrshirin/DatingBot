@@ -2,16 +2,14 @@
 var website = window.location.host;
 var sock = null;
 
-function create_websocket() {
-    try{
-        sock = new WebSocket('ws://' + website + '/ws');
-    }
-    catch(err){
-        sock = new WebSocket('wss://' + website + '/ws');
-    }
+try{
+    sock = new WebSocket('ws://' + website + '/ws');
+}
+catch(err){
+    sock = new WebSocket('wss://' + website + '/ws');
 }
 
-create_websocket();
+
 
 sock.onopen = function(){
     let request = new XMLHttpRequest();
@@ -56,7 +54,12 @@ sock.onclose = function(event){
     }
     else{
         sock = null;
-        setTimeout(create_websocket, 5000);
+        try {
+            sock = new WebSocket('ws://' + website + '/ws');
+        }
+        catch(err) {
+            sock = new WebSocket('wss://' + website + '/ws');
+}
     }
 };
 
@@ -162,7 +165,6 @@ function scrollToLastMsg() {
     block = document.querySelector('html');
     block.scrollTop = block.scrollHeight;
 }
-
 
 
 scrollToLastMsg();
