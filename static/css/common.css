@@ -68,7 +68,7 @@ a {
     z-index: 100; 
 }
 
-@media only screen and (orientation: portrait) {
+
 
     body {
         margin-left: 64px;
@@ -94,7 +94,7 @@ a {
     .user {
         margin-top: 162px;
     }
-}
+
 
 /*@media (orientation: landscape) {
     body {
