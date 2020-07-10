@@ -96,7 +96,7 @@ a {
     }
 }
 
-@media (orientation: landscape) {
+/*@media (orientation: landscape) {
     body {
         margin-left: 32px;
         margin-right: 32px;
@@ -110,4 +110,4 @@ a {
         font-size: 40px;
         line-height: 47px;
     }
-}
+} */
