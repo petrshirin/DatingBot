@@ -217,7 +217,26 @@ def all_done(request):
 def not_users(request):
     if request.method == 'GET':
         user_profile = UserProfile.objects.get(user=request.user)
+        profiles = UserProfile.objects.filter(restaurant=user_profile.restaurant,
+                                              search_for=user_profile.sex,
+                                              sex=user_profile.search_for).all()
+        user_views = UserView.objects.filter(user_profile=user_profile).all()
+        user_views_list = []
+        for user_view in user_views:
+            user_views_list.append(user_view.view_user)
+        profile = None
+        for profile in profiles:
+            if profile == user_profile:
+                profile = None
+                continue
+            if profile not in user_views_list:
+                break
+            else:
+                profile = None
         count_new_coincidence = UserCoincidence.objects.filter((Q(user_1=user_profile, is_view_1=False) | Q(user_2=user_profile, is_view_2=False))).count()
+        if profile:
+            return redirect('/profile/search/', {'userprofile': user_profile, 'countnewcoincidence': count_new_coincidence})
+
         return TemplateResponse(request, 'userprofile2/endOfSearch.html', {"userprofile": user_profile, 'countnewcoincidence': count_new_coincidence})
     else:
         return bad_request(request)
