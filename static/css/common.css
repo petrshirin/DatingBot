@@ -8,6 +8,10 @@
     font-style: normal;
 }
 
+html {
+    position: relative;
+}
+
 body {
     background-color: #1A1919;
     font-family: 'DIN Pro Medium';
