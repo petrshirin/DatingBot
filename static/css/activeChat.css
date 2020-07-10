@@ -94,7 +94,6 @@ main, .messages {
     float: left;
 }
 
-@media only screen and (orientation: portrait) {
 
 
     body {
@@ -140,9 +139,9 @@ main, .messages {
     .messages > div:last-child {
         margin-bottom: 460px;
     }
-}
 
-@media (orientation: landscape) {
+
+/* @media (orientation: landscape) {
 
     body {
         height: calc(100vh - 130px);
@@ -187,4 +186,4 @@ main, .messages {
         margin-bottom: 250px;
     }
 
-}
+} */
