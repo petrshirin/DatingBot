@@ -58,7 +58,7 @@
     margin-right: 33px;
 }
 
-@media only screen and (orientation: portrait) {
+
 
 
     .editForm .photo, .imagePreviewImage, .imagePreview {
@@ -88,9 +88,9 @@
         margin-bottom: 96px;
     }
     
-}
 
-@media only screen and (orientation: landscape) {
+
+/*@media only screen and (orientation: landscape) {
 
     .editForm, .imagePreview, .imagePreviewImage, .input {
         width: 100%;
@@ -165,4 +165,4 @@
         line-height: 37.5px;
     }
     
-}
+} */
