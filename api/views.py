@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from rest_framework.views import APIView, Response
-from userprofile.models import UserProfile, UserView, UserCoincidence
 from .serializers import *
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -8,7 +7,13 @@ from rest_framework.parsers import JSONParser, FormParser, MultiPartParser
 from django.core.files.base import File
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authtoken.models import Token
+from django.apps import apps
 # Create your views here.
+
+UserProfile = apps.get_model('userprofile', 'UserProfile')
+UserView = apps.get_model('userprofile', 'UserView')
+UserCoincidence = apps.get_model('userprofile', 'UserCoincidence')
+UserRestaurant = apps.get_model('userprofile', 'UserRestaurant')
 
 
 class CsrfExemptSessionAuthentication(SessionAuthentication):
@@ -88,7 +93,6 @@ class Activity(APIView):
     authentication_classes = [SessionAuthentication, BasicAuthentication]
     permission_classes = [IsAuthenticated]
 
-
     def get(self, request):
         user_profile = UserProfile.objects.get(user=request.user)
         user_profile.is_active = not user_profile.is_active
@@ -143,3 +147,4 @@ class ChatInfo(APIView):
         user_profile = UserProfile.objects.get(user=request.user)
         token = Token.objects.get(user=request.user)
         return Response({'token': token.key, 'user_id': user_profile.pk}, status=200)
+
