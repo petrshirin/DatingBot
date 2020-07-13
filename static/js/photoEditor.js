@@ -203,8 +203,8 @@ function getMouse (element) {
 	element.addEventListener('touchstart', event => {
 		console.log(event)
 		mouse.left = true
-		mouse.x = event.changedTouches[0].screenX
-		mouse.y = event.changedTouches[0].screenY
+		mouse.dx = -event.changedTouches[0].clientX
+		mouse.dy = -event.changedTouches[0].clientY
         event.preventDefault()
 
 
