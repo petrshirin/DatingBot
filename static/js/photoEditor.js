@@ -210,7 +210,52 @@ function getMouse (element) {
 
 	})
 
-	element.addEventListener('touchstart', event => {
+	element.addEventListener('mousemove', event => {
+
+		const rect = canvas.getBoundingClientRect()
+
+		let x = -rect.left
+		let y = -rect.top
+		console.log(event)
+		if (rotateParam.deg === 1) {
+			x = x + event.clientY
+			y = y - event.clientX
+		}
+		else if (rotateParam.deg === 2) {
+			x = x - event.clientX
+			y = y - event.clientY
+		}
+		else if (rotateParam.deg === 3) {
+			x = x - event.clientY
+			y = y + event.clientX
+		}
+		else {
+			x = x + event.clientX
+		    y = y + event.clientY
+		}
+
+
+		//const x = event.changedTouches[0].clientX - rect.left
+		//const y = event.changedTouches[0].clientY - rect.top
+
+		if ((!mouse.x) && (!mouse.y)) {
+			mouse.dx = 0
+			mouse.dy = 0
+			mouse.x = x
+			mouse.y = y
+		}
+		else{
+			mouse.dx = x - mouse.x
+			mouse.dy = y - mouse.y
+
+			mouse.x = x
+			mouse.y = y
+		}
+
+
+	})
+
+	element.addEventListener('touchstart mousedown', event => {
 		console.log(event)
 		mouse.left = true
         event.preventDefault()
@@ -218,7 +263,7 @@ function getMouse (element) {
 
 	})
 
-	element.addEventListener('touchend', event => {
+	element.addEventListener('touchend mouseup', event => {
 			mouse.left = false
         event.preventDefault()
 	})
