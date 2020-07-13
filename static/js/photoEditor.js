@@ -37,8 +37,8 @@ const rotateParam = {
 			imageParams.scale += mouse.wheel * 0.025
 		}
 
-		//imageParams.offsetX = Math.max(Math.min(0, imageParams.offsetX), canvas.width - image.width * Math.abs(imageParams.scale))
-		//imageParams.offsetY = Math.max(Math.min(0, imageParams.offsetY), canvas.height - image.height * Math.abs(imageParams.scale))
+		imageParams.offsetX = Math.max(Math.min(0, imageParams.offsetX), canvas.width - image.width * Math.abs(imageParams.scale))
+		imageParams.offsetY = Math.max(Math.min(0, imageParams.offsetY), canvas.height - image.height * Math.abs(imageParams.scale))
 
 		clearCanvas()
 
@@ -61,7 +61,6 @@ const rotateParam = {
 
 	const loadImageElement = document.getElementById('inpFile')
 	loadImageElement.addEventListener('change', async event => {
-	    const previewContainer = document.getElementById("imagePreview")
 		const file = loadImageElement.files[0]
 		const base64 = await getBase64(file)
 		const image = new Image()
