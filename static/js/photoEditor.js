@@ -29,16 +29,16 @@ const rotateParam = {
 		requestAnimationFrame(canvasUpdate)
 
 		if (mouse.left) {
-			imageParams.offsetX = mouse.dx + imageParams.offsetX
-			imageParams.offsetY = mouse.dy + imageParams.offsetY
+			imageParams.offsetX = 1.5*mouse.dx + imageParams.offsetX
+			imageParams.offsetY = 1.5*mouse.dy + imageParams.offsetY
 		}
 
 		if (mouse.wheel) {
 			imageParams.scale += mouse.wheel * 0.025
 		}
 
-		//imageParams.offsetX = Math.max(Math.min(0, imageParams.offsetX), canvas.width - image.width * Math.abs(imageParams.scale))
-		//imageParams.offsetY = Math.max(Math.min(0, imageParams.offsetY), canvas.height - image.height * Math.abs(imageParams.scale))
+		imageParams.offsetX = Math.max(Math.min(0, imageParams.offsetX), canvas.width - image.width * Math.abs(imageParams.scale))
+		imageParams.offsetY = Math.max(Math.min(0, imageParams.offsetY), canvas.height - image.height * Math.abs(imageParams.scale))
 
 		clearCanvas()
 
@@ -169,9 +169,9 @@ function getMouse (element) {
 
 		const rect = canvas.getBoundingClientRect()
 
-		let x = rect.left
-		let y = rect.top
-
+		let x = rect.left - event.changedTouches[0].radiusX
+		let y = rect.top - event.changedTouches[0].radiusY
+		console.log(event)
 		if (rotateParam.deg === 1) {
 			x = x + event.changedTouches[0].clientY
 			y = y - event.changedTouches[0].clientX
@@ -185,8 +185,8 @@ function getMouse (element) {
 			y = y + event.changedTouches[0].clientX
 		}
 		else {
-			x = event.changedTouches[0].clientX - rect.left
-		    y = event.changedTouches[0].clientY - rect.top
+			x = event.changedTouches[0].clientX
+		    y = event.changedTouches[0].clientY
 		}
 
 
@@ -201,8 +201,8 @@ function getMouse (element) {
 	})
 
 	element.addEventListener('touchstart', event => {
-			mouse.leftPrev = mouse.left
-			mouse.left = true
+		mouse.leftPrev = mouse.left
+		mouse.left = true
         event.preventDefault()
 
 
@@ -215,8 +215,6 @@ function getMouse (element) {
 	})
 
 	element.addEventListener('mouseleave', event => {
-		mouse.rightPrev = mouse.right
-		mouse.leftPrev = mouse.left
 		mouse.right = false
 		mouse.left = false
 	})
