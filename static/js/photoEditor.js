@@ -185,8 +185,8 @@ function getMouse (element) {
 			y = y + event.changedTouches[0].clientX
 		}
 		else {
-			x = event.changedTouches[0].clientX
-		    y = event.changedTouches[0].clientY
+			x = x - event.changedTouches[0].clientX
+		    y = y - event.changedTouches[0].clientY
 		}
 
 
