@@ -29,8 +29,8 @@ const rotateParam = {
 		requestAnimationFrame(canvasUpdate)
 
 		if (mouse.left) {
-			imageParams.offsetX = 1.5*mouse.dx + imageParams.offsetX
-			imageParams.offsetY = 1.5*mouse.dy + imageParams.offsetY
+			imageParams.offsetX = mouse.dx + imageParams.offsetX
+			imageParams.offsetY = mouse.dy + imageParams.offsetY
 		}
 
 		if (mouse.wheel) {
@@ -41,7 +41,7 @@ const rotateParam = {
 		//imageParams.offsetY = Math.max(Math.min(0, imageParams.offsetY), canvas.height - image.height * Math.abs(imageParams.scale))
 
 		clearCanvas()
-		context.translate(imageParams.offsetX, imageParams.offsetY)
+
 		if (rotateParam.rotated) {
 			context.translate(canvas.width/2,canvas.height/2)
 			context.rotate(rotateParam.deg * 90 * Math.PI/180)
@@ -169,42 +169,50 @@ function getMouse (element) {
 
 		const rect = canvas.getBoundingClientRect()
 
-		let x = rect.left - event.changedTouches[0].radiusX
-		let y = rect.top - event.changedTouches[0].radiusY
+		let x = -rect.left
+		let y = -rect.top
 		console.log(event)
 		if (rotateParam.deg === 1) {
-			x = x + event.changedTouches[0].screenY
-			y = y - event.changedTouches[0].screenX
+			x = x + event.changedTouches[0].clientY
+			y = y - event.changedTouches[0].clientX
 		}
 		else if (rotateParam.deg === 2) {
-			x = x - event.changedTouches[0].screenX
-			y = y - event.changedTouches[0].screenY
+			x = x - event.changedTouches[0].clientX
+			y = y - event.changedTouches[0].clientY
 		}
 		else if (rotateParam.deg === 3) {
-			x = x - event.changedTouches[0].screenY
-			y = y + event.changedTouches[0].screenX
+			x = x - event.changedTouches[0].clientY
+			y = y + event.changedTouches[0].clientX
 		}
 		else {
-			x = event.changedTouches[0].screenX
-		    y = event.changedTouches[0].screenY
+			x = event.changedTouches[0].clientX
+		    y = event.changedTouches[0].clientY
 		}
 
 
 		//const x = event.changedTouches[0].clientX - rect.left
 		//const y = event.changedTouches[0].clientY - rect.top
 
-		mouse.dx = x - mouse.x
-		mouse.dy = y - mouse.y
+		if ((!mouse.x) && (!mouse.y)) {
+			mouse.dx = 0
+			mouse.dy = 0
+			mouse.x = x
+			mouse.y = y
+		}
+		else{
+			mouse.dx = x - mouse.x
+			mouse.dy = y - mouse.y
 
-		mouse.x = x
-		mouse.y = y
+			mouse.x = x
+			mouse.y = y
+		}
+
+
 	})
 
 	element.addEventListener('touchstart', event => {
 		console.log(event)
 		mouse.left = true
-		mouse.dx = -event.changedTouches[0].clientX
-		mouse.dy = -event.changedTouches[0].clientY
         event.preventDefault()
 
 
@@ -226,6 +234,8 @@ function getMouse (element) {
 	mouse.update = () => {
 		mouse.dx = 0
 		mouse.dy = 0
+		mouse.x = 0
+		mouse.y = 0
 		mouse.wheelPxPrev = mouse.wheelPx
 		mouse.wheelPrev = mouse.wheel
 		mouse.wheelPx = 0
