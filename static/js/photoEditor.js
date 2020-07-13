@@ -37,8 +37,8 @@ const rotateParam = {
 			imageParams.scale += mouse.wheel * 0.025
 		}
 
-		imageParams.offsetX = Math.max(Math.min(0, imageParams.offsetX), canvas.width - image.width * Math.abs(imageParams.scale))
-		imageParams.offsetY = Math.max(Math.min(0, imageParams.offsetY), canvas.height - image.height * Math.abs(imageParams.scale))
+		//imageParams.offsetX = Math.max(Math.min(0, imageParams.offsetX), canvas.width - image.width * Math.abs(imageParams.scale))
+		//imageParams.offsetY = Math.max(Math.min(0, imageParams.offsetY), canvas.height - image.height * Math.abs(imageParams.scale))
 
 		clearCanvas()
 
@@ -173,20 +173,20 @@ function getMouse (element) {
 		let y = rect.top - event.changedTouches[0].radiusY
 		console.log(event)
 		if (rotateParam.deg === 1) {
-			x = x + event.changedTouches[0].clientY
-			y = y - event.changedTouches[0].clientX
+			x = x + event.changedTouches[0].screenY
+			y = y - event.changedTouches[0].screenX
 		}
 		else if (rotateParam.deg === 2) {
-			x = x - event.changedTouches[0].clientX
-			y = y - event.changedTouches[0].clientY
+			x = x - event.changedTouches[0].screenX
+			y = y - event.changedTouches[0].screenY
 		}
 		else if (rotateParam.deg === 3) {
-			x = x - event.changedTouches[0].clientY
-			y = y + event.changedTouches[0].clientX
+			x = x - event.changedTouches[0].screenY
+			y = y + event.changedTouches[0].screenX
 		}
 		else {
-			x = event.changedTouches[0].clientX
-		    y = event.changedTouches[0].clientY
+			x = event.changedTouches[0].screenX
+		    y = event.changedTouches[0].screenY
 		}
 
 
@@ -201,22 +201,18 @@ function getMouse (element) {
 	})
 
 	element.addEventListener('touchstart', event => {
-		mouse.leftPrev = mouse.left
+		console.log(event)
 		mouse.left = true
+		mouse.x = event.changedTouches[0].screenX
+		mouse.y = event.changedTouches[0].screenY
         event.preventDefault()
 
 
 	})
 
 	element.addEventListener('touchend', event => {
-			mouse.leftPrev = mouse.left
 			mouse.left = false
         event.preventDefault()
-	})
-
-	element.addEventListener('mouseleave', event => {
-		mouse.right = false
-		mouse.left = false
 	})
 
 	element.addEventListener('mousewheel', event => {
@@ -230,8 +226,6 @@ function getMouse (element) {
 	mouse.update = () => {
 		mouse.dx = 0
 		mouse.dy = 0
-		mouse.leftPrev = mouse.left
-		mouse.rightPrev = mouse.right
 		mouse.wheelPxPrev = mouse.wheelPx
 		mouse.wheelPrev = mouse.wheel
 		mouse.wheelPx = 0
