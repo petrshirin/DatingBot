@@ -255,7 +255,14 @@ function getMouse (element) {
 
 	})
 
-	element.addEventListener('touchstart mousedown', event => {
+	element.addEventListener('touchstart', event => {
+		console.log(event)
+		mouse.left = true
+        event.preventDefault()
+
+
+	})
+	element.addEventListener('mousedown', event => {
 		console.log(event)
 		mouse.left = true
         event.preventDefault()
@@ -263,7 +270,11 @@ function getMouse (element) {
 
 	})
 
-	element.addEventListener('touchend mouseup', event => {
+	element.addEventListener('touchend', event => {
+			mouse.left = false
+        event.preventDefault()
+	})
+	element.addEventListener('mouseup', event => {
 			mouse.left = false
         event.preventDefault()
 	})
