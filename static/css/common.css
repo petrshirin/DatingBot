@@ -53,6 +53,11 @@ a {
     margin: auto;
 }
 
+canvas {
+    width: inherit;
+    height: inherit;
+}
+
 .user :first-child {
     border-radius: 100%;
     border: 9px solid #F1D37D;

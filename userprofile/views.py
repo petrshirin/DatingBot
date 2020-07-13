@@ -8,6 +8,8 @@ from .forms import UserProfileForm
 from rest_framework.authtoken.models import Token
 from datetime import datetime, timedelta, time
 import logging
+from base64 import b64decode
+from django.core.files.base import ContentFile
 # Create your views here.
 LOG = logging.getLogger(__name__)
 
@@ -190,9 +192,9 @@ def add_status(request):
 @login_required
 def add_photo(request):
     if request.method == 'POST':
-        file = request.FILES['inpFile']
+        file = b64decode(request.POST['inpFile'])
         user_profile = UserProfile.objects.get(user=request.user)
-        user_profile.photo = file
+        user_profile.photo = ContentFile(file, 'avatar.png')
 
         user_profile.save()
         return redirect('/profile/go/', {'user': user_profile})

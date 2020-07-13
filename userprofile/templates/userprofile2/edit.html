@@ -5,8 +5,6 @@
 {% block links %}
 <link rel="stylesheet" type="text/css" href={% static "/css/inputs.css" %} />
 <link rel="stylesheet" type="text/css" href={% static "/css/edit.css" %} />
-<script src={% static "/js/editPhoto.js" %}></script>
-<script defer src={% static "/js/exif.js" %} ></script>
 {% endblock %}
 
 {% block sitebar %}
@@ -27,10 +25,14 @@
         {% csrf_token %}
         <div class="photo">
             <div class="imagePreview" id="imagePreview">
-                <img src="{{userprofile.photo.url}}" alt="Image preview" class="imagePreviewImage" style="display: block;" />
+                <canvas id="canvas"></canvas>
+                <img src="{{userprofile.photo.url}}" alt="Image preview" class="imagePreviewImage" style="display: none;" />
             </div>
-            <input type="file" name="photo" id="inpFile" accept="image/*"  onclick="upload()"/>
+            <input type="file" name="photo" id="inpFile" accept="image/*"/>
         </div>
+        <div class="photoEditorTools">
+                <div class="rotate"></div>
+            </div>
 
         <div class="privacy">
             <div>
@@ -75,4 +77,5 @@
         </div>
     </form>
 </main>
+<script src={% static "/js/photoEditor.js" %}></script>
 {% endblock %}

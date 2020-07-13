@@ -6,8 +6,6 @@
 <link rel="stylesheet" type="text/css" href={% static "/css/edit.css" %} />
 <link rel="stylesheet" type="text/css" href={% static "/css/inputs.css" %} />
 <link rel="stylesheet" type="text/css" href={% static "/css/regPhoto.css" %} />
-<script src={% static "/js/regPhoto.js" %} ></script>
-<script defer src={% static "/js/exif.js" %} ></script>
 {% endblock %}
 
 {% block sitebar %}
@@ -28,11 +26,15 @@
         {% csrf_token %}
         <div class="photo">
             <div class="imagePreview" id="imagePreview">
-                <img src="" alt="Image preview" class="imagePreviewImage" />
+                <canvas id="canvas"></canvas>
+                <img src={% static "/svg/Line_38.svg" %} alt="Image preview" class="imagePreviewImage" style="display: none"/>
             </div>
-            <input type="file" name="inpFile" id="inpFile" accept="image/*" onclick="upload()"/>
-        </div>
+            <input type="file" name="inpFile" id="inpFile" accept="image/*" />
 
+        </div>
+        <div class="photoEditorTools">
+                <div class="rotate"></div>
+            </div>
         <div class="privacy">
 
             <input type="submit" class="btn btnAdmit" id="button" value="Подтвердить"/>
@@ -44,4 +46,5 @@
 
     </form>
 </main>
+<script src={% static "/js/photoEditor.js" %} ></script>
 {% endblock %}

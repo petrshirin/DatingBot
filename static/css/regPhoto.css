@@ -38,6 +38,15 @@
     display: none;
 }
 
+.photoEditorTools .rotate {
+    background: url("/static/svg/arr_rotate.svg") center no-repeat;
+    width: 100px;
+    height: 100px;
+    background-size: 100%;
+    display: block;
+
+}
+
 .imagePreviewDefaultTxt {
     text-align: center;
     margin: auto;
@@ -64,8 +73,8 @@
 
 
     .editForm .photo, .imagePreviewImage, .imagePreview {
-        width: 534px;
-        height: 603px;
+        width: 852px;
+        height: 1092px;
     }
 
     #inpFile {
