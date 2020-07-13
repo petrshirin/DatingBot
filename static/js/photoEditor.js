@@ -169,8 +169,8 @@ function getMouse (element) {
 
 		const rect = canvas.getBoundingClientRect()
 
-		let x = -rect.left
-		let y = -rect.top
+		let x = rect.left
+		let y = rect.top
 		console.log(event)
 		if (rotateParam.deg === 1) {
 			x = x + event.changedTouches[0].clientY
