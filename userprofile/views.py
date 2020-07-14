@@ -39,8 +39,9 @@ def view_profile(request):
                 else:
                     user_profile.search_for = 'Мужчина'
 
-                if request.FILES.get('photo'):
-                    user_profile.photo = request.FILES['photo']
+                if request.POST.get('inpFile'):
+                    file = b64decode(request.POST['inpFile'])
+                    user_profile.photo = ContentFile(file, f'avatar_{user_profile.pk}.png')
                 user_profile.save()
                 count_new_coincidence = UserCoincidence.objects.filter((Q(user_1=user_profile, is_view_1=False) | Q(user_2=user_profile, is_view_2=False))).count()
                 return redirect('/profile/search/', {'userprofile': user_profile, 'countnewcoincidence': count_new_coincidence})
@@ -194,7 +195,7 @@ def add_photo(request):
     if request.method == 'POST':
         file = b64decode(request.POST['inpFile'])
         user_profile = UserProfile.objects.get(user=request.user)
-        user_profile.photo = ContentFile(file, 'avatar.png')
+        user_profile.photo = ContentFile(file, f'avatar_{user_profile.pk}.png')
 
         user_profile.save()
         return redirect('/profile/go/', {'user': user_profile})
