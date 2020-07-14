@@ -42,13 +42,38 @@
     object-position: center;
 }
 
+.photoEditorTools {
+    display: flex;
+    flex-direction: row;
+}
+
 .photoEditorTools .rotate {
     background: url("/static/svg/arr_rotate.svg") center no-repeat;
     width: 100px;
     height: 100px;
     background-size: 100%;
     display: block;
+    margin-right: 50px;
+}
 
+
+.photoEditorTools .minusTool {
+    background: url("/static/svg/minus.svg") center no-repeat;
+    width: 100px;
+    height: 100px;
+    background-size: 100%;
+    display: block;
+    margin-right: 30px;
+
+}
+
+.photoEditorTools .plusTool {
+    background: url("/static/svg/plus.svg") center no-repeat;
+    width: 100px;
+    height: 100px;
+    background-size: 100%;
+    display: block;
+    margin-right: 30px;
 }
 
 .imagePreviewImage {
