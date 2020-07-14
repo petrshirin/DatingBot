@@ -37,11 +37,11 @@ const rotateParam = {
 			imageParams.scale += mouse.wheel * 0.1
 		}
 
-		imageParams.offsetX = Math.max(Math.min(0, imageParams.offsetX), canvas.width - image.width * Math.abs(imageParams.scale))
-		imageParams.offsetY = Math.max(Math.min(0, imageParams.offsetY), canvas.height - image.height * Math.abs(imageParams.scale))
+		//imageParams.offsetX = Math.max(Math.min(0, imageParams.offsetX), canvas.width - image.width * Math.abs(imageParams.scale))
+		//imageParams.offsetY = Math.max(Math.min(0, imageParams.offsetY), canvas.height - image.height * Math.abs(imageParams.scale))
 
 		clearCanvas()
-
+		context.translate(imageParams.offsetX, imageParams.offsetY)
 		if (rotateParam.rotated) {
 			context.translate(canvas.width/2,canvas.height/2)
 			context.rotate(rotateParam.deg * 90 * Math.PI/180)
@@ -61,6 +61,7 @@ const rotateParam = {
 
 	const loadImageElement = document.getElementById('inpFile')
 	loadImageElement.addEventListener('change', async event => {
+	    const previewContainer = document.getElementById("imagePreview")
 		const file = loadImageElement.files[0]
 		const base64 = await getBase64(file)
 		const image = new Image()
@@ -212,17 +213,15 @@ function getMouse (element) {
 	element.addEventListener('touchstart', event => {
 		console.log(event)
 		mouse.left = true
-    event.preventDefault()
-  })
+        event.preventDefault()
+
+
+	})
 
 	element.addEventListener('touchend', event => {
 			mouse.left = false
 			mouse.x = 0
 			mouse.y = 0
-        event.preventDefault()
-	})
-	element.addEventListener('mouseup', event => {
-			mouse.left = false
         event.preventDefault()
 	})
 
@@ -259,8 +258,6 @@ function getMouse (element) {
 	mouse.update = () => {
 		mouse.dx = 0
 		mouse.dy = 0
-		mouse.x = 0
-		mouse.y = 0
 		mouse.wheelPxPrev = mouse.wheelPx
 		mouse.wheelPrev = mouse.wheel
 		mouse.wheelPx = 0
