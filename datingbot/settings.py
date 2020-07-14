@@ -29,7 +29,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tkl.one', 'www.tkl.one', '127.0.0.1']
+ALLOWED_HOSTS = ['tkl.one', 'www.tkl.one', '127.0.0.1', '192.168.0.91']
 
 
 # Application definition
@@ -119,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'europe/moscow'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
