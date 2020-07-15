@@ -41,7 +41,6 @@ const rotateParam = {
 		//imageParams.offsetY = Math.max(Math.min(0, imageParams.offsetY), canvas.height - image.height * Math.abs(imageParams.scale))
 
 		clearCanvas()
-		context.translate(imageParams.offsetX, imageParams.offsetY)
 		if (rotateParam.rotated) {
 			context.translate(canvas.width/2,canvas.height/2)
 			context.rotate(rotateParam.deg * 90 * Math.PI/180)

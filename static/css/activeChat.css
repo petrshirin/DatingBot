@@ -45,7 +45,7 @@ main, .messages {
     text-align: left;
     box-sizing: border-box;
     height: auto;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .theirs {

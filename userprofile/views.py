@@ -23,6 +23,7 @@ def view_profile(request):
             form = UserProfileForm(request.POST, request.FILES)
             user_profile = UserProfile.objects.filter(user=request.user).first()
             if form.is_valid():
+                print(form.data['status'])
                 data = form.data
                 LOG.debug(data)
                 if data['age']:
@@ -34,6 +35,8 @@ def view_profile(request):
                 user_profile.sex = data['sex']
                 if data['status']:
                     user_profile.status = data['status']
+                else:
+                    user_profile.status = ""
                 if data['sex'] == 'Мужчина':
                     user_profile.search_for = 'Женщина'
                 else:
@@ -162,9 +165,14 @@ def add_name_sex(request):
 def add_age(request):
     if request.method == 'POST':
         age = request.POST['age']
-        user_profile = UserProfile.objects.get(user=request.user)
-        user_profile.age = int(age)
-        user_profile.save()
+        if age:
+            user_profile = UserProfile.objects.get(user=request.user)
+            try:
+                user_profile.age = int(age)
+            except ValueError:
+                user_profile.age = None
+            user_profile.save()
+
         return redirect('/profile/addstatus/', {'user': user_profile})
 
     elif request.method == 'GET':
