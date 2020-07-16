@@ -16,7 +16,11 @@
     <a class="cancel" href="/profile/menu/" ></a>
 </div>
 <div class="match">Match!</div>
-<div class="extraTxt fewWords explanation">{{otheruserprofile.first_name}} тоже тебя лайкнула!<br/>Напиши чтобы встретиться с ней</div>
+{% if otheruserprofile.sex == "Мужчина" %}
+<div class="extraTxt fewWords explanation" >{{otheruserprofile.first_name}} тоже тебя лайкнул!<br/>Напиши чтобы встретиться с ним</div>
+{% else %}
+<div class="extraTxt fewWords explanation" >{{otheruserprofile.first_name}} тоже тебя лайкнула!<br/>Напиши чтобы встретиться с ней</div>
+{% endif %}
 <div class="btn"><a href="/profile/chat/{{otheruserprofile.id}}">Встретиться у барной стойки</a></div>
 <div><a href="/profile/chat/{{otheruserprofile.id}}">Написать</a></div>
 {% endblock %}
