@@ -75,16 +75,25 @@ const rotateParam = {
             console.log(e)
         }
 
-            const reader = new FileReader();
+            const reader = new FileReader()
 
 
 		image.onload = () => {
 			originalImage = image
+			if (originalImage.width >= canvas.width*2) {
+				imageParams.offsetX = -canvas.width/2
+				imageParams.offsetY = -canvas.height/2
+			}
+
 		}
 		image.src = base64
 		document.getElementsByClassName('imagePreviewImage')[0].src = image.src
-        document.querySelector(".photo").style.border = "none";
-		document.getElementById("inpFile").style.display = "none";
+        document.querySelector(".photo").style.border = "none"
+		document.getElementById("inpFile").style.display = "none"
+		const toolDiv = document.getElementsByClassName("toolsNone")[0]
+			if (toolDiv && toolDiv.classList.contains('toolsNone')) {
+				toolDiv.classList.remove('toolsNone')
+			}
 	})
 
 	const rotate = document.getElementsByClassName('rotate')[0]
@@ -94,6 +103,8 @@ const rotateParam = {
 		if (rotateParam.deg === 4) {
 			rotateParam.deg = 0
 		}
+		imageParams.offsetX = -canvas.width/2
+		imageParams.offsetY = -canvas.height/2
 		imageParams.scale = 1
 	})
 	const submit = document.getElementById('button')

@@ -2,6 +2,27 @@
     visibility: hidden;
 }
 
+.privacyPolicy {
+    font-family: DIN Pro;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-top: 22px;
+
+    /* White */
+
+    color: #FFFFFF;
+
+}
+
+.privacyPolicy a {
+    color: #F9D671;
+}
+
 
     .input {
         margin-top: -10px;

@@ -45,35 +45,44 @@
 .photoEditorTools {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    margin-right: 32px;
+    margin-left: 32px;
+    margin-top: 20px;
 }
 
 .photoEditorTools .rotate {
     background: url("/static/svg/arr_rotate.svg") center no-repeat;
-    width: 100px;
-    height: 100px;
+    width: 48px;
+    height: 48px;
     background-size: 100%;
     display: block;
-    margin-right: 50px;
 }
 
 
 .photoEditorTools .minusTool {
     background: url("/static/svg/minus.svg") center no-repeat;
-    width: 100px;
-    height: 100px;
+    width: 48px;
+    height: 48px;
     background-size: 100%;
     display: block;
-    margin-right: 30px;
+    margin-right: 32px;
 
 }
 
 .photoEditorTools .plusTool {
     background: url("/static/svg/plus.svg") center no-repeat;
-    width: 100px;
-    height: 100px;
+    width: 48px;
+    height: 48px;
     background-size: 100%;
     display: block;
-    margin-right: 30px;
+}
+
+.photoEditorTools .scaleTools {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
 }
 
 .imagePreviewImage {
