@@ -241,7 +241,13 @@ def not_users(request):
                 profile = None
                 continue
             if profile not in user_views_list:
-                break
+                if now() - profile.last_active >= timedelta(hours=1):
+                    profile.is_active = False
+                    profile.save()
+                if profile.is_active:
+                    break
+                else:
+                    profile = None
             else:
                 profile = None
         count_new_coincidence = UserCoincidence.objects.filter((Q(user_1=user_profile, is_view_1=False) | Q(user_2=user_profile, is_view_2=False))).count()
