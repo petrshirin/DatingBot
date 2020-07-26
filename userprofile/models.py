@@ -26,6 +26,7 @@ class UserProfile(models.Model):
     restaurant = models.ForeignKey(UserRestaurant, on_delete=models.CASCADE, default=None, null=True, blank=True)
     # chat = models.OneToOneField(Chat, on_delete=models.CASCADE, default=None, null=True, blank=True)
     is_active = models.BooleanField(default=True)
+    last_active = models.DateTimeField(default=now)
     search_for = models.CharField(max_length=20, default=None, null=True, blank=True)
 
     def __str__(self):

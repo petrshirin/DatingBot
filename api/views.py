@@ -8,6 +8,8 @@ from django.core.files.base import File
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.authtoken.models import Token
 from django.apps import apps
+from django.utils.timezone import now
+from datetime import timedelta
 # Create your views here.
 
 UserProfile = apps.get_model('userprofile', 'UserProfile')
@@ -35,14 +37,18 @@ class User(APIView):
         for user_view in user_views:
             user_views_list.append(user_view.view_user)
         profile = None
-        print(main_profile.restaurant, main_profile.sex, main_profile.search_for)
-        print(user_views_list)
         for profile in profiles:
             if profile == main_profile:
                 profile = None
                 continue
             if profile not in user_views_list:
-                break
+                if now() - profile.last_active >= timedelta(hours=1):
+                    profile.is_active = False
+                    profile.save()
+                if profile.is_active:
+                    break
+                else:
+                    profile = None
             else:
                 profile = None
         if profile:
