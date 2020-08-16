@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'userprofile.middleware.CheckActiveMiddleware',
+    'userprofile.middleware.CheckUserPhotoMiddleware',
 ]
 
 ROOT_URLCONF = 'datingbot.urls'
