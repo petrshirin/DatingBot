@@ -26,5 +26,5 @@ class CheckUserPhotoMiddleware(MiddlewareMixin):
             if not request.user.userprofile.photo and 'addphoto' not in request.path:
                 if not request.user.is_staff:
                     return redirect('/profile/addphoto/')
-        return None
+        return redirect('/profile/reg/1')
 
