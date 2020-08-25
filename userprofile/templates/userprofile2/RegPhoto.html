@@ -26,7 +26,7 @@
         {% csrf_token %}
         <div class="photo">
             <div class="imagePreview" id="imagePreview">
-                <canvas id="canvas"></canvas>
+                <canvas id="canvas" style="display: none"></canvas>
                 <img src={% static "/svg/Line_38.svg" %} alt="Image preview" class="imagePreviewImage" style="display: none"/>
             </div>
             <input type="file" name="inpFile" id="inpFile" accept="image/*" />

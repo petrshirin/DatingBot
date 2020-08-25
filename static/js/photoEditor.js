@@ -67,6 +67,7 @@ const rotateParam = {
 
         try {
             if (file) {
+            	document.getElementsByTagName('canvas')[0].style.display = "flex";
                 for (let i = 0; i < 2; i++) {
                     document.getElementsByClassName("btn")[i].style.display = "block";
                 }
