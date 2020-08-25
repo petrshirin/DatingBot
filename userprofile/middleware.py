@@ -17,7 +17,7 @@ class CheckActiveMiddleware(MiddlewareMixin):
 
 class CheckUserPhotoMiddleware(MiddlewareMixin):
     """
-    Check user to having avatar if not redirect to add photo page
+    Check user to having avatar if not, redirect to add photo page
     """
 
     def process_request(self, request):
