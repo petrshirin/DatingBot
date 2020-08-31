@@ -5,7 +5,7 @@ const rotateParam = {
 	};
 
 (async () => {
-    const CANVAS_WIDTH = 852
+    const CANVAS_WIDTH = 800
 	const CANVAS_HEIGHT = 1092
 
 	const canvas = document.getElementsByTagName('canvas')[0]

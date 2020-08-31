@@ -27,7 +27,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(int(os.environ['DEBUG']))
 
 ALLOWED_HOSTS = ['tkl.one', 'www.tkl.one', '127.0.0.1', '192.168.0.91']
 
