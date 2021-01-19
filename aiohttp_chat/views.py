@@ -69,7 +69,6 @@ async def websocket_handler(request):
                         await new_message.save()
 
                     for ws_n in request.app['wslist']:
-
                         if ws_n['chat_id'] == json_d['chat_id'] and ws_n['partner_id'] == session['chat_id']:
                             await ws_n['ws'].send_json(answer)
 

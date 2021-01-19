@@ -41,7 +41,7 @@ class ChatMessage:
         self.time = time
 
     async def save(self):
-        await self.conn.execute(f"INSERT INTO userprofile_message(sender_id, recipient_id, text, time) VALUES ($1, $2, $3, $4)", self.sender, self.recipient, self.text, self.time)
+        await self.conn.execute(f"INSERT INTO userprofile_message (sender_id, recipient_id, text, time) VALUES ($1, $2, $3, $4)", self.sender, self.recipient, self.text, self.time)
 
 
 

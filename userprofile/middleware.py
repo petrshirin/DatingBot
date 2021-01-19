@@ -21,6 +21,9 @@ class CheckUserPhotoMiddleware(MiddlewareMixin):
     """
 
     def process_request(self, request):
+        if 'admin' in request.path:
+            return None
+
         if request.user.is_authenticated:
 
             if not request.user.userprofile.photo and 'add' not in request.path:
