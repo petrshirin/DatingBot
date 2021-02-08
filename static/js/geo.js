@@ -4,7 +4,7 @@ function getGeoPosition() {
     navigator.geolocation.getCurrentPosition(position => {
         console.log(window.location.pathname)
         if (!window.location.pathname.includes('/profile/geo'))
-            sendGeoPosition(position.coords)
+            //sendGeoPosition(position.coords)
         },
         error => {
             console.log(window.location.pathname)
