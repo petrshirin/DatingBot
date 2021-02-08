@@ -6,9 +6,9 @@ function getGeoPosition() {
             sendGeoPosition(position.coords)
         },
         error => {
-            if (!window.location.toString().includes('/profile/geo')) {
+            if (!window.location.('/profile/geo')) {
                 let restaurant_id = localStorage.getItem('restaurant_id')
-                window.location.replace(HOST + "/profile/geo/" + restaurant_id)
+                window.location.assign(HOST + "/profile/geo/" + restaurant_id)
             }
         })
 }
@@ -28,7 +28,7 @@ function sendGeoPosition(cords) {
 
         if (request.readyState === 4 && request.status === 200) {
             if (!request.response.status) {
-                window.location.replace(HOST + "/profile/geo/" + restaurant_id)
+                window.location.assign(HOST + "/profile/geo/" + restaurant_id)
             }
 
         }
