@@ -4,8 +4,11 @@ function getGeoPosition() {
             sendGeoPosition(position.coords)
         },
         error => {
-            if (!window.location.href.includes('/profile/geo'))
+            if (!window.location.href.includes('/profile/geo')) {
+                let restaurant_id = localStorage.getItem('restaurant_id')
                 window.location.href = "/profile/geo/" + restaurant_id
+            }
+
         })
 }
 
