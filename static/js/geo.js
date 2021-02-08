@@ -1,3 +1,5 @@
+HOST = 'https://lovebot.mytesttelegrambotdev.ru'
+
 function getGeoPosition() {
     navigator.geolocation.getCurrentPosition(position => {
         if (!window.location.href.includes('/profile/geo'))
@@ -6,7 +8,7 @@ function getGeoPosition() {
         error => {
             if (!window.location.href.includes('/profile/geo')) {
                 let restaurant_id = localStorage.getItem('restaurant_id')
-                window.location.href = "/profile/geo/" + restaurant_id
+                window.location.href = HOST + "/profile/geo/" + restaurant_id
             }
 
         })
@@ -27,7 +29,7 @@ function sendGeoPosition(cords) {
 
         if (request.readyState === 4 && request.status === 200) {
             if (!request.response.status) {
-                window.location.href = "/profile/geo/" + restaurant_id
+                window.location.href = HOST + "/profile/geo/" + restaurant_id
             }
 
         }
