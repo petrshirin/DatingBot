@@ -2,11 +2,11 @@ HOST = 'https://lovebot.mytesttelegrambotdev.ru'
 
 function getGeoPosition() {
     navigator.geolocation.getCurrentPosition(position => {
-        if (!window.location.href.includes('/profile/geo'))
+        if (true)
             sendGeoPosition(position.coords)
         },
         error => {
-            if (!window.location.href.includes('/profile/geo')) {
+            if (true) {
                 let restaurant_id = localStorage.getItem('restaurant_id')
                 window.location.replace(window.location.href = HOST + "/profile/geo/" + restaurant_id)
             }
