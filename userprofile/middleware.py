@@ -24,6 +24,9 @@ class CheckUserPhotoMiddleware(MiddlewareMixin):
         if 'admin' in request.path:
             return None
 
+        if 'geo' in request.path:
+            return None
+
         if 'profile/' in request.path:
             if request.user.is_authenticated:
 
