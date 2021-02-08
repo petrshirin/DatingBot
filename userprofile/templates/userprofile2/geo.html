@@ -10,7 +10,6 @@
 
 {% block sitebar %}
 <header>
-    <div class="iconArrow"><a href="/profile/menu/"><img src={% static "/svg/Line_38.svg" %} /></a></div>
     <div>
         <div><a href=""><img class="logo" src=
                 {% if userprofile.restaurant.id == 1 %}
@@ -21,9 +20,6 @@
             ></a></div>
         <div class="extraTxt headTxt">знакомства</div>
     </div>
-    <div class="icon"><a href="/profile/favourites/">
-        <div id="getMenuBar" class="refMenu"></div>
-    </a></div>
 </header>
 {% endblock %}
 
