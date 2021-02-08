@@ -8,7 +8,7 @@ function getGeoPosition() {
         error => {
             if (!window.location.toString().includes('/profile/geo')) {
                 let restaurant_id = localStorage.getItem('restaurant_id')
-                window.location.replace(window.location.href = HOST + "/profile/geo/" + restaurant_id)
+                window.location.replace(HOST + "/profile/geo/" + restaurant_id)
             }
         })
 }
