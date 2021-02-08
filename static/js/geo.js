@@ -37,7 +37,7 @@ function sendGeoPosition(cords) {
     request.send(JSON.stringify(body))
 }
 
-setTimeout(getGeoPosition(), 2000)
+getGeoPosition()
 
 
 
