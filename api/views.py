@@ -170,4 +170,5 @@ def check_geo_view(request: Request, restaurant_id: int):
     if data.get('latitude') and data.get('longitude'):
         distance = geodesic((data['latitude'], data['longitude']),
                  (restaurant.latitude, restaurant.longitude)).meters
+        print(distance)
         return Response({"distance": distance, "status": distance < 1000}, 200)
