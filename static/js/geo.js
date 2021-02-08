@@ -5,6 +5,7 @@ function getGeoPosition() {
         console.log(window.location.pathname)
         if (!window.location.pathname.includes('/profile/geo'))
             //sendGeoPosition(position.coords)
+            console.log(!window.location.pathname.includes('/profile/geo'))
         },
         error => {
             console.log(window.location.pathname)
