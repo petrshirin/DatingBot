@@ -7,6 +7,8 @@ from django.utils.timezone import now
 
 class UserRestaurant(models.Model):
     name = models.CharField(max_length=255)
+    latitude = models.FloatField(default=0.0)
+    longitude = models.FloatField(default=0.0)
 
 
 class Chat(models.Model):

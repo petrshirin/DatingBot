@@ -10,7 +10,10 @@ function change_rest(rest_id) {
         document.getElementById("choice3").checked=false;
         document.getElementById("choice"+rest_id).checked=true;
         console.log(request.response);
+        localStorage.setItem('restaurant_id', rest_id)
     }
     });
     request.send();
 }
+
+

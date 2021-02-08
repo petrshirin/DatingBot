@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from rest_framework.views import APIView, Response
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.views import APIView, Response, Request
 from .serializers import *
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.parsers import JSONParser, FormParser, MultiPartParser
 from django.core.files.base import File
 from django.views.decorators.csrf import csrf_exempt
@@ -10,6 +11,9 @@ from rest_framework.authtoken.models import Token
 from django.apps import apps
 from django.utils.timezone import now
 from datetime import timedelta
+from geopy.distance import geodesic
+from userprofile.models import UserRestaurant
+
 # Create your views here.
 
 UserProfile = apps.get_model('userprofile', 'UserProfile')
@@ -154,3 +158,16 @@ class ChatInfo(APIView):
         token = Token.objects.get(user=request.user)
         return Response({'token': token.key, 'user_id': user_profile.pk}, status=200)
 
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def check_geo_view(request: Request, restaurant_id: int):
+    data: dict = request.data
+    try:
+        restaurant = UserRestaurant.objects.get(pk=restaurant_id)
+    except UserRestaurant.DoesNotExist:
+        return Response({"error": 'invalid restaurant'}, status=404)
+    if data.get('latitude') and data.get('longitude'):
+        distance = geodesic((data['latitude'], data['longitude']),
+                 (restaurant.latitude, restaurant.longitude)).meters
+        return Response({"distance": distance, "status": distance < 1000}, 200)

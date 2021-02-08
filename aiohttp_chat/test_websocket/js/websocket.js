@@ -1,8 +1,8 @@
 try{
-    var sock = new WebSocket('ws://' + "127.0.0.1:8080" + '/ws');
+    var sock = new WebSocket('ws://' + "127.0.0.1:8081" + '/ws');
 }
 catch(err){
-    var sock = new WebSocket('wss://' + "127.0.0.1:8080" + '/ws');
+    var sock = new WebSocket('wss://' + "127.0.0.1:8081" + '/ws');
 }
 
 // show message in div#subscribe
@@ -20,11 +20,11 @@ function sendMessage(){
     msg.value = '';
 }
 
-sock.onopen = function(){
+sock.onopen = function() {
     showMessage('Connection to server started')
-    data {
+    data = {
         user_id: 1,
-        token: "test_token"
+        token: "80ca6b62a1885fa194658a774e8095af5691571e"
     }
 
     let s_msg = {

@@ -99,6 +99,11 @@ def bad_request(request):
     return render(request, 'userprofile/404.html', status=404)
 
 
+def geo_page_view(request, restaurant_id):
+    user_profile = UserProfile(restaurant_id=restaurant_id)
+    return render(request, 'userprofile2/geo.html', {'userprofile': user_profile})
+
+
 def register_user(request, restaurant_id):
     rest = UserRestaurant.objects.filter(pk=restaurant_id).first()
     if not rest:
@@ -129,10 +134,12 @@ def register_user(request, restaurant_id):
             token.save()
             user_profile.save()
             login(request, user)
-            return redirect('/profile/addname/', {'user': user_profile})
+            return redirect('/profile/addname/', {'userprofile': user_profile})
 
     elif request.method == 'GET':
-        return TemplateResponse(request, 'userprofile2/RegTel.html', {"error": ""})
+        user_profile = UserProfile(restaurant_id=restaurant_id)
+        return TemplateResponse(request, 'userprofile2/RegTel.html', {"error": "",
+                                                                      "userprofile": user_profile})
 
     else:
         return bad_request(request)
@@ -152,7 +159,7 @@ def add_name_sex(request):
             user_profile.sex = 'Женщина'
             user_profile.search_for = 'Мужчина'
         user_profile.save()
-        return redirect('/profile/addage/', {'user': user_profile})
+        return redirect('/profile/addage/', {'userprofile': user_profile})
 
     elif request.method == 'GET':
         return TemplateResponse(request, 'userprofile2/RegName.html', {"error": ""})
@@ -165,15 +172,15 @@ def add_name_sex(request):
 def add_age(request):
     if request.method == 'POST':
         age = request.POST['age']
+        user_profile = UserProfile.objects.get(user=request.user)
         if age:
-            user_profile = UserProfile.objects.get(user=request.user)
             try:
                 user_profile.age = int(age)
             except ValueError:
                 user_profile.age = None
             user_profile.save()
 
-        return redirect('/profile/addstatus/', {'user': user_profile})
+        return redirect('/profile/addstatus/', {'userprofile': user_profile})
 
     elif request.method == 'GET':
         return TemplateResponse(request, 'userprofile2/RegAge.html', {"error": ""})
@@ -189,7 +196,7 @@ def add_status(request):
         user_profile = UserProfile.objects.get(user=request.user)
         user_profile.status = status
         user_profile.save()
-        return redirect('/profile/addphoto/', {'user': user_profile})
+        return redirect('/profile/addphoto/', {'userprofile': user_profile})
 
     elif request.method == 'GET':
         return TemplateResponse(request, 'userprofile2/RegWords.html', {"error": ""})
@@ -206,7 +213,7 @@ def add_photo(request):
         user_profile.photo = ContentFile(file, f'avatar_{user_profile.pk}.png')
 
         user_profile.save()
-        return redirect('/profile/go/', {'user': user_profile})
+        return redirect('/profile/go/', {'userprofile': user_profile})
 
     elif request.method == 'GET':
         return TemplateResponse(request, 'userprofile2/RegPhoto.html', {"error": ""})

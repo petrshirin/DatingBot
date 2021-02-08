@@ -6,7 +6,7 @@ function upload() {
     const previewImage = previewContainer.querySelector(".imagePreviewImage");
 
     inpFile.addEventListener("change", function() {
-        const file = this.files[0];2
+        const file = this.files[0];
 
         if (file) {
             const reader = new FileReader();

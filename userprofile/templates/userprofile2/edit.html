@@ -11,7 +11,13 @@
 <header>
     <div class="iconArrow"><a href="/profile/menu/"><img src={% static "/svg/Line_38.svg" %} /></a></div>
     <div>
-        <div><a href=""><img class="logo" src={% static "/svg/image_15.svg" %} ></a></div>
+        <div><a href=""><img class="logo" src=
+                {% if userprofile.restaurant.id == 1 %}
+                     {% static "/svg/image_15.svg" %}
+                {% else %}
+                    {% static "/svg/Logo_Palm_04.png" %}
+                {% endif %}
+            ></a></div>
         <div class="extraTxt headTxt">знакомства</div>
     </div>
     <div class="icon"><a href="/profile/search/"><img src={% static "/svg/close.svg" %} /></a></div>

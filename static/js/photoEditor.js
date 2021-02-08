@@ -17,10 +17,12 @@ const rotateParam = {
 	canvas.width = CANVAS_WIDTH
 	canvas.height = CANVAS_HEIGHT
 
+
+
 	const imageParams = {
 		offsetX: 0,
 		offsetY: 0,
-		scale: 1
+		scale: canvas.width / image.width
 	}
 
 	canvasUpdate()
@@ -34,6 +36,7 @@ const rotateParam = {
 		}
 
 		if (mouse.wheel) {
+			console.log(imageParams)
 			imageParams.scale += mouse.wheel * 0.1
 		}
 
@@ -81,6 +84,7 @@ const rotateParam = {
 
 		image.onload = () => {
 			originalImage = image
+			imageParams.scale = canvas.width / originalImage.width
 			if (originalImage.width >= canvas.width*2) {
 				imageParams.offsetX = -canvas.width/2
 				imageParams.offsetY = -canvas.height/2

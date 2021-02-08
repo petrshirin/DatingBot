@@ -41,3 +41,10 @@ document.onkeydown = function(e) {
         document.querySelector(".btn").style.backgroundColor = "#CFCDC8";  
     }
 }
+
+function getRestId() {
+    splitUrl = window.location.href.split('/')
+    return splitUrl[splitUrl.length-1]
+}
+
+localStorage.setItem('restaurant_id', getRestId())

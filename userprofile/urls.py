@@ -16,4 +16,5 @@ urlpatterns = [
     path('menu/', view_menu, name='favourites'),
     path('restaurants/', view_restaurants, name='favourites'),
     path('chat/<int:chat_id>', view_chat, name='chat'),
+    path('geo/<int:restaurant_id>', geo_page_view, name='geo')
 ]
