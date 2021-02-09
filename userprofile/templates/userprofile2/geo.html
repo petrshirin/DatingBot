@@ -1,6 +1,6 @@
 {% extends "userprofile2/base.html" %}
 {% load static %}
-{% block title %}Чат с {{other_userprofile.first_name}} {% endblock %}
+{% block title %}Сервис недоступен{% endblock %}
 
 {% block links %}
 <link rel="stylesheet" type="text/css" href={% static "/css/common.css" %} />
@@ -31,6 +31,7 @@
     <div>
         Для использования сервиса, вам нужно приблизиться к одному из заведений и обновить геолокацию
     </div>
+    <div class="btn" /><a href="/profile/reg/{{userprofile.restaurant.id}}">Обновить</a></div>
 </div>
 
 {% endblock %}

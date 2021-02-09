@@ -19,3 +19,24 @@ header {
     justify-content: center;
 }
 
+.btn {
+    background: #CFCDC8;
+    border-radius: 117px;
+    font-size: 68px;
+
+    font-weight: 500;
+    text-align: center;
+    width: 90%;
+    padding: 30px;
+
+    color: #1A1919;
+
+    border: none;
+    margin-top: 250px;
+}
+
+.btn a {
+    color: black;
+}
+
+
