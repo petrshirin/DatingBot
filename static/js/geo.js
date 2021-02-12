@@ -1,4 +1,4 @@
-HOST = 'https://lovebot.mytesttelegrambotdev.ru'
+HOST = 'https://maxilove.site'
 
 function getGeoPosition() {
     navigator.geolocation.getCurrentPosition(position => {
