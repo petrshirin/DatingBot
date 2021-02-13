@@ -162,7 +162,8 @@ def add_name_sex(request):
         return redirect('/profile/addage/', {'userprofile': user_profile})
 
     elif request.method == 'GET':
-        return TemplateResponse(request, 'userprofile2/RegName.html', {"error": ""})
+        user_profile = UserProfile.objects.get(user=request.user)
+        return TemplateResponse(request, 'userprofile2/RegName.html', {"error": "", 'userprofile': user_profile})
 
     else:
         return bad_request(request)
@@ -183,7 +184,8 @@ def add_age(request):
         return redirect('/profile/addstatus/', {'userprofile': user_profile})
 
     elif request.method == 'GET':
-        return TemplateResponse(request, 'userprofile2/RegAge.html', {"error": ""})
+        user_profile = UserProfile.objects.get(user=request.user)
+        return TemplateResponse(request, 'userprofile2/RegAge.html', {"error": "", 'userprofile': user_profile})
 
     else:
         return bad_request(request)
@@ -199,7 +201,8 @@ def add_status(request):
         return redirect('/profile/addphoto/', {'userprofile': user_profile})
 
     elif request.method == 'GET':
-        return TemplateResponse(request, 'userprofile2/RegWords.html', {"error": ""})
+        user_profile = UserProfile.objects.get(user=request.user)
+        return TemplateResponse(request, 'userprofile2/RegWords.html', {"error": "", 'userprofile': user_profile})
 
     else:
         return bad_request(request)
@@ -216,7 +219,8 @@ def add_photo(request):
         return redirect('/profile/go/', {'userprofile': user_profile})
 
     elif request.method == 'GET':
-        return TemplateResponse(request, 'userprofile2/RegPhoto.html', {"error": ""})
+        user_profile = UserProfile.objects.get(user=request.user)
+        return TemplateResponse(request, 'userprofile2/RegPhoto.html', {"error": "", 'userprofile': user_profile})
 
     else:
         return bad_request(request)
