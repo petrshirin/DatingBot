@@ -11,6 +11,8 @@ class CheckActiveMiddleware(MiddlewareMixin):
 
         if request.user.is_authenticated:
             request.user.userprofile.last_active = now()
+            if request.user.userprofile.photo and request.user.userprofile.first_name:
+                request.user.userprofile.is_active = True
             request.user.userprofile.save()
         return None
 
