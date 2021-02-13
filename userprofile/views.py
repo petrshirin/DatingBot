@@ -229,7 +229,9 @@ def add_photo(request):
 @login_required
 def all_done(request):
     if request.method == 'GET':
-        user_profile = UserProfile.objects.get(user=request.user)
+        user_profile: UserProfile = UserProfile.objects.get(user=request.user)
+        user_profile.is_active = True
+        user_profile.save()
         return TemplateResponse(request, 'userprofile2/Go.html', {"userprofile": user_profile})
     else:
         return bad_request(request)
